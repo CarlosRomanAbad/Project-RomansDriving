@@ -14,7 +14,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Clase {
 
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 93609c624f2acede6968f2a2ee1d220c7fc6fbd8
 	private LocalDate fechaClase;
 	private Usuario usuario;
 	private Vehiculo vehiculoAsignado;
