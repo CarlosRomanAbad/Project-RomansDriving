@@ -12,11 +12,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Clase {
 
-	@Id
-	@GeneratedValue
+
 	private LocalDate fechaClase;
 	private Usuario usuario;
 	private Vehiculo vehiculoAsignado;

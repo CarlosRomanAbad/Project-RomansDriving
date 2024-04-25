@@ -12,11 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
-@Entity
 public class Vehiculo {
 
-	@Id
-	@GeneratedValue
+
 	private Long id;
 	private String marca , matricula;
 	private boolean estaOcupado;
