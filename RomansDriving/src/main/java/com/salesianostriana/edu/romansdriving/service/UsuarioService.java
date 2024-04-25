@@ -13,19 +13,28 @@ public class UsuarioService {
 
     public List<Usuario> getUsuarios() {
         return Arrays.asList(
-            new Usuario(
-                1L, // ID del usuario
-                "Carlos", // Nombre
-                "12345678A", // DNI
-                "García Pérez", // Apellidos
-                "carlosg", // Nombre de usuario
-                "carlos@example.com", // Correo electrónico
-                "contraseña123", // Contraseña
-                "123456789", // Teléfono
-                true, // Tiene carné de autoescuela
-                true, // Es administrador
-                LocalDate.now() // Fecha de nacimiento
-            )
-        );
-}
+                new Usuario(
+                        1L, 
+                        "Carlos", 
+                        "12345678A", 
+                        "García Pérez", 
+                        "carlosg", 
+                        "carlos@example.com", 
+                        "contraseña123", 
+                        "123456789", 
+                        true, 
+                        true,
+                        LocalDate.now()),new Usuario(
+                            1L, 
+                            "Carlos", 
+                            "12345678A", 
+                            "García Pérez", 
+                            "carlosg", 
+                            "carlos@example.com", 
+                            "contraseña123", 
+                            "123456789", 
+                            true, 
+                            true,
+                            LocalDate.now()));
+    }
 }
