@@ -28,14 +28,14 @@ public class AdminController {
     	Usuario usuario = new Usuario();
     	model.addAttribute("addUsuario", usuario);
     	
-    	return "addUsuarioForm";
+    	return "admin/addUsuarioForm";
     	
     }
     
     @PostMapping("/lista")
     public String submit(@ModelAttribute("usuarioForm") Usuario usuario, Model model) {
     	
-    	
-    	return "listaAux";
+    	model.addAttribute("usuario", usuario);
+    	return "admin/listaAux";
     }
 }
