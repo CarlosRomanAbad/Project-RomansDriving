@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
 
 @Controller
@@ -17,5 +20,22 @@ public class AdminController {
     public String mostrarLista(Model model){
         model.addAttribute("listaUsuarios", u.getUsuarios());
         return "admin/gestionUsuarios";
+    }
+    
+    @GetMapping("/addUsuario")
+    public String gestionLista(Model model) {
+    	
+    	Usuario usuario = new Usuario();
+    	model.addAttribute("addUsuario", usuario);
+    	
+    	return "addUsuarioForm";
+    	
+    }
+    
+    @PostMapping("/lista")
+    public String submit(@ModelAttribute("usuarioForm") Usuario usuario, Model model) {
+    	
+    	
+    	return "listaAux";
     }
 }

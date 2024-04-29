@@ -3,7 +3,7 @@ package com.salesianostriana.edu.romansdriving.controller;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class usuarioController {
+public class UsuarioController {
 
 	
 }
