@@ -18,7 +18,7 @@ public class AdminController {
 
     @GetMapping("/gestionUsuarios")
     public String mostrarLista(Model model){
-        model.addAttribute("listaUsuarios", u.getUsuarios());
+        model.addAttribute("listaUsuarios", u.findAll());
         return "admin/gestionUsuarios";
     }
     
@@ -36,6 +36,7 @@ public class AdminController {
     public String submit(@ModelAttribute("usuarioForm") Usuario usuario, Model model) {
     	
     	model.addAttribute("usuario", usuario);
+    	
     	return "admin/listaAux";
     }
 }

@@ -19,7 +19,7 @@
 <body>
     <div class="fondo">
     
-        <nav th:replace="~{fragment :: menu}">
+        <nav th:replace="~{fragments/menu::menu}">
             
         </nav>
 
@@ -91,16 +91,15 @@
                                                 <td th:text="${persona.telefono}"></td>
                                                 <td th:text="${persona.tieneCarnetAutoescuela} ? 'true' : 'false'"></td>
                                                 <td th:text="${persona.isAdmin} ? 'true' : 'false'"></td>
-                                                <!--
-                        <td th:text="${#dates.format(persona.fechaNacimiento, 'dd/MM/yyyy')} ?: '-'"></td>
+                                                <td th:text="${#dates.format(persona.fechaNacimiento, 'dd/MM/yyyy')} ?: '-'"></td>
 
-                                   -->
+                                   
                                                 <td></td>
                                                 <td></td>
                                                 <!--
                                     <td><a th:href="@{'/editar/' + ${persona.id}}">Editar</a></td>
                                     <td><a th:href="@{'/eliminar/' + ${persona.id}}">Eliminar</a></td> 
-                                  -->
+                                                 -->
                                             </tr>
                                         </tbody>
                                     </table>
