@@ -1,12 +1,12 @@
 body {
   font-family:Arial, Helvetica, sans-serif;
-  border-left: 10px solid rgb(254, 254, 254);
-  border-right: 10px solid rgb(255, 255, 255);
+  border-left: 10px solid (207, 73, 69);
+  border-right: 10px solid (207, 73, 69);
 }
 .fondo {
-  background-color: rgb(255, 255, 255);
+  background-color: (207, 73, 69);
   background-position: top;
-  color: rgb(255, 255, 255);
+  color: rgb(217, 83, 79);
 }
 
 p {
@@ -42,11 +42,11 @@ span {
 
 
 footer{
-  background-color: rgb(255, 255, 255);
+  background-color: (217, 83, 79);
 }
 .boton{
-  background-color: rgb(255, 255, 255);
+  background-color: (217, 83, 79);
 }
 .botoninfo{
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(217, 83, 79);
 }

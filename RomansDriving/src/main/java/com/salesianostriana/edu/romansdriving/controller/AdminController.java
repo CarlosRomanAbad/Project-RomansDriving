@@ -24,19 +24,26 @@ public class AdminController {
     
     @GetMapping("/addUsuario")
     public String gestionLista(Model model) {
-    	
-    	Usuario usuario = new Usuario();
-    	model.addAttribute("addUsuario", usuario);
-    	
-    	return "admin/addUsuarioForm";
-    	
+        Usuario usuario = new Usuario();
+        model.addAttribute("addUsuario", usuario);
+        return "admin/addUsuarioForm";
     }
     
-    @PostMapping("/lista")
-    public String submit(@ModelAttribute("usuarioForm") Usuario usuario, Model model) {
-    	
-    	model.addAttribute("usuario", usuario);
-    	
-    	return "admin/gestionUsuarios";
+    
+    @GetMapping("/formulario")
+    public String mostrarFormulario(Model model) {
+        model.addAttribute("usuario", new Usuario());
+        return "admin/formulario";
     }
+
+    @PostMapping("/guardarPersona")
+    public String guardarPersona(@ModelAttribute Usuario usuario) {
+        // Llamamos al servicio para guardar el usuario en la base de datos
+        u.save(usuario);
+        // Redirigimos a la página de formulario después de guardar
+        return "redirect:/formulario";
+    }
+    
+    
 }
+

@@ -2,3 +2,11 @@
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIOS" no encontrada
 Table "USUARIOS" not found; SQL statement:
 SELECT * FROM usuarios [42102-224]
+2024-05-01 00:42:24.309303+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Conversión de datos fallida, convirtiendo "'' (USUARIO: ""TIENE_CARNET_AUTOESCUELA"" BOOLEAN NOT NULL)"
+Data conversion error converting "'' (USUARIO: ""TIENE_CARNET_AUTOESCUELA"" BOOLEAN NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."USUARIO"("IS_ADMIN","TIENE_CARNET_AUTOESCUELA","ID","APELLIDOS","CONTRASENHA","DNI","EMAIL","NOMBRE","TELEFONO","USUARIO")VALUES(?,?,?,?,?,?,?,?,?,?) [22018-224]
+2024-05-01 00:42:24.313660+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Conversión de datos fallida, convirtiendo "'' (USUARIO: ""TIENE_CARNET_AUTOESCUELA"" BOOLEAN NOT NULL)"
+Data conversion error converting "'' (USUARIO: ""TIENE_CARNET_AUTOESCUELA"" BOOLEAN NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."USUARIO"("IS_ADMIN","TIENE_CARNET_AUTOESCUELA","ID","APELLIDOS","CONTRASENHA","DNI","EMAIL","NOMBRE","TELEFONO","USUARIO")VALUES(?,?,?,?,?,?,?,?,?,?) [22018-224]

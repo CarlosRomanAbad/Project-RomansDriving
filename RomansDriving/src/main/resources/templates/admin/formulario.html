@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Usuario</title>
+</head>
+<body>
+	<form th:action="@{/guardarPersona}" method="post" th:object="${usuario}">
+        <table>
+            <tr>
+                <th>ID</th>
+                <td><input type="text" th:field="*{id}" /></td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td><input type="text" th:field="*{nombre}" /></td>
+            </tr>
+            <tr>
+                <th>DNI</th>
+                <td><input type="text" th:field="*{dni}" /></td>
+            </tr>
+            <tr>
+                <th>Apellidos</th>
+                <td><input type="text" th:field="*{apellidos}" /></td>
+            </tr>
+            <tr>
+                <th>Usuario</th>
+                <td><input type="text" th:field="*{usuario}" /></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="text" th:field="*{email}" /></td>
+            </tr>
+            <tr>
+                <th>Contraseña</th>
+                <td><input type="password" th:field="*{contrasenha}" /></td>
+            </tr>
+            <tr>
+                <th>Teléfono</th>
+                <td><input type="text" th:field="*{telefono}" /></td>
+            </tr>
+            <!--
+                <tr>
+                <th>Tiene Carnet Autoescuela</th>
+                <td><input type="checkbox" th:field="*{tieneCarnetAutoescuela}" /></td>
+            </tr>
+            <tr>
+                <th>Es Admin</th>
+                <td><input type="checkbox" th:field="*{isAdmin}" /></td>
+            </tr> -->
+        </table>
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
