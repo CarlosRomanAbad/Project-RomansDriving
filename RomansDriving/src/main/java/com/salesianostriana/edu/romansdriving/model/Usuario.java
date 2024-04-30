@@ -1,6 +1,6 @@
 package com.salesianostriana.edu.romansdriving.model;
 
-import java.time.LocalDate;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
