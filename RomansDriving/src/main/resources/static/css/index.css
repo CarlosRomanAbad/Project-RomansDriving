@@ -1,8 +1,10 @@
 body {
   font-family:Arial, Helvetica, sans-serif;
+  border-left: 10px solid red;
+  border-right: 10px solid red;
 }
 .fondo {
-  background-color: green;
+  background-color: rgb(225, 26, 26);
   background-position: top;
   color: rgb(255, 255, 255);
 }
@@ -37,18 +39,14 @@ span {
   color: white;
 }
 
-.contenido {
-  border-left: 10px solid green;
-  border-right: 10px solid green;
-  background-color: white;
-}
+
 
 footer{
-  background-color: green;
+  background-color: rgb(255, 0, 0);
 }
 .boton{
-  background-color: green;
+  background-color: rgb(255, 0, 0);
 }
 .botoninfo{
-  background-color: green;
+  background-color: rgb(255, 0, 0);
 }

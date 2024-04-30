@@ -37,6 +37,6 @@ public class AdminController {
     	
     	model.addAttribute("usuario", usuario);
     	
-    	return "admin/listaAux";
+    	return "admin/gestionUsuarios";
     }
 }

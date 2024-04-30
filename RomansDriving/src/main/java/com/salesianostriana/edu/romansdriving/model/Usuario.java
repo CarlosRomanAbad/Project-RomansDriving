@@ -21,13 +21,9 @@ public class Usuario {
 	
     private String nombre, dni, apellidos, usuario, email, contrasenha, telefono;
     private boolean tieneCarnetAutoescuela, isAdmin;
-    private LocalDate fechaNacimiento;
+    
 	
-    public Usuario(String nombre, String email) {
-		super();
-		this.nombre = nombre;
-		this.email = email;
-	}
+    
     
     
     
