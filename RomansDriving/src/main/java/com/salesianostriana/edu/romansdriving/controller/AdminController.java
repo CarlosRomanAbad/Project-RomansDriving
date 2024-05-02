@@ -22,13 +22,6 @@ public class AdminController {
         return "admin/gestionUsuarios";
     }
     
-    @GetMapping("/addUsuario")
-    public String gestionLista(Model model) {
-        Usuario usuario = new Usuario();
-        model.addAttribute("addUsuario", usuario);
-        return "admin/addUsuarioForm";
-    }
-    
     
     @GetMapping("/formulario")
     public String mostrarFormulario(Model model) {
@@ -37,9 +30,10 @@ public class AdminController {
     }
 
     @PostMapping("/guardarPersona")
-    public String guardarPersona(@ModelAttribute Usuario usuario) {
+    public String guardarPersona(@ModelAttribute Usuario usuario , Model model) {
         u.save(usuario);
-        return "redirect:/admin/formulario";
+        model.addAttribute("listaUsuarios", u.findAll());
+        return "admin/gestionUsuarios";
     }
     
     
