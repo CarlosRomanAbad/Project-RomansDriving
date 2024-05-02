@@ -38,10 +38,8 @@ public class AdminController {
 
     @PostMapping("/guardarPersona")
     public String guardarPersona(@ModelAttribute Usuario usuario) {
-        // Llamamos al servicio para guardar el usuario en la base de datos
         u.save(usuario);
-        // Redirigimos a la página de formulario después de guardar
-        return "redirect:/formulario";
+        return "redirect:/admin/formulario";
     }
     
     
