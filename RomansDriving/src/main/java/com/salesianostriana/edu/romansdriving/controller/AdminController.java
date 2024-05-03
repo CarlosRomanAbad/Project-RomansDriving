@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.edu.romansdriving.model.Usuario;
-import com.salesianostriana.edu.romansdriving.repository.ClienteRepository;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
 
 @Controller

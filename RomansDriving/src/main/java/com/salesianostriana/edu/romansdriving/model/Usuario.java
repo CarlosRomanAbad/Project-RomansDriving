@@ -24,32 +24,32 @@ public class Usuario {
 	@GeneratedValue
     private Long id;
 	
-    private String nombre, dni, apellidos, usuario, email, contrasenha, telefono;
+    private String nombre, dni, apellidos, nombreUsuario, email, contrasenha, telefono;
     private boolean tieneCarnetAutoescuela;
     private Date fechaRegistro;
 	
-    public Usuario(Long id, String nombre, String dni, String apellidos, String usuario, String email,
+    public Usuario(Long id, String nombre, String dni, String apellidos, String nombreUsuario, String email,
 			String contrasenha, String telefono, boolean tieneCarnetAutoescuela) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.dni = dni;
 		this.apellidos = apellidos;
-		this.usuario = usuario;
+		this.nombreUsuario = nombreUsuario;
 		this.email = email;
 		this.contrasenha = contrasenha;
 		this.telefono = telefono;
 		this.tieneCarnetAutoescuela = tieneCarnetAutoescuela;
 	}
 
-	public Usuario(Long id, String nombre, String dni, String apellidos, String usuario, String email,
+	public Usuario(Long id, String nombre, String dni, String apellidos, String nombreUsuario, String email,
 			String contrasenha, String telefono) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.dni = dni;
 		this.apellidos = apellidos;
-		this.usuario = usuario;
+		this.nombreUsuario = nombreUsuario;
 		this.email = email;
 		this.contrasenha = contrasenha;
 		this.telefono = telefono;
