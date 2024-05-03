@@ -1,10 +1,13 @@
 package com.salesianostriana.edu.romansdriving.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.edu.romansdriving.model.Usuario;
@@ -15,7 +18,6 @@ public class AdminController {
 
 	@Autowired
 	private UsuarioService u;
-
 
 	@GetMapping("/gestionUsuarios")
 	public String mostrarLista(Model model) {
@@ -38,4 +40,29 @@ public class AdminController {
 
 	}
 
+	@GetMapping("/editUsuario/{id}")
+	public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
+		Optional<Usuario> uEditar = u.findById(id);
+
+		if (uEditar!=null) {
+			model.addAttribute("usuario", uEditar.get());
+			return "admin/formulario";
+		}
+
+		else {
+			return "redirect:/gestionUsuarios";
+		}
+
+	}
+
+	
+	@PostMapping("/editUsuario/submit")
+	public String editarUsuario(@ModelAttribute("usuario")Usuario usuario) {
+		
+		u.edit(usuario);
+		
+		return "redirect:/gestionUsuarios";
+	}
+	
+	
 }

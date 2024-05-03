@@ -61,7 +61,11 @@
 											<td th:text="${persona.telefono}"></td>
 											<td th:text="${persona.tieneCarnetAutoescuela}"></td>
 											<!--<td th:text="${persona.dtype}"></td>											-->
-											<td> <i class="bi bi-pencil"></i></td>
+											<td>
+												<a th:href="@{/editUsuario/{id}(id=${persona.id})}" class="btn bg-danger">
+											        <i class="bi bi-pencil"></i>
+											    </a>
+											</td>
 											<td><i class="bi bi-trash"></i></td>
 										</tr>
 									</tbody>
