@@ -35,7 +35,7 @@ public class AdminController {
 		u.save(usuario);
 
 		model.addAttribute("listaUsuarios", u.findAll());
-		return "admin/gestionUsuarios";
+		return "redirect:/gestionUsuarios";
 
 	}
 
