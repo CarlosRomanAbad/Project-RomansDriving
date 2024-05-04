@@ -3,12 +3,20 @@ package com.salesianostriana.edu.romansdriving.model;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +31,19 @@ public class Usuario {
 	@Id
 	@GeneratedValue
     private Long id;
+	
+	@ManyToOne
+	@JoinColumn(foreignKey = @ForeignKey(name="fk_usuario_clase"))
+	private Clase clase;
+	
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "compra_carnet",
+            joinColumns = @JoinColumn(name = "usuario_id"), 
+            inverseJoinColumns = @JoinColumn(name = "carnet_id") 
+    )
+	private List<Carnet>carnet = new ArrayList<>();
 	
     private String nombre, dni, apellidos, nombreUsuario, email, contrasenha, telefono;
     private boolean tieneCarnetAutoescuela;

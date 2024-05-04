@@ -41,28 +41,28 @@ public class AdminController {
 	}
 
 	@GetMapping("/editUsuario/{id}")
-	public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
-		Optional<Usuario> uEditar = u.findById(id);
+    public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
+        Optional<Usuario> uEditar = u.findById(id);
 
-		if (uEditar!=null) {
-			model.addAttribute("usuario", uEditar.get());
-			return "admin/formulario";
-		}
+        if (uEditar.isPresent()) {
+            model.addAttribute("usuario", uEditar.get());
+            return "admin/formulario";
+        }
 
-		else {
-			return "redirect:/gestionUsuarios";
-		}
+        else {
+            return "redirect:/gestionUsuarios";
+        }
 
-	}
+    }
 
-	
-	@PostMapping("/editUsuario/submit")
-	public String editarUsuario(@ModelAttribute("usuario")Usuario usuario) {
-		
-		u.edit(usuario);
-		
-		return "redirect:/gestionUsuarios";
-	}
+
+    @PostMapping("/editUsuario/submit")
+    public String editarUsuario(@ModelAttribute("usuario")Usuario usuario) {
+
+        u.edit(usuario);
+
+        return "redirect:/gestionUsuarios";
+    }
 	
 	
 }
