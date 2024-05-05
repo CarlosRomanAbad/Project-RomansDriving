@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.salesianostriana.edu.romansdriving.model.Admin;
+import com.salesianostriana.edu.romansdriving.model.Cliente;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
 
@@ -64,5 +67,23 @@ public class AdminController {
         return "redirect:/gestionUsuarios";
     }
 	
+	@PostMapping("/guardarPersonaCliente")
+public String guardarPersona(@ModelAttribute("usuario") Usuario usuario, @RequestParam("tipoUsuario") String tipoUsuario) {
+    // Asignar el tipo de usuario adecuado al objeto usuario
+    if (tipoUsuario.equals("C")) {
+        // Crear instancia de Cliente
+        usuario = new Cliente();
+    } else if (tipoUsuario.equals("A")) {
+        // Crear instancia de Admin
+        usuario = new Admin();
+    }
+
+    // Guardar el usuario en la base de datos
+    u.save(usuario);
+    
+    return "redirect:/gestionUsuarios";
+
+    // Resto del código de redirección o respuesta adecuada
+}
 	
 }

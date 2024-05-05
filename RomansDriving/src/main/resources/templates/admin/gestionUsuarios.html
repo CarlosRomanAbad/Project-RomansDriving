@@ -44,7 +44,7 @@
 											<th>Contraseña</th>
 											<th>Teléfono</th>
 											<th>Tiene Carnet en Autoescuela</th>
-											<!--<th>Tipo Usuario</th>											-->
+											<th>Tipo Usuario</th>											
 											<th>Editar</th>
 											<th>Eliminar</th>
 										</tr>
@@ -60,11 +60,11 @@
 											<td th:text="${persona.contrasenha}"></td>
 											<td th:text="${persona.telefono}"></td>
 											<td th:text="${persona.tieneCarnetAutoescuela}"></td>
-											<!--<td th:text="${persona.dtype}"></td>											-->
+											<td th:text="${persona.getClass().getSimpleName}"></td>
 											<td>
 												<a th:href="@{/editUsuario/{id}(id=${persona.id})}" class="btn bg-danger">
-											        <i class="bi bi-pencil"></i>
-											    </a>
+													<i class="bi bi-pencil"></i>
+												</a>
 											</td>
 											<td><i class="bi bi-trash"></i></td>
 										</tr>
