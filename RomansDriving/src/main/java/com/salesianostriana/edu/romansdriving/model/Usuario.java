@@ -2,7 +2,7 @@ package com.salesianostriana.edu.romansdriving.model;
 
 
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +48,10 @@ public class Usuario {
 	private List<Carnet>carnet = new ArrayList<>();
 	
     private String nombre, dni, apellidos, nombreUsuario, email, contrasenha, telefono;
-    private boolean tieneCarnetAutoescuela;
+    private boolean tieneCarnetAutoescuela , isAdmin;
     
-    @DateTimeFormat(pattern ="yyyy-mm-dd")
-    private Date fechaRegistro;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaNacimiento;
 	
     public Usuario(Long id, String nombre, String dni, String apellidos, String nombreUsuario, String email,
 			String contrasenha, String telefono, boolean tieneCarnetAutoescuela) {
@@ -69,8 +69,6 @@ public class Usuario {
 
 	public Usuario(Long id, String nombre, String dni, String apellidos, String nombreUsuario, String email,
 			String contrasenha, String telefono) {
-		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.dni = dni;
 		this.apellidos = apellidos;

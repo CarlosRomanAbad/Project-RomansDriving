@@ -53,22 +53,29 @@
                                 <label for="telefono" class="form-label">Teléfono</label>
                                 <input type="tel" id="telefono" class="form-control" th:field="*{telefono}">
                             </div>
+
                             <div class="mb-3">
-                                <label class="form-label">Tipo de Usuario</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipoUsuario" id="cliente"
-                                        value="C" th:checked="${usuario.class.simpleName == 'Cliente'}" required>
-                                    <label class="form-check-label" for="cliente">
-                                        Cliente
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipoUsuario" id="admin"
-                                        value="A" th:checked="${usuario.class.simpleName == 'Admin'}" required>
-                                    <label class="form-check-label" for="admin">
-                                        Admin
-                                    </label>
-                                </div>
+                                <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
+                                <input type="date" name="fechaNacimiento" th:field="*{fechaNacimiento}" />
+                            </div>
+
+							<div class="mb-3">
+							    <label class="form-label">Administrador</label>
+							    <div class="form-check">
+							        <input class="form-check-input" type="radio" name="esAdmin" id="adminTrue" value="true"
+							            th:checked="*{isAdmin}" required>
+							        <label class="form-check-label" for="adminTrue">
+							            Sí
+							        </label>
+							    </div>
+							    <div class="form-check">
+							        <input class="form-check-input" type="radio" name="esAdmin" id="adminFalse" value="false"
+							            th:checked="*{!isAdmin}" required>
+							        <label class="form-check-label" for="adminFalse">
+							            No
+							        </label>
+							    </div>
+							</div>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-danger btn-block">Guardar</button>

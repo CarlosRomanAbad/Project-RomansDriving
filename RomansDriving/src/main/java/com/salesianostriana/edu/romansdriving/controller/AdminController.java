@@ -58,7 +58,7 @@ public class AdminController {
 
     }
 
-
+	//tengo que ver si admin es un atributo booleano
     @PostMapping("/editUsuario/submit")
     public String editarUsuario(@ModelAttribute("usuario")Usuario usuario) {
 
