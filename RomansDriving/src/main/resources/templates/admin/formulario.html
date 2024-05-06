@@ -56,21 +56,21 @@
 
                             <div class="mb-3">
                                 <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
-                                <input type="date" name="fechaNacimiento" th:field="*{fechaNacimiento}" />
+                                <input type="date" name="fechaNacimiento" th:field="*{fechaNacimiento}"/>
                             </div>
 
 							<div class="mb-3">
 							    <label class="form-label">Administrador</label>
 							    <div class="form-check">
 							        <input class="form-check-input" type="radio" name="esAdmin" id="adminTrue" value="true"
-							            th:checked="*{isAdmin}" required>
+							            th:checked="*{isAdmin}" >
 							        <label class="form-check-label" for="adminTrue">
 							            Sí
 							        </label>
 							    </div>
 							    <div class="form-check">
 							        <input class="form-check-input" type="radio" name="esAdmin" id="adminFalse" value="false"
-							            th:checked="*{!isAdmin}" required>
+							            th:checked="*{isAdmin}">
 							        <label class="form-check-label" for="adminFalse">
 							            No
 							        </label>

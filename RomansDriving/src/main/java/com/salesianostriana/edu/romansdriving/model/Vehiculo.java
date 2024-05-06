@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,6 +26,7 @@ public class Vehiculo {
     @GeneratedValue
     private Long numBastidor;
 
+    @Enumerated(EnumType.STRING)
     private TipoVehiculo tipo;
 
     @ToString.Exclude

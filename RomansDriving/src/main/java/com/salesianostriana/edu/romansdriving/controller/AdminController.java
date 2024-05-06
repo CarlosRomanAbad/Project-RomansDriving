@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.salesianostriana.edu.romansdriving.model.Admin;
-import com.salesianostriana.edu.romansdriving.model.Cliente;
+import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
+import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
 
 @Controller
@@ -22,12 +21,27 @@ public class AdminController {
 	@Autowired
 	private UsuarioService u;
 
+	@Autowired
+	private ClaseRepository c;
+	
 	@GetMapping("/gestionUsuarios")
 	public String mostrarLista(Model model) {
 		model.addAttribute("listaUsuarios", u.findAll());
 		return "admin/gestionUsuarios";
 	}
 
+	@GetMapping("/gestionClases")
+	public String mostrar(Model model) {
+		model.addAttribute("listaClases", c.findAll());
+		return "admin/gestionClases";
+	}
+	
+	@GetMapping("/formularioClases")
+	public String mostrarFormularioClases(Model model) {
+		model.addAttribute("clase", new Clase());
+		return "admin/formularioClases";
+	}
+	
 	@GetMapping("/formulario")
 	public String mostrarFormulario(Model model) {
 		model.addAttribute("usuario", new Usuario());
@@ -41,6 +55,14 @@ public class AdminController {
 		model.addAttribute("listaUsuarios", u.findAll());
 		return "redirect:/gestionUsuarios";
 
+	}
+	
+	@PostMapping("/guardarClase/submit")
+	public String guardarClase(@ModelAttribute Clase clase , Model model) {
+		
+		c.save(clase);
+		model.addAttribute("guardarClase", c.findAll());
+		return "redirect:/gestionClases";
 	}
 
 	@GetMapping("/editUsuario/{id}")
@@ -58,7 +80,7 @@ public class AdminController {
 
     }
 
-	//tengo que ver si admin es un atributo booleano
+	
     @PostMapping("/editUsuario/submit")
     public String editarUsuario(@ModelAttribute("usuario")Usuario usuario) {
 
@@ -72,5 +94,12 @@ public class AdminController {
 		u.deleteById(id);
 		return "redirect:/gestionUsuarios";
 	}
+
+	@GetMapping("/borrarClase/{id}")
+	public String borrarClase(@PathVariable("id") long id) {
+		c.deleteById(id);
+		return "redirect:/gestionClases";
+	}
+	
 	
 }

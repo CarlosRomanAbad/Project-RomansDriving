@@ -5,9 +5,9 @@ import jakarta.persistence.Entity;
 
 
 
-@Entity
-@DiscriminatorValue("C")
-public class Cliente extends Usuario {
+//@Entity
+//@DiscriminatorValue("C")
+public class Cliente{// extends Usuario {
 
 	
 

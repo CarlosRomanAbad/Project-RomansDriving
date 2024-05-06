@@ -6,26 +6,30 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
+import lombok.ToString;
+@Builder
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Profesor {
-
+	
     @Id
     @GeneratedValue
     private Long id;
 
     @OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @Builder.Default
     private List<Clase> clases = new ArrayList<>();
 
     private String nombre;

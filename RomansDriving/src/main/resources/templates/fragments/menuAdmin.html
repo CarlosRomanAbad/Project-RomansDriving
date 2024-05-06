@@ -7,12 +7,12 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-            <ul th:fragment="menuAdmin" class="nav p-4">
+    <div th:fragment="menuAdmin" class="container-fluid">
+        <div class="row justify-content-center ">
+            <div class="col-md-8 offset-md-3 ">
+            <ul class="nav p-4 gap-5">
                 <li class="nav-item mb-5">
-                    <a th:href="@{admin/gestionUsuarios}">
+                    <a th:href="@{/gestionUsuarios}">
                         <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Usuarios</button>
                     </a>
                 </li>
@@ -22,8 +22,8 @@
                     </a>
                 </li>
                 <li class="nav-item mb-5">
-                    <a href="../Panel de Control/index.html">
-                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Pagos</button>
+                    <a th:href="@{/gestionClases}">
+                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestion Clases</button>
                     </a>
                 </li>
                 <li class="nav-item mb-5">
