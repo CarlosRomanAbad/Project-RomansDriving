@@ -67,23 +67,6 @@ public class AdminController {
         return "redirect:/gestionUsuarios";
     }
 	
-	@PostMapping("/guardarPersonaCliente")
-public String guardarPersona(@ModelAttribute("usuario") Usuario usuario, @RequestParam("tipoUsuario") String tipoUsuario) {
-    // Asignar el tipo de usuario adecuado al objeto usuario
-    if (tipoUsuario.equals("C")) {
-        // Crear instancia de Cliente
-        usuario = new Cliente();
-    } else if (tipoUsuario.equals("A")) {
-        // Crear instancia de Admin
-        usuario = new Admin();
-    }
-
-    // Guardar el usuario en la base de datos
-    u.save(usuario);
-    
-    return "redirect:/gestionUsuarios";
-
-    // Resto del código de redirección o respuesta adecuada
-}
+	
 	
 }

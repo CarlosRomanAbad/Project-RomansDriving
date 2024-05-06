@@ -7,29 +7,35 @@
 </head>
 
 <body>
-    <div class="row">
-        <ul th:fragment="menuAdmin" class="nav p-4">
-            <li class="nav-item mb-5">
-                <a th:href="@{admin/gestionUsuarios}">
-                    <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Usuarios</button>
-                </a>
-            </li>
-            <li class="nav-item mb-5">
-                <a th:href="@{admin/gestionVehiculos}">
-                    <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestión Vehículos</button>
-                </a>
-            </li>
-            <li class="nav-item mb-5">
-                <a href="../Panel de Control/index.html">
-                    <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Pagos</button>
-                </a>
-            </li>
-            <li class="nav-item mb-5">
-                <a href="../Panel de Control/index.html">
-                    <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestión Trabajadores</button>
-                </a>
-            </li>
-        </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+            <ul th:fragment="menuAdmin" class="nav p-4">
+                <li class="nav-item mb-5">
+                    <a th:href="@{admin/gestionUsuarios}">
+                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Usuarios</button>
+                    </a>
+                </li>
+                <li class="nav-item mb-5">
+                    <a th:href="@{admin/gestionVehiculos}">
+                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestión Vehículos</button>
+                    </a>
+                </li>
+                <li class="nav-item mb-5">
+                    <a href="../Panel de Control/index.html">
+                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Pagos</button>
+                    </a>
+                </li>
+                <li class="nav-item mb-5">
+                    <a href="../Panel de Control/index.html">
+                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestión Trabajadores</button>
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </div>
     </div>
+    
+    
 </body>
 </html>

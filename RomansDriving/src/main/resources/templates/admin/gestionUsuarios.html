@@ -32,7 +32,7 @@
 						<div class="card">
 							<div class="card-header bg-danger text-white text-center">Nuestras Marcas Destacadas</div>
 							<div class="card-body">
-								<table>
+								<table class="table">
 									<thead>
 										<tr>
 											<th>ID</th>
@@ -62,11 +62,14 @@
 											<td th:text="${persona.tieneCarnetAutoescuela}"></td>
 											<td th:text="${persona.getClass().getSimpleName}"></td>
 											<td>
-												<a th:href="@{/editUsuario/{id}(id=${persona.id})}" class="btn bg-danger">
+												<a th:href="@{/editUsuario/{id}(id=${persona.id})}" class="btn btn-danger">
 													<i class="bi bi-pencil"></i>
 												</a>
 											</td>
-											<td><i class="bi bi-trash"></i></td>
+											<td>
+												<a th:href="@{/borrarUsuario/{id}(id=${persona.id})}" class="btn btn-danger">
+												<i class="bi bi-trash"></i>
+											</td>
 										</tr>
 									</tbody>
 								</table>
