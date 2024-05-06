@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
@@ -47,6 +49,8 @@ public class Usuario {
 	
     private String nombre, dni, apellidos, nombreUsuario, email, contrasenha, telefono;
     private boolean tieneCarnetAutoescuela;
+    
+    @DateTimeFormat(pattern ="yyyy-mm-dd")
     private Date fechaRegistro;
 	
     public Usuario(Long id, String nombre, String dni, String apellidos, String nombreUsuario, String email,

@@ -19,11 +19,9 @@
                         <h3>Formulario de Usuario</h3>
                     </div>
                     <div class="card-body">
-                        <!--
-                         <form th:action="${usuario.id != 0} ? @{/editUsuario/submit/{id}(id=${usuario.id})} : @{/guardarPersona}" th:object="${usuario}" method="post">
-
-                        -->
-                        <form th:action="@{/guardarPersona}" method="post" th:object="${usuario}">
+                    
+                        <form th:action="${usuario.id != 0} ? @{/editUsuario/submit} : @{/guardarPersona/submit}" th:object="${usuario}" method="POST">            
+                            <input th:if="${usuario.id != 0}" type="hidden" name="id" th:field="*{id}" />
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" id="nombre" class="form-control" th:field="*{nombre}"

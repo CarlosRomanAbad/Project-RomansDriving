@@ -34,7 +34,7 @@ public class AdminController {
 		return "admin/formulario";
 	}
 
-	@PostMapping("/guardarPersona")
+	@PostMapping("/guardarPersona/submit")
 	public String guardarPersona(@ModelAttribute Usuario usuario, Model model) {
 		u.save(usuario);
 
@@ -45,10 +45,10 @@ public class AdminController {
 
 	@GetMapping("/editUsuario/{id}")
     public String mostrarFormularioEdicion(@PathVariable("id") Long id, Model model) {
-        Optional<Usuario> uEditar = u.findById(id);
+		Optional<Usuario> aEditar = u.findById(id);
 
-        if (uEditar.isPresent()) {
-            model.addAttribute("usuario", uEditar.get());
+        if (aEditar.isPresent()) {
+            model.addAttribute("usuario", aEditar.get());
             return "admin/formulario";
         }
 
@@ -62,11 +62,15 @@ public class AdminController {
     @PostMapping("/editUsuario/submit")
     public String editarUsuario(@ModelAttribute("usuario")Usuario usuario) {
 
-        u.edit(usuario);
+        u.save(usuario);
 
         return "redirect:/gestionUsuarios";
     }
 	
-	
+    @GetMapping("/borrar/{id}")
+	public String borrar(@PathVariable("id") long id) {
+		u.deleteById(id);
+		return "redirect:/gestionUsuarios";
+	}
 	
 }
