@@ -46,21 +46,21 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="clase: ${listaClases}">
-											<td th:text="${clase.estaOcupada ? 'true' : 'false'}"></td>
-											<td th:text="${#temporals.format(clase.fechaClase, 'yyyy/MM/dd')}"></td>
-											<td th:text="${clase.precio}"></td>
-											<td th:text="${clase.id}"></td>
-											<td th:text="${clase.profesor.id}"></td>
-											<td th:text="${clase.usuario.id}"></td>
-											<td th:text="${clase.vehiculo.numBastidor}"></td>
+										<tr th:each="clases: ${listaClases}">
+											<td th:text="${clases.estaOcupada ? 'true' : 'false'}"></td>
+											<td th:text="${#temporals.format(clases.fechaClase, 'yyyy/MM/dd')}"></td>
+											<td th:text="${clases.precio}"></td>
+											<td th:text="${clases.id}"></td>
+											<td th:text="${clases.profesor.id}"></td>
+											<td th:text="${clases.usuario.id}"></td>
+											<td th:text="${clases.vehiculo.numBastidor}"></td>
 											<td>
-												<a th:href="@{/editUsuario/{id}(id=${clase.id})}" class="btn btn-danger">
+												<a th:href="@{/editClase/{id}(id=${clases.id})}" class="btn btn-danger">
 													<i class="bi bi-pencil"></i>
 												</a>
 											</td>
 											<td>
-												<a th:href="@{/borrar/{id}(id=${clase.id})}" class="btn btn-danger">
+												<a th:href="@{/borrarClase/{id}(id=${clases.id})}" class="btn btn-danger">
 												<i class="bi bi-trash"></i>
 											</td>
 										</tr>

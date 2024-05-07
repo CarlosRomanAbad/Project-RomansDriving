@@ -9,26 +9,26 @@
 <body>
     <div th:fragment="menuAdmin" class="container-fluid">
         <div class="row justify-content-center ">
-            <div class="col-md-8 offset-md-3 ">
-            <ul class="nav p-4 gap-5">
+            <div class="col-md-8 offset-md-2 ">
+            <ul class="nav p-4 gap-4">
                 <li class="nav-item mb-5">
                     <a th:href="@{/gestionUsuarios}">
-                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Usuarios</button>
+                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestión Usuarios</button>
                     </a>
                 </li>
                 <li class="nav-item mb-5">
-                    <a th:href="@{admin/gestionVehiculos}">
+                    <a th:href="@{/gestionVehiculos}">
                         <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestión Vehículos</button>
                     </a>
                 </li>
                 <li class="nav-item mb-5">
                     <a th:href="@{/gestionClases}">
-                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestion Clases</button>
+                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestión Clases</button>
                     </a>
                 </li>
                 <li class="nav-item mb-5">
-                    <a href="../Panel de Control/index.html">
-                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestión Trabajadores</button>
+                    <a th:href="@{/gestionProfesores}">
+                        <button class="btn btn-outline-dark bg-danger text-white  btn-block my-2">Gestión Profesores</button>
                     </a>
                 </li>
             </ul>

@@ -25,6 +25,7 @@ public class Clase {
     private Long id;
     
     @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name="fk_clase_usuario"))  
     private Usuario usuario;
     
     private LocalDate fechaClase;

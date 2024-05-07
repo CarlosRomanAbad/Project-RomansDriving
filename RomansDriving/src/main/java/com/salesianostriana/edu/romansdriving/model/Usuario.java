@@ -19,6 +19,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,9 +35,8 @@ public class Usuario {
 	@GeneratedValue
     private Long id;
 	
-	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="fk_usuario_clase"))
-	private Clase clase;
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private List<Clase> clase = new ArrayList<>();
 	
 	
 	@ManyToMany(fetch = FetchType.EAGER)
