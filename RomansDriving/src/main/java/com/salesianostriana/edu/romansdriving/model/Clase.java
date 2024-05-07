@@ -2,6 +2,8 @@ package com.salesianostriana.edu.romansdriving.model;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public class Clase {
     @JoinColumn(foreignKey = @ForeignKey(name="fk_clase_usuario"))  
     private Usuario usuario;
     
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaClase;
     
     @ManyToOne

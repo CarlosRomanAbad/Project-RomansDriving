@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +36,10 @@ public class Profesor {
 
     private String nombre;
     private String apellidos;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaAlta;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaBaja;
 }

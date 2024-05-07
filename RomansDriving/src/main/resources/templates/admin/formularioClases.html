@@ -17,7 +17,7 @@
                         <h3>Formulario de Clase</h3>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/guardarClase/submit}" th:object="${clase}" method="POST">
+                        <form th:action="@{/admin/guardarClase/submit}" th:object="${clase}" method="POST">
                             <input type="hidden" th:field="*{id}">
                            <div class="mb-3">
                                 <label class="form-label">Esta Ocupada</label>

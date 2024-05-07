@@ -13,8 +13,8 @@ INSERT INTO vehiculo (tipo, num_bastidor) VALUES ('coche', 1);
 --
 ---- Insertar datos en la tabla Profesor
 INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', '2004-05-20', 1, 'Lopez Maganha', 'Luis Miguel');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', '2004-05-20', 2, 'Naranjo Gonzalez', 'Angel');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', '2004-05-20', 3, 'Campos Rivera', 'Miguel');
+--INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', '2004-05-20', 2, 'Naranjo Gonzalez', 'Angel');
+--INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', '2004-05-20', 3, 'Campos Rivera', 'Miguel');
 --ALTER SEQUENCE profesor_seq RESTART WITH 53;
 --
 --
