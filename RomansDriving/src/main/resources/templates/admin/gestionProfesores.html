@@ -20,6 +20,57 @@
     <nav th:replace="~{fragments/menu::menu}">
 	</nav>
 	<div th:replace="~{fragments/menuAdmin::menuAdmin}"></div>
+
+    <div class="container-fluid">
+		<div class="row">
+			<div class="mt-3 text-center py-4 ">
+				<a th:href="@{/admin/formulario}"
+					class="btn btn-outline-dark text-decoration-none bg-danger text-white">Añadir</a>
+			</div>
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header bg-danger text-white text-center">Gestion Usuarios</div>
+							<div class="card-body">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Fecha Alta</th>
+											<th>Fecha Baja</th>
+											<th>Id</th>
+											<th>Apellidos</th>
+											<th>Nombre</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="profesor : ${listaProfesores}">
+                                            <td th:text="${#temporals.format(profesor.fechaAlta, 'yyyy/MM/dd')}"></td>
+                                            <td th:text="${#temporals.format(profesor.fechaBaja, 'yyyy/MM/dd')}"></td>
+											<td th:text="${profesor.id}"></td>
+                                            <td th:text="${persona.apellidos}"></td>
+											<td th:text="${persona.nombre}"></td>
+											
+											<td>
+												<a th:href="@{/editUsuario/{id}(id=${persona.id})}" class="btn btn-danger">
+													<i class="bi bi-pencil"></i>
+												</a>
+											</td>
+											<td>
+												<a th:href="@{/borrar/{id}(id=${persona.id})}" class="btn btn-danger">
+												<i class="bi bi-trash"></i>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

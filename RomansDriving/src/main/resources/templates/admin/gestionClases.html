@@ -22,7 +22,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="mt-3 text-center py-4 ">
-				<a th:href="@{/formularioClases}"
+				<a th:href="@{/admin/formularioClases}"
 					class="btn btn-outline-dark text-decoration-none bg-danger text-white">Añadir</a>
 			</div>
 			<div class="container">
@@ -55,12 +55,12 @@
 											<td th:text="${clases.usuario.id}"></td>
 											<td th:text="${clases.vehiculo.numBastidor}"></td>
 											<td>
-												<a th:href="@{/editClase/{id}(id=${clases.id})}" class="btn btn-danger">
+												<a th:href="@{/admin/editClase/{id}(id=${clases.id})}" class="btn btn-danger">
 													<i class="bi bi-pencil"></i>
 												</a>
 											</td>
 											<td>
-												<a th:href="@{/borrarClase/{id}(id=${clases.id})}" class="btn btn-danger">
+												<a th:href="@{/admin/borrarClase/{id}(id=${clases.id})}" class="btn btn-danger">
 												<i class="bi bi-trash"></i>
 											</td>
 										</tr>
