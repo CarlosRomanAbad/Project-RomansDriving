@@ -73,7 +73,7 @@ public class AdminController {
     @PostMapping("/guardarUsuario/submit")
     public String guardarUsuario(@ModelAttribute Usuario usuario, Model model) {
         u.save(usuario);
-        return "redirect:/admin/gestionUsuarios";
+        return "redirect:/gestionUsuarios";
     }
 
     @PostMapping("/guardarClase/submit")
