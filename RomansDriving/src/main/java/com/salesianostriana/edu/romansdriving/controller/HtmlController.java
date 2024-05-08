@@ -18,7 +18,7 @@ public class HtmlController {
     public String mostrarPlantillaVehiculo(Model model) {
     	
     	model.addAttribute("prueba", null);
-    	return "/plantillaVehiculo";
+    	return "/plantillaVehiculos";
     }
     
 }
