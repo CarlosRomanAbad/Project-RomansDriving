@@ -56,6 +56,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(
 				(authz) -> authz
 				.requestMatchers("/css/**", "/js/**").permitAll()
+				.requestMatchers("/admin/**").hasRole("ADMIN") //poner todo el apartado 2 de los apuntes
 				.anyRequest().authenticated())
 			.formLogin((loginz) -> loginz
 					.loginPage("/login").permitAll());
