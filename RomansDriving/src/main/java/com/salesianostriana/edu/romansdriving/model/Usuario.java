@@ -21,13 +21,15 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
+@Builder
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Usuario implements UserDetails {	
     
@@ -77,16 +79,13 @@ public class Usuario implements UserDetails {
 		this.password = contrasenha;
 		this.telefono = telefono;
 	}
-    
-    
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		String role = "ROLE_";
 		role += (isAdmin) ? "ADMIN" : "USER";
 		return List.of(new SimpleGrantedAuthority(role));
-	}
-
-	
+	}	
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -110,7 +109,10 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return false;
-	}	
+	}
+    
+    
+	
 
 	
     
