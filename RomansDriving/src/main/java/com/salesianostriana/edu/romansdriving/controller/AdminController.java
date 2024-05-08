@@ -81,6 +81,13 @@ public class AdminController {
         c.save(clase);
         return "redirect:/admin/gestionClases";
     }
+    
+    @PostMapping("/guardarProfesor/submit")
+    public String guardarProfesor(@ModelAttribute Profesor profesor, Model model) {
+    
+    	p.save(profesor);
+        return "redirect:/admin/gestionProfesores";
+    }
 
     // EDITAR USUARIOS
     @GetMapping("/editUsuario/{id}")
@@ -106,18 +113,36 @@ public class AdminController {
             return "redirect:/admin/gestionClases";
         }
     }
+    
+    @GetMapping("/editProfesor/{id}")
+    public String mostrarFormularioEdicionProfesor(@PathVariable("id") Long id, Model model) {
+        Optional<Profesor> aEditar = p.findById(id);
+
+        if (aEditar.isPresent()) {
+            model.addAttribute("profesor", aEditar.get());
+            return "admin/formularioProfesores";
+        } else {
+            return "redirect:/admin/gestionProfesores";
+        }
+    }
 
     // POST DE EDITAR
     @PostMapping("/editUsuario/submit")
     public String editarUsuario(@ModelAttribute("usuario") Usuario usuario) {
         u.save(usuario);
-        return "redirect:/admin/gestionUsuarios";
+        return "redirect:/admin/gestionProfesores";
     }
 
     @PostMapping("/editClase/submit")
     public String editarClase(@ModelAttribute("clase") Clase clase) {
         c.save(clase);
         return "redirect:/admin/gestionClases";
+    }
+    
+    @PostMapping("/editProfesor/submit")
+    public String editarProfesor(@ModelAttribute("profesor") Profesor profesor) {
+        p.save(profesor);
+        return "redirect:/admin/gestionProfesores";
     }
 
     // BORRAR
@@ -131,5 +156,11 @@ public class AdminController {
     public String borrarClase(@PathVariable("id") long id) {
         c.deleteById(id);
         return "redirect:/admin/gestionClases";
+    }
+    
+    @GetMapping("/borrarProfesor/{id}")
+    public String borrarProfesor(@PathVariable("id") long id) {
+        p.deleteById(id);
+        return "redirect:/admin/gestionProfesores";
     }
 }
