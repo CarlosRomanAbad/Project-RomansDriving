@@ -28,6 +28,11 @@ public class Vehiculo {
 
     @Enumerated(EnumType.STRING)
     private TipoVehiculo tipo;
+    
+    private String marca;
+    private String modelo;
+    private int anhosAntiguedad;
+
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

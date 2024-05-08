@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.Profesor;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
+import com.salesianostriana.edu.romansdriving.model.Vehiculo;
 import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
 import com.salesianostriana.edu.romansdriving.repository.ProfesorRepository;
+import com.salesianostriana.edu.romansdriving.repository.VehiculoRepository;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
+
+
 
 @Controller
 @RequestMapping("/admin")
@@ -30,6 +34,9 @@ public class AdminController {
 
     @Autowired
     private ProfesorRepository p;
+
+    @Autowired
+    private VehiculoRepository v;
 
     // MUESTRO FORMULARIOS
     @GetMapping("/gestionUsuarios")
@@ -50,6 +57,13 @@ public class AdminController {
         return "admin/gestionProfesores";
     }
 
+    @GetMapping("/gestionVehiculos")
+        public String mostrarVehiculos(Model model){
+            model.addAttribute("listaVehiculos", v.findAll());
+            return "admin/gestionVehiculos";
+    }
+    
+
     // FORMULARIO AÑADIR
     @GetMapping("/formularioClases")
     public String mostrarFormularioClases(Model model) {
@@ -69,6 +83,14 @@ public class AdminController {
         return "admin/formularioProfesores";
     }
 
+    @GetMapping("/formularioVehiculos")
+    public String mostrarFormularioVehiculos(Model model) {
+
+        model.addAttribute("vehiculo", new Vehiculo());
+        return "admin/formularioVehiculos";
+    }
+    
+
     // POST DE GUARDAR
     @PostMapping("/guardarUsuario/submit")
     public String guardarUsuario(@ModelAttribute Usuario usuario, Model model) {
@@ -87,6 +109,13 @@ public class AdminController {
     
     	p.save(profesor);
         return "redirect:/admin/gestionProfesores";
+    }
+
+    @PostMapping("/guardarVehiculo/submit")
+    public String guardarVehiculo(@ModelAttribute Vehiculo vehiculo, Model model){
+
+        v.save(vehiculo);
+        return "redirect:/admin/gestionVehiculos";
     }
 
     // EDITAR USUARIOS
@@ -126,6 +155,19 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/editVehiculo/{id}")
+    public String mostrarFormularioEdicionVehiculo(@PathVariable("id") Long id, Model model) {
+        Optional<Vehiculo> aEditar = v.findById(id);
+
+        if (aEditar.isPresent()) {
+            model.addAttribute("vehiculo", aEditar.get());
+            return "admin/formularioVehiculos";
+        } else {
+            return "redirect:/admin/gestionVehiculos";
+        }
+    }
+
+
     // POST DE EDITAR
     @PostMapping("/editUsuario/submit")
     public String editarUsuario(@ModelAttribute("usuario") Usuario usuario) {
@@ -145,6 +187,12 @@ public class AdminController {
         return "redirect:/admin/gestionProfesores";
     }
 
+    @PostMapping("/editVehiculo/submit")
+    public String editarVehiculo(@ModelAttribute("vehiculo") Vehiculo vehiculo) {
+        v.save(vehiculo);
+        return "redirect:/admin/gestionVehiculos";
+    }
+
     // BORRAR
     @GetMapping("/borrar/{id}")
     public String borrar(@PathVariable("id") long id) {
@@ -162,5 +210,11 @@ public class AdminController {
     public String borrarProfesor(@PathVariable("id") long id) {
         p.deleteById(id);
         return "redirect:/admin/gestionProfesores";
+    }
+
+    @GetMapping("/borrarVehiculo/{id}")
+    public String borrarVehiculo(@PathVariable("id")Long id){
+        v.deleteById(id);
+        return "redirect:/admin/gestionVehiculos";
     }
 }
