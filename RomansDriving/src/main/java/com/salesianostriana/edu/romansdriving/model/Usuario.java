@@ -4,21 +4,21 @@ package com.salesianostriana.edu.romansdriving.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Usuario {	
+public class Usuario implements UserDetails {	
     
 	@Id
 	@GeneratedValue
@@ -47,7 +47,7 @@ public class Usuario {
     )
 	private List<Carnet>carnet = new ArrayList<>();
 	
-    private String nombre, dni, apellidos, nombreUsuario, email, contrasenha, telefono;
+    private String nombre, dni, apellidos, username, email, password, telefono;
     private boolean tieneCarnetAutoescuela , isAdmin;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -60,9 +60,9 @@ public class Usuario {
 		this.nombre = nombre;
 		this.dni = dni;
 		this.apellidos = apellidos;
-		this.nombreUsuario = nombreUsuario;
+		this.username = nombreUsuario;
 		this.email = email;
-		this.contrasenha = contrasenha;
+		this.password = contrasenha;
 		this.telefono = telefono;
 		this.tieneCarnetAutoescuela = tieneCarnetAutoescuela;
 	}
@@ -72,14 +72,57 @@ public class Usuario {
 		this.nombre = nombre;
 		this.dni = dni;
 		this.apellidos = apellidos;
-		this.nombreUsuario = nombreUsuario;
+		this.username = nombreUsuario;
 		this.email = email;
-		this.contrasenha = contrasenha;
+		this.password = contrasenha;
 		this.telefono = telefono;
 	}
     
     
-    
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		String role = "ROLE_";
+		role += (isAdmin) ? "ADMIN" : "USER";
+		return List.of(new SimpleGrantedAuthority(role));
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}	
+
+	
     
 	
     

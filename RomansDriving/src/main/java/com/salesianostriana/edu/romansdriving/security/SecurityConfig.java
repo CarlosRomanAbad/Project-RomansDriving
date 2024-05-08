@@ -1,5 +1,6 @@
 package com.salesianostriana.edu.romansdriving.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -7,18 +8,20 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
+
 public class SecurityConfig {
 
-	@Bean
+	/*@Bean
      InMemoryUserDetailsManager userDetailsService() {
         UserDetails user = User.builder()
         		.username("admin")
@@ -26,13 +29,19 @@ public class SecurityConfig {
         		.roles("ADMIN")
             .build();
         return new InMemoryUserDetailsManager(user);
-    }
+    }*/
 	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Bean 
 	 DaoAuthenticationProvider daoAuthenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-		provider.setUserDetailsService(userDetailsService());
-		provider.setPasswordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
+		provider.setUserDetailsService(userDetailsService);
+		provider.setPasswordEncoder(passwordEncoder);
 		return provider;
 	}
 	
@@ -69,4 +78,6 @@ public class SecurityConfig {
 		registry.addViewController("/login");
 		registry.addViewController("/index");
 	}
+	
+	
 }
