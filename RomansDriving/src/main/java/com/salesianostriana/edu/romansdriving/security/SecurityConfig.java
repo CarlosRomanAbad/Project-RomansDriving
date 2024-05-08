@@ -59,6 +59,10 @@ public class SecurityConfig {
 				.anyRequest().authenticated())
 			.formLogin((loginz) -> loginz
 					.loginPage("/login").permitAll());
+		
+	   	http.csrf(csrfz -> csrfz.disable());
+    	http.headers(headersz -> headersz
+    			.frameOptions(frameOptionsz -> frameOptionsz.disable()));
 
 		return http.build();
 	}
