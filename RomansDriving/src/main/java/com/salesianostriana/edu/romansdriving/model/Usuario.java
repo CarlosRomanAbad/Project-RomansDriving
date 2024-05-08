@@ -86,17 +86,7 @@ public class Usuario implements UserDetails {
 		return List.of(new SimpleGrantedAuthority(role));
 	}
 
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public boolean isAccountNonExpired() {
