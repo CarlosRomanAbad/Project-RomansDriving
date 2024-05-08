@@ -21,4 +21,9 @@ public class HtmlController {
     	return "/plantillaVehiculo";
     }
     
+    @GetMapping("/login")
+    public String log() {
+    	return "user/login";
+    }
+    
 }
