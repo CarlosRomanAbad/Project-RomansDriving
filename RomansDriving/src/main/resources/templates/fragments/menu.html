@@ -38,11 +38,7 @@
                             href="#">Servicios</a>
                     </li>
                 </ul>
-                <div>
-                    <a th:href="@{/admin/gestionUsuarios}" class="btn">
-                        <i class="bi bi-pencil"></i>
-                    </a>
-                </div>
+               
                 
                 <div class="d-flex">
                    
@@ -60,6 +56,13 @@
 					
 					<a href="#" onclick="document.getElementById('logoutForm').submit(); return false;" style="color: white; text-decoration: none;">Cerrar Sesión</a>
 				</div>
+                <div>
+                    <div>
+                        <a th:href="@{/admin/gestionUsuarios}" class="btn">
+                          <span class="text-white">Gestion Usuarios</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>

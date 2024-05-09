@@ -25,6 +25,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -55,30 +56,7 @@ public class Usuario implements UserDetails {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaNacimiento;
 	
-    public Usuario(Long id, String nombre, String dni, String apellidos, String nombreUsuario, String email,
-			String contrasenha, String telefono, boolean tieneCarnetAutoescuela) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.dni = dni;
-		this.apellidos = apellidos;
-		this.username = nombreUsuario;
-		this.email = email;
-		this.password = contrasenha;
-		this.telefono = telefono;
-		this.tieneCarnetAutoescuela = tieneCarnetAutoescuela;
-	}
-
-	public Usuario(Long id, String nombre, String dni, String apellidos, String nombreUsuario, String email,
-			String contrasenha, String telefono) {
-		this.nombre = nombre;
-		this.dni = dni;
-		this.apellidos = apellidos;
-		this.username = nombreUsuario;
-		this.email = email;
-		this.password = contrasenha;
-		this.telefono = telefono;
-	}
+   
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -90,25 +68,25 @@ public class Usuario implements UserDetails {
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
     
     
