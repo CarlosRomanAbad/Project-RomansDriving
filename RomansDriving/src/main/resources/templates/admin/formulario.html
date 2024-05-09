@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-body">
                     
-						<form th:action="${usuario.id != 0} ? @{/admin/editUsuario/submit} : @{/admin/guardarUsuario}" th:object="${usuario}" method="POST">            
+						<form th:action="${usuario.id != 0} ? @{/admin/editUsuario/submit} : @{/admin/guardarUsuario/submit}" th:object="${usuario}" method="POST">            
 						    <input th:if="${usuario.id != 0}" type="hidden" name="id" th:field="*{id}" />
 						    <div class="mb-3">
                             <div class="mb-3">

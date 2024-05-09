@@ -26,83 +26,7 @@
     <nav th:replace="~{fragments/menu::menu}">
         </nav>
 
-    <!-- Modal Inicio de Sesión -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Inicio de Sesión</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                placeholder="Ingrese su contraseña">
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Recordarme</label>
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Registro -->
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Registro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="exampleInputName"
-                                placeholder="Ingrese su nombre completo">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail2" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="exampleInputEmail2"
-                                aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPhone" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control" id="exampleInputPhone"
-                                placeholder="Ingrese su número de teléfono">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword2" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2"
-                                placeholder="Ingrese su contraseña">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword3" class="form-label">Confirmar Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword3"
-                                placeholder="Confirme su contraseña">
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Registrarse</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
+   
 
 
     <div class="">
@@ -174,7 +98,7 @@
 
                                 de Moto</h4>
                             <div class="col-md-6 border">
-                                <a href="../Plantilla/index.html" class="fotoVehiculo" style="text-decoration: none;">
+                                <a th:href="@{/PlantillaClasesVehiculo}"class="fotoVehiculo" style="text-decoration: none;">
                                     <img src="../../Carnets/permiso-para-moto.png" alt="Imagen de una moto">
                                 </a>
                             </div>

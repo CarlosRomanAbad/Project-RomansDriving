@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-	@Bean
+	/*@Bean
      InMemoryUserDetailsManager userDetailsService() {
         UserDetails user = User.builder()
         		.username("admin")
@@ -39,19 +39,20 @@ public class SecurityConfig {
                 .build();
 
         return new InMemoryUserDetailsManager(user,userNormal);
-    }
+    }*/
 	
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private  UserDetailsService userDetailsService;
 	
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private  PasswordEncoder passwordEncoder;
+	
 
 	@Bean 
-	public DaoAuthenticationProvider daoAuthenticationProvider() {
+	 DaoAuthenticationProvider daoAuthenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-		provider.setUserDetailsService(userDetailsService());
-		provider.setPasswordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
+		provider.setUserDetailsService(userDetailsService);
+		provider.setPasswordEncoder(passwordEncoder);
 		return provider;
 	}
 	
@@ -72,18 +73,17 @@ public class SecurityConfig {
 	  @Bean
 	    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	        http.authorizeHttpRequests(
-	                        (authz) -> authz.requestMatchers("/css/**", "/js/**", "/h2-console/**").permitAll()
-	                                .requestMatchers("/admin/**").hasRole("ADMIN")
+	                        (authz) -> authz.requestMatchers("/css/**", "/js/**").permitAll()
+	                                .requestMatchers("/admin/**","/h2-console/**").hasRole("ADMIN")
 	                                .anyRequest().authenticated())
 	                .formLogin((loginz) -> loginz
-	                        .loginPage("/login").permitAll())
+	                        .loginPage("/login").defaultSuccessUrl("/").permitAll())
 	                .logout((logoutz) -> logoutz
 	                        .logoutUrl("/logout")
 	                        .logoutSuccessUrl("/login")
 	                        .permitAll());
 
-	        // Añadimos esto para poder seguir accediendo a la consola de H2
-	        // con Spring Security habilitado.
+	     
 	        http.csrf(csrfz -> csrfz.disable());
 	        http.headers(headersz -> headersz
 	                .frameOptions(frameOptionsz -> frameOptionsz.disable()));
@@ -93,10 +93,7 @@ public class SecurityConfig {
 	
 	
 	
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/login");
-		registry.addViewController("/index");
-	}
+	
 	
 	
 }

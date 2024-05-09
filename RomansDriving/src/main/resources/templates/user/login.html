@@ -13,23 +13,25 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" th:href="@{/css/index.css}" href="../../static/css/index.css">
-
+      
 
 
 
 </head>
 <body>
 	
-	<!DOCTYPE html>
-	<html lang="es" xmlns:th="http://www.thymeleaf.org">
 	
 	<head>
-		<form method="POST" action="#" th:action="@{/login}">
-			<input type="text" id="username" name="username" placeholder="Username" required autofocus> 
-			<input type="password" name="password" id="password" placeholder="Password" required>
-			<input type="submit" name="enviar" value="Enviar" />
-		</form>
+
+        
+        <div class="text-center">
+            <form method="POST" action="#" th:action="@{/login}">
+                <input type="text" id="username" name="username" placeholder="Username" required autofocus> 
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="submit" name="enviar" value="Enviar" />
+            </form>
+        </div>
+		
 	
 	
 	
