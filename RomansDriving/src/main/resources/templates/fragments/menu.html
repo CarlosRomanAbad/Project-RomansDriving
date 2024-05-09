@@ -41,13 +41,26 @@
                
                 
                 <div class="d-flex">
-                   
+                   <div>
+                    <a th:href="@{/login}" class="btn">
+                        <span class="text-white">Iniciar Sesion</span>
+                      </a>
+                   </div>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                         <button class="btn btn-outline-light me-4" type="submit">Buscar</button>
                     </form>
                 </div>
-				<div>
+				
+                <div>
+                    <div>
+                        <a th:href="@{/admin/gestionUsuarios}" class="btn">
+                          <span class="text-white">Gestion Usuarios</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
 					<form th:action="@{/logout}" method="post" id="logoutForm" style="display: none;">
 					    <button type="submit" id="logoutButton" class="btn btn-outline-light me-4" style="border-color: white;">
 					        Cerrar Sesión
@@ -56,13 +69,8 @@
 					
 					<a href="#" onclick="document.getElementById('logoutForm').submit(); return false;" style="color: white; text-decoration: none;">Cerrar Sesión</a>
 				</div>
-                <div>
-                    <div>
-                        <a th:href="@{/admin/gestionUsuarios}" class="btn">
-                          <span class="text-white">Gestion Usuarios</span>
-                        </a>
-                    </div>
-                </div>
+
+                
             </div>
         </div>
     </nav>
