@@ -37,6 +37,15 @@ public class AdminController {
 
     @Autowired
     private VehiculoRepository v;
+    
+    //ADMIN PRINCIPAL
+    
+    @GetMapping("/")
+    public String init(Model model) {
+    	model.addAttribute("listaUsuarios", u.findAll());
+    	
+    	return "admin/gestionUsuarios";
+    }
 
     // MUESTRO FORMULARIOS
     @GetMapping("/gestionUsuarios")
