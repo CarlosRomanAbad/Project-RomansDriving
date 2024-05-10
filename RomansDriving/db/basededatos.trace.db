@@ -7845,3 +7845,7 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/carlos/
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 133 more
+2024-05-10 09:20:06.586848+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "UPDATE [*]TABLE SET usuario = FALSE WHERE id = ?"; se esperaba "identifier"
+Syntax error in SQL statement "UPDATE [*]TABLE SET usuario = FALSE WHERE id = ?"; expected "identifier"; SQL statement:
+UPDATE TABLE SET usuario = FALSE WHERE id = ? [42001-224]

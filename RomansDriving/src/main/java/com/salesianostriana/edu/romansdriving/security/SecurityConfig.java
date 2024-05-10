@@ -10,6 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.NullRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +23,7 @@ public class SecurityConfig {
 	
 	private final UserDetailsService userDetailsService;
 	private final PasswordEncoder passwordEncoder;
+	private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Bean
     AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
@@ -44,9 +48,12 @@ public class SecurityConfig {
 
     @Bean
 SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    	
+
+    	
     http.authorizeHttpRequests(
             (authz) -> authz
-			.requestMatchers("/admin/**").hasRole("ADMIN")
+			.requestMatchers("/admin/**","/error").hasRole("ADMIN")
                     .anyRequest().permitAll()) 
             .formLogin((loginz) -> loginz
                     .loginPage("/login").defaultSuccessUrl("/").permitAll())
