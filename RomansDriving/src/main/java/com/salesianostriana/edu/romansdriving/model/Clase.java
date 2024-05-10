@@ -2,8 +2,10 @@ package com.salesianostriana.edu.romansdriving.model;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.DialectOverride.SQLDelete;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
