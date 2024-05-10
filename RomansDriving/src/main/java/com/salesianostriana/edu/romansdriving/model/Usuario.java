@@ -39,7 +39,7 @@ public class Usuario implements UserDetails {
 	@GeneratedValue
     private Long id;
 	
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Clase> clase = new ArrayList<>();
 	
 	
