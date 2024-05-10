@@ -13,11 +13,9 @@ public class HtmlController {
         return "user/principal";
     }
 
-    @GetMapping("/mostrarPlantillaVehiculo")
+    @GetMapping("/PlantillaClasesVehiculo")
     public String mostrarPlantillaVehiculo(Model model) {
-    	
-    	model.addAttribute("prueba", null);
-    	return "/plantillaVehiculo";
+    	return "user/PlantillaClasesVehiculo";
     }
     
    
