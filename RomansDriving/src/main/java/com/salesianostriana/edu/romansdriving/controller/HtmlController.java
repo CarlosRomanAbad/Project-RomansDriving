@@ -13,10 +13,7 @@ public class HtmlController {
         return "user/principal";
     }
 
-    @GetMapping("/PlantillaClasesVehiculo")
-    public String mostrarPlantillaVehiculo(Model model) {
-    	return "user/PlantillaClasesVehiculo";
-    }
+   
     
    
     
