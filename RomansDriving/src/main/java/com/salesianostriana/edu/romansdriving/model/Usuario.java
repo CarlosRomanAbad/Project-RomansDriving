@@ -39,7 +39,7 @@ public class Usuario implements UserDetails {
 	@GeneratedValue
     private Long id;
 	
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Clase> clase = new ArrayList<>();
 	
 	
@@ -61,12 +61,19 @@ public class Usuario implements UserDetails {
 	
    
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		String role = "ROLE_";
-		role += (isAdmin) ? "ADMIN" : "USER";
-		return List.of(new SimpleGrantedAuthority(role));
-	}	
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        String role = "ROLE_";
+
+        if (isAdmin) {
+            role += "ADMIN";
+        }
+        if (!isAdmin) {
+            role += "USER";
+        }
+
+        return List.of(new SimpleGrantedAuthority(role));
+    }
 
 	@Override
 	public boolean isAccountNonExpired() {

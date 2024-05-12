@@ -1,6 +1,6 @@
 package com.salesianostriana.edu.romansdriving.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,7 +31,7 @@ public class Clase {
     private Usuario usuario;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime fechaClase;
+    private LocalDate fechaClase;
     
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name="fk_clase_profesor"))  
