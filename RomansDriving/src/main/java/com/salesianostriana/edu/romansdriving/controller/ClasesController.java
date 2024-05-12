@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
-import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.service.ClaseService;
 
 @Controller
@@ -29,4 +28,22 @@ public class ClasesController {
 
 		return "user/PlantillaClasesVehiculo";
 	}
+
+	/*@GetMapping("/ReservaClase")
+	public String reservarClase(Model model){
+		
+		Clase clases = new Clase();
+
+		if(clase.save()){
+			clases.setEstaOcupada(true);
+		}
+	
+	} 
+		
+		
+		*/
+
+		
+
+	
 }
