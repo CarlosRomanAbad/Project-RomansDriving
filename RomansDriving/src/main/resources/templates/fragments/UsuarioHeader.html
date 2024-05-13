@@ -42,8 +42,14 @@
                
                 
               
-               
-
+                <div>
+                    <div>
+                        <a th:href="@{/mostrarPerfil}" class="btn">
+                            <span class="text-white">Mi Perfil</span>
+                        </a>
+                    </div>
+                </div>
+                
                 <div>
 					<form th:action="@{/logout}" method="post" id="logoutForm" style="display: none;">
 					    <button type="submit" id="logoutButton" class="btn btn-outline-light me-4" style="border-color: white;">

@@ -7,11 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
-import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
 import com.salesianostriana.edu.romansdriving.service.ClaseService;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
 
@@ -37,13 +35,14 @@ public class ClasesController {
 		return "user/PlantillaClasesVehiculo";
 	}
 
+	@GetMapping("/precioClase/{id}")
+public String mostrarPrecioClase(@PathVariable("id") Long id, Model model) {
+    List<Usuario> precioClase = usuario.calcularPrecioSiTieneCarnet(id);
+    model.addAttribute("precioClase", precioClase);
+    return "user/PlantillaClasesVehiculo"; 
+}
+
 	
-		@GetMapping("/precioClase")
-		public String mostrarPrecioClase(@PathVariable("id") Long id, Model model){
-			
-			model.addAttribute("precioClase", usuario.calcularPrecioSiTieneCarnet(id));
-			return "redirect:/PlantillaClasesVehiculo";
-		}
 
 	
 }

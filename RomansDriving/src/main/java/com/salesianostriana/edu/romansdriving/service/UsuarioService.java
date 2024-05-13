@@ -1,6 +1,5 @@
 package com.salesianostriana.edu.romansdriving.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +21,14 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 		return usuario.findAllByTieneCarnetAutoescuela();
 	}
 	
-	public List<Usuario> calcularPrecioSiTieneCarnet(Long id) {
-	    List<Usuario> usuarios = usuario.findAllByTieneCarnetAutoescuela();
-	    Clase clase = new Clase();
-	    double precioConDescuento = clase.getPrecio() / 2;
-	   
-	    usuarios.forEach(c -> clase.setPrecio(precioConDescuento));
-	    
-	    return usuarios;
-	}
+		public List<Usuario> calcularPrecioSiTieneCarnet(Long id) {
+			List<Usuario> usuarios = usuario.findAllByTieneCarnetAutoescuela();
+			Clase clase = new Clase();
+			double precioConDescuento = clase.getPrecio() / 2;
+		
+			usuarios.forEach(c -> clase.setPrecio(precioConDescuento));
+			
+			return usuarios;
+		}
 
 }
