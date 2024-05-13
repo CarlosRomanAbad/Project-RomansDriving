@@ -22,7 +22,7 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 		return usuario.findAllByTieneCarnetAutoescuela();
 	}
 	
-	public List<Usuario> calcularPrecioSiTieneCarnet() {
+	public List<Usuario> calcularPrecioSiTieneCarnet(Long id) {
 	    List<Usuario> usuarios = usuario.findAllByTieneCarnetAutoescuela();
 	    Clase clase = new Clase();
 	    double precioConDescuento = clase.getPrecio() / 2;
