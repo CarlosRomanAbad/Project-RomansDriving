@@ -14,5 +14,5 @@ public interface UsuarioRepository
 	Optional<Usuario> findFirstByUsername(String username);
 	
 	 @Query("SELECT u FROM Usuario u WHERE u.tieneCarnetAutoescuela = true")
-	    List<Usuario> findAllByTieneCarnetAutoescuela();
+	    List<Usuario> findAllByTieneCarnetAutoescuela(); 
 }

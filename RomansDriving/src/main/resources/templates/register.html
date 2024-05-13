@@ -19,7 +19,7 @@
                         <h3>Formulario de Usuario</h3>
                     </div>
                     <div class="card-body">
-                        <form th:action="${usuario.id != 0} ? @{/admin/editUsuario/submit} : @{/admin/guardarUsuario/submit}"
+                        <form th:action="@{/formularioRegistro/submit}"
                             th:object="${usuario}" method="POST">
                             <input th:if="${usuario.id != 0}" type="hidden" name="id" th:field="*{id}" />
                             <div class="mb-3">
