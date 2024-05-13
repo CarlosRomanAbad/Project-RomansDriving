@@ -29,20 +29,7 @@ public class ClasesController {
 		return "user/PlantillaClasesVehiculo";
 	}
 
-	/*@GetMapping("/ReservaClase")
-	public String reservarClase(Model model){
-		
-		Clase clases = new Clase();
-
-		if(clase.save()){
-			clases.setEstaOcupada(true);
-		}
 	
-	} 
-		
-		
-		*/
-
 		
 
 	

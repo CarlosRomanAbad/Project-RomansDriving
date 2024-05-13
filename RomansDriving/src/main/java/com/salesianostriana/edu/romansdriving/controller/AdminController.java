@@ -15,10 +15,10 @@ import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.Profesor;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.model.Vehiculo;
-import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
-import com.salesianostriana.edu.romansdriving.repository.ProfesorRepository;
-import com.salesianostriana.edu.romansdriving.repository.VehiculoRepository;
+import com.salesianostriana.edu.romansdriving.service.ClaseService;
+import com.salesianostriana.edu.romansdriving.service.ProfesorService;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
+import com.salesianostriana.edu.romansdriving.service.VehiculoService;
 
 
 
@@ -30,13 +30,13 @@ public class AdminController {
     private UsuarioService u;
 
     @Autowired
-    private ClaseRepository c;
+    private ClaseService c;
 
     @Autowired
-    private ProfesorRepository p;
+    private ProfesorService p;
 
     @Autowired
-    private VehiculoRepository v;
+    private VehiculoService v;
     
     //ADMIN PRINCIPAL
     
