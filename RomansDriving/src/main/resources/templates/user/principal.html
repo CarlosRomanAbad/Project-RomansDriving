@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" 
+
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    
 
 <head>
     <meta charset="UTF-8">
@@ -23,8 +26,8 @@
 <body>
 
     <div class="">
-    <nav th:replace="~{fragments/menu::menu}">
-        </nav>
+     
+        <header th:replace="~{fragments/Header::Header}"></header>
 
    
 
@@ -83,7 +86,7 @@
                                     <p>Obtén el practico en el menor tiempo posible.</p>
                                     <p>Elige tus clases prácticas en el horario que más se adapte a ti.</p>
                                     <div class="mt-3 text-center ">
-                                        <a href="../Plantilla/index.html"
+                                        <a th:href="@{/PlantillaClasesVehiculo}"
                                             class="btn botoninfo bg-danger text-white text-decoration = none">Información</a>
                                     </div>
                                 </div>
