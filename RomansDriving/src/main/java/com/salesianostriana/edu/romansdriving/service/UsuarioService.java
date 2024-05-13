@@ -1,7 +1,7 @@
 package com.salesianostriana.edu.romansdriving.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalDouble;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,5 +14,22 @@ import com.salesianostriana.edu.romansdriving.service.base.BaseServiceImpl;
 @Service
 public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioRepository> {
 
+	@Autowired
+	private UsuarioRepository usuario;
 	
+	public List<Usuario>mostrarUsuariosConCarnet(){
+		
+		return usuario.findAllByTieneCarnetAutoescuela();
+	}
+	
+	public List<Usuario> calcularPrecioSiTieneCarnet() {
+	    List<Usuario> usuarios = usuario.findAllByTieneCarnetAutoescuela();
+	    Clase clase = new Clase();
+	    double precioConDescuento = clase.getPrecio() / 2;
+	   
+	    usuarios.forEach(c -> clase.setPrecio(precioConDescuento));
+	    
+	    return usuarios;
+	}
+
 }
