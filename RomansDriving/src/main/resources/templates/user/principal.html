@@ -18,7 +18,8 @@
 
         <link rel="stylesheet" th:href="@{/css/index.css}" href="../../static/css/index.css">
 
-
+     <!--   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script> -->
 
 
 </head>
@@ -71,7 +72,7 @@
                             licencia en poco tiempo!</h3>
                     </div>
                 </div>
-                <div class="row justify-content-center mt-4">
+                <div class="row justify-content-center mt-4" data-aos="fade-up">
                     <div class="col-md-6">
                         <div class="row">
                             <h4>Permiso de coche</h4>
@@ -94,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center mt-4">
+                <div class="row justify-content-center mt-4" data-aos="fade-right">
                     <div class="col-md-6">
                         <div class="row">
                             <h4>Clases
@@ -118,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" data-aos="fade-right">
                         <div class="row">
                             <h4>Permiso de Camion</h4>
                             <div class="col-md-6 border">
@@ -146,6 +147,10 @@
     </div>
 <footer th:replace="~{fragments/footer::pie}">
 </div>
+<!--
+<script>
+    AOS.init();
+</script>-->
 </body>
 
 </html>
