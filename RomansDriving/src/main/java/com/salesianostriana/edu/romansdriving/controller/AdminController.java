@@ -54,6 +54,7 @@ public class AdminController {
         return "admin/gestionUsuarios";
     }
 
+
     @GetMapping("/gestionClases")
     public String mostrar(Model model) {
         model.addAttribute("listaClases", c.findAll());
