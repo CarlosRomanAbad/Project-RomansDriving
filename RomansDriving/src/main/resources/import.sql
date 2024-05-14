@@ -11,17 +11,17 @@ ALTER SEQUENCE usuario_seq RESTART WITH 1000;
 
 
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('coche', 1, 'Toyota', 'Corolla', 3);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camion', 2, 'Volvo', 'FH16', 1);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camión', 2, 'Volvo', 'FH16', 1);
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('moto', 3, 'Honda', 'CBR600RR', 2);
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('coche', 4, 'Ford', 'Focus', 2);
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('coche', 5, 'Renault', 'Clio', 2);
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('moto', 6, 'Yamaha', 'YZF-R6', 1);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camion', 7, 'MAN', 'TGS', 3);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camión', 7, 'MAN', 'TGS', 3);
 
 
 ALTER SEQUENCE vehiculo_seq RESTART WITH 1000;
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', NULL, 1, 'Lopez Maganha', 'Luis Miguel');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15',NULL, 2, 'Naranjo Gonzalez', 'Angel');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', NULL, 1, 'López Maganha', 'Luis Miguel');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15',NULL, 2, 'Naranjo González', 'Ángel');
 INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15',NULL, 3, 'Campos Rivera', 'Miguel');
 INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-06-01', NULL, 4, 'Sánchez García', 'Pedro');
 INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2005-03-15', NULL, 5, 'Ruiz González', 'Javier');

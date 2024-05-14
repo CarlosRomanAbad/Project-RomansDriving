@@ -3,6 +3,7 @@ package com.salesianostriana.edu.romansdriving.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,9 @@ import com.salesianostriana.edu.romansdriving.service.VehiculoService;
 @RequestMapping("/admin")
 public class AdminController {
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
     @Autowired
     private UsuarioService u;
 
@@ -103,7 +107,10 @@ public class AdminController {
     // POST DE GUARDAR
     @PostMapping("/guardarUsuario/submit")
     public String guardarUsuario(@ModelAttribute Usuario usuario, Model model) {
-        u.save(usuario);
+    	String encodedPassword = passwordEncoder.encode(usuario.getPassword());
+		usuario.setPassword(encodedPassword);
+		u.save(usuario);
+		model.addAttribute("usuario", usuario);
         return "redirect:/admin/gestionUsuarios";
     }
 

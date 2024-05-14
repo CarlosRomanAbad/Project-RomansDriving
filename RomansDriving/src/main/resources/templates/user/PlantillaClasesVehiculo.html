@@ -12,17 +12,6 @@
 		          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		          crossorigin="anonymous"></script>
 
-          <style>
-            footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #f8f9fa;
-    padding: 10px 0;
-    text-align: center;
-}   
-          </style>
 </head>
 <body>
     <header th:replace="~{fragments/Header::Header}"></header>
@@ -39,11 +28,11 @@
                     <th scope="col">Marca</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Reservar</th>
-                    <!-- Puedes añadir más encabezados de columna aquí -->
+                  
                 </tr>
             </thead>
             <tbody>
-                <!-- Aquí iteraremos sobre las clases disponibles y mostraremos la información -->
+              
                 <tr th:each="clase : ${clasesDisponibles}">
                     <td th:text="${#temporals.format(clase.fechaClase, 'yyyy/MM/dd')}"></td>
                     <td th:text="${clase.profesor.nombre}">Profesor</td>
@@ -58,7 +47,7 @@
                     <td>
                         <a class="btn btn-danger text-center"><span>Reservar</span></a>
                     </td>
-                    <!-- Puedes añadir más columnas aquí -->
+                   
                 </tr>
             </tbody>
         </table>
