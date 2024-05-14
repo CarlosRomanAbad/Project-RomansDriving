@@ -7,25 +7,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.hibernate.annotations.DialectOverride.SQLDelete;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 @Entity
@@ -39,19 +36,11 @@ public class Usuario implements UserDetails {
 	@GeneratedValue
     private Long id;
 	
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	private List<Clase> clase = new ArrayList<>();
-	
-	
-	
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "compra_carnet",
-            joinColumns = @JoinColumn(name = "usuario_id"), 
-            inverseJoinColumns = @JoinColumn(name = "carnet_id") 
-    )
-	private List<Carnet>carnet = new ArrayList<>();
+	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+	@Builder.Default
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	private List<CompraCarnet>carnet = new ArrayList<>();
 	
     private String nombre, dni, apellidos, username, email, password, telefono;
     private boolean tieneCarnetAutoescuela , isAdmin;

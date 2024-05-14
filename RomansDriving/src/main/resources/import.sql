@@ -40,3 +40,6 @@ INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, usuario_i
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, usuario_id, vehiculo_num_bastidor) VALUES (true, '2004-05-20', 41.99, 6, 6, 6, 6);
 
 ALTER SEQUENCE clase_seq RESTART WITH 10000;
+
+INSERT INTO compra_carnet(fechas_pk,usuario,carnet,fecha_inicio,fecha_fin);
+ALTER SEQUENCE compra_carnet_seq RESTART WITH 10000;

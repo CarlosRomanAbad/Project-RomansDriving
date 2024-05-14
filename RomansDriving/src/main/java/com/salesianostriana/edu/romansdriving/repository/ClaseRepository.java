@@ -13,4 +13,8 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 
 	  @Query(value = "SELECT * FROM clase WHERE esta_ocupada = false", nativeQuery = true)
 	    List<Clase> findClasesNoOcupadas();
+
+
+		@Query("SELECT x FROM Clase x WHERE x.estaOcupada = false")
+		List<Clase>findClasesNoDisp();
 }

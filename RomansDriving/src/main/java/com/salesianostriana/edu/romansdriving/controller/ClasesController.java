@@ -29,6 +29,8 @@ public class ClasesController {
 
 		List<Clase> clasesNoOcupadas = clase.obtenerClasesNoOcupadas();
 
+		
+
 		model.addAttribute("clasesDisponibles", clasesNoOcupadas);
 	
 

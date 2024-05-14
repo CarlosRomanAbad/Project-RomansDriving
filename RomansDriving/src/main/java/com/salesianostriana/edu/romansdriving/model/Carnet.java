@@ -23,6 +23,6 @@ public class Carnet {
     @ManyToMany(mappedBy = "carnet", fetch = FetchType.EAGER)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private List<Usuario> usuarios = new ArrayList<>();
+    private List<CompraCarnet> usuarios = new ArrayList<>();
 	
 }
