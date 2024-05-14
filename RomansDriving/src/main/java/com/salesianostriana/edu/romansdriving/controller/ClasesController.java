@@ -1,6 +1,7 @@
 package com.salesianostriana.edu.romansdriving.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,20 @@ public class ClasesController {
 
 	@Autowired
 	private UsuarioService usuario;
+
+	@GetMapping("/reserva/{id}")
+	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model) {
+	    Optional<Clase> optionalClase = clase.findById(id);
+	    
+	    if (optionalClase.isPresent()) {
+	        Clase claseSeleccionada = optionalClase.get();
+	        model.addAttribute("reserva", claseSeleccionada); 
+	        return "user/reservaClase";
+	    } else {
+	       
+	        return "redirect:/error";
+	    }
+	}
 
 	@GetMapping("/PlantillaClasesVehiculo")
 	public String mostrarClasesDisponibles(Model model) {
