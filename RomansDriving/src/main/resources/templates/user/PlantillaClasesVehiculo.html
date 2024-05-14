@@ -49,16 +49,11 @@
                     <td th:text="${clase.profesor.nombre}">Profesor</td>
                     <td th:text="${clase.vehiculo.tipo}">Tipo Vehículo</td>
                     <td th:text="${clase.vehiculo.marca}">Marca</td>
-                    <td>
-                        <span th:each="usuario : ${precioClase}" thfi 
-                              th:if="${usuario.id == clase.usuarioId}">
-                            <span th:text="${usuario.precio}"></span>
-                        </span>
-                    </td>
+                    <td th:text="${clase.precio}">Marca</td>
                     <td>
                         <a class="btn btn-danger text-center"><span>Reservar</span></a>
                     </td>
-                    <!-- Puedes añadir más columnas aquí -->
+                  
                 </tr>
             </tbody>
         </table>

@@ -1,4 +1,4 @@
-INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (1, 'Juan', '12345678A', 'Pérez Gómez', 'admin', 'juan@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '123456789', true, '2004-05-15', true);
+INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (1, 'Juán', '12345678A', 'Pérez Gómez', 'admin', 'juan@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '123456789', true, '2004-05-15', true);
 INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (2, 'María', '87654321B', 'López García', 'user', 'maria@example.com', '{bcrypt}$2y$10$ZB.usHl6yiJdt7aR5M6Y2uirKqKK9V/KXIz1vPsdk.Cifa9Lt5AH6', '987654321', false, '2004-05-15', false);
 INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (3, 'José', '23456789C', 'González Fernández', 'jose', 'jose@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '555555555', true, '2004-03-20', false);
 INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (4, 'Ana', '34567890D', 'Martínez Ruiz', 'ana', 'ana@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '555555555', false, '2004-03-20', false);
@@ -11,17 +11,17 @@ ALTER SEQUENCE usuario_seq RESTART WITH 1000;
 
 
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('coche', 1, 'Toyota', 'Corolla', 3);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camion', 2, 'Volvo', 'FH16', 1);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camión', 2, 'Volvo', 'FH16', 1);
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('moto', 3, 'Honda', 'CBR600RR', 2);
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('coche', 4, 'Ford', 'Focus', 2);
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('coche', 5, 'Renault', 'Clio', 2);
 INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('moto', 6, 'Yamaha', 'YZF-R6', 1);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camion', 7, 'MAN', 'TGS', 3);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camión', 7, 'MAN', 'TGS', 3);
 
 
 ALTER SEQUENCE vehiculo_seq RESTART WITH 1000;
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', NULL, 1, 'Lopez Maganha', 'Luis Miguel');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15',NULL, 2, 'Naranjo Gonzalez', 'Angel');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', NULL, 1, 'López Maganha', 'Luis Miguel');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15',NULL, 2, 'Naranjo González', 'Ángel');
 INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15',NULL, 3, 'Campos Rivera', 'Miguel');
 INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-06-01', NULL, 4, 'Sánchez García', 'Pedro');
 INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2005-03-15', NULL, 5, 'Ruiz González', 'Javier');
