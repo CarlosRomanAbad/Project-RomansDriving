@@ -1,5 +1,6 @@
 package com.salesianostriana.edu.romansdriving.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,19 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	public List<Clase> obtenerClasesCamionDisponibles(TipoVehiculo tipo){
 		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
+	}
+
+	public List<Clase> actualizarClasesFueraPlazo() {
+
+		LocalDate fechaActual = LocalDate.now();
+		List<Clase> clasesFueraPlazo = claseRepository.findClasesFueraPlazo();
+
+
+		LocalDate fechaFutura = fechaActual.plusDays(20);
+		clasesFueraPlazo.forEach(c -> c.setFechaClase(fechaFutura));
+
+
+		return claseRepository.saveAll(clasesFueraPlazo);
 	}
 
 }

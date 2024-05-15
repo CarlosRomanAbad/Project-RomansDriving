@@ -41,11 +41,13 @@ public class ClasesController {
 
 	@GetMapping("/PlantillaClasesVehiculo")
 	public String mostrarClasesDisponibles(Model model) {
+		// Actualizar las clases fuera de plazo antes de mostrar las clases disponibles
+		clase.actualizarClasesFueraPlazo();
 
-		List<Clase> clasesNoOcupadas = clase.obtenerClasesMasRecientesNoOcupadas();
+		// Obtener las clases disponibles
+		List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
 
-		model.addAttribute("clasesDisponibles", clasesNoOcupadas);
-
+		model.addAttribute("clasesDisponibles", clasesDisponibles);
 		return "user/PlantillaClasesVehiculo";
 	}
 
