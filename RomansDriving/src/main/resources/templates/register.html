@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <form th:action="@{/formularioRegistro/submit}"
                             th:object="${registro}" method="POST">
-                           
+                            <input th:if="${registro.id != 0}" type="hidden" name="id" th:field="*{id}" />
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required>
@@ -54,7 +54,7 @@
                                 <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
                                 <input type="date" name="fechaNacimiento" th:field="*{fechaNacimiento}" />
                             </div>
-                            
+                           
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-danger btn-block">Guardar</button>
                             </div>

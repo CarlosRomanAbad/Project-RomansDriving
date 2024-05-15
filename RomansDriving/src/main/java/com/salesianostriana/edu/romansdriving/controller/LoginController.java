@@ -18,7 +18,6 @@ public class LoginController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
 	 @GetMapping("/login")
 		public String login() {
 			return "login";

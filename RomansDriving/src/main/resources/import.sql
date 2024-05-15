@@ -1,4 +1,4 @@
-INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (1, 'Juan', '12345678A', 'Pérez Gómez', 'admin', 'juan@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '123456789', true, '2004-05-15', true);
+INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (1, 'Juán', '12345678A', 'Pérez Gómez', 'admin', 'juan@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '123456789', true, '2004-05-15', true);
 INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (2, 'María', '87654321B', 'López García', 'user', 'maria@example.com', '{bcrypt}$2y$10$ZB.usHl6yiJdt7aR5M6Y2uirKqKK9V/KXIz1vPsdk.Cifa9Lt5AH6', '987654321', false, '2004-05-15', false);
 INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (3, 'José', '23456789C', 'González Fernández', 'jose', 'jose@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '555555555', true, '2004-03-20', false);
 INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (4, 'Ana', '34567890D', 'Martínez Ruiz', 'ana', 'ana@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '555555555', false, '2004-03-20', false);
@@ -40,6 +40,3 @@ INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, usuario_i
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, usuario_id, vehiculo_num_bastidor) VALUES (true, '2004-05-20', 41.99, 6, 6, 6, 6);
 
 ALTER SEQUENCE clase_seq RESTART WITH 10000;
-
-INSERT INTO compra_carnet(fechas_pk,usuario,carnet,fecha_inicio,fecha_fin);
-ALTER SEQUENCE compra_carnet_seq RESTART WITH 10000;

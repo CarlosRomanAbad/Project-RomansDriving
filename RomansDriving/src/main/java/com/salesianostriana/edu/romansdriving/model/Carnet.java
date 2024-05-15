@@ -20,9 +20,10 @@ public class Carnet {
     @GeneratedValue
     private Long id;
 
-    @ManyToMany(mappedBy = "carnet", fetch = FetchType.EAGER)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private List<CompraCarnet> usuarios = new ArrayList<>();
+	 @ManyToMany(mappedBy = "carnet", fetch = FetchType.EAGER)
+	    @ToString.Exclude
+	    @EqualsAndHashCode.Exclude
+	    private List<Usuario> usuarios = new ArrayList<>();
+
 	
 }

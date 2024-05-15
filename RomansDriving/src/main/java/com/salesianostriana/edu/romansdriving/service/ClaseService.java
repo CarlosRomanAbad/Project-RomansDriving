@@ -18,4 +18,8 @@ public class ClaseService extends BaseServiceImpl<Clase,Long,ClaseRepository>{
 	    public List<Clase> obtenerClasesNoOcupadas() {
 	        return claseRepository.findClasesNoOcupadas();
 	    }
+
+		public List<Clase>obtenerClasesMasRecientesNoOcupadas(){
+			return claseRepository.findAllClasesNoOcupadasOrderByFechaClase();
+		}
 }

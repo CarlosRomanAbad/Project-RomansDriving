@@ -15,6 +15,6 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 	    List<Clase> findClasesNoOcupadas();
 
 
-		@Query("SELECT x FROM Clase x WHERE x.estaOcupada = false")
-		List<Clase>findClasesNoDisp();
+		@Query("SELECT c FROM Clase c WHERE c.estaOcupada = false ORDER BY c.fechaClase ASC")
+		List<Clase> findAllClasesNoOcupadasOrderByFechaClase();
 }
