@@ -33,4 +33,8 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		return claseRepository.findAllClasesMotoDesOcupadas(tipo);
 	}
 
+	public List<Clase> obtenerClasesCamionDisponibles(TipoVehiculo tipo){
+		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
+	}
+
 }

@@ -61,9 +61,29 @@
 												</a>
 											</td>
 											<td>
-												<a th:href="@{/admin/borrarProfesor/{id}(id=${profesor.id})}" class="btn btn-danger">
-												<i class="bi bi-trash"></i>
+												<a class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target='#removeProfesor' + '-' + ${profesor.id}">
+													<i class="bi bi-trash"></i>
+												</a>
+												<div class="modal fade" th:id="'removeProfesor-' + ${profesor.id}">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h4 class="modal-title">¡Alerta!</h4>
+																<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+															</div>
+															<div class="modal-body">
+																<p>¿Quieres borrar a este profesor?</p>
+																<div class="d-grid gap-2">
+																	<a class="btn btn-danger" th:href="@{/admin/borrarProfesor/{id}(id=${profesor.id})}">
+																		<i class="bi bi-trash me-2"></i> Borrar profesor
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
 											</td>
+
 										</tr>
 									</tbody>
 								</table>

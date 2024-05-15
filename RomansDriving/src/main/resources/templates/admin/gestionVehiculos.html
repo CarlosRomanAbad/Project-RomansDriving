@@ -59,11 +59,29 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a th:href="@{/admin/borrarVehiculo/{id}(id=${vehiculo.numBastidor})}"
-                                                    class="btn btn-danger">
+                                                <a class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target='#removeVehiculo' + '-' + ${vehiculo.numBastidor}">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
+                                                <div class="modal fade" th:id="'removeVehiculo-' + ${vehiculo.numBastidor}">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">¡Alerta!</h4>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>¿Quieres borrar este vehículo?</p>
+                                                                <div class="d-grid gap-2">
+                                                                    <a class="btn btn-danger" th:href="@{/admin/borrarVehiculo/{id}(id=${vehiculo.numBastidor})}">
+                                                                        <i class="bi bi-trash me-2"></i> Borrar vehículo
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
+
                                         </tr>
                                     </tbody>
                                 </table>

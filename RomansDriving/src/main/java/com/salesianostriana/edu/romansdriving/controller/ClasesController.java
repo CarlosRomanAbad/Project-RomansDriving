@@ -63,8 +63,18 @@ public class ClasesController {
 	public String mostrarClasesDisponiblesMoto(Model model) {
 		TipoVehiculo tipo = (TipoVehiculo.moto);
 
-		List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-		model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
+		List<Clase> clasesMotoDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+		model.addAttribute("clasesDisponibles", clasesMotoDisponibles);
+		return "user/PlantillaClasesVehiculo";
+
+	}
+
+	@GetMapping("/PlantillaClasesCamion")
+	public String mostrarClasesDisponiblesCamion(Model model) {
+		TipoVehiculo tipo = (TipoVehiculo.camión);
+
+		List<Clase> clasesCamionDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+		model.addAttribute("clasesDisponibles", clasesCamionDisponibles);
 		return "user/PlantillaClasesVehiculo";
 
 	}

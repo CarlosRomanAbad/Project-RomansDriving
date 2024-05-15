@@ -26,8 +26,10 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		
 		@Query("SELECT c FROM Clase c WHERE c.vehiculo.tipo = :tipo AND c.estaOcupada = false")
 		List<Clase> findAllClasesMotoDesOcupadas(@Param("tipo") TipoVehiculo tipo);
-		
-		
+
+
+		@Query("SELECT c FROM Clase c WHERE c.vehiculo.tipo = :tipo AND c.estaOcupada = false")
+		List<Clase> findAllClasesCamionDesOcupadas(@Param("tipo") TipoVehiculo tipo);
 
 }
 
