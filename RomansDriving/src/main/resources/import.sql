@@ -5,7 +5,7 @@ INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, tele
 INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (5, 'Carlos', '45678901E', 'Sánchez López', 'carlos', 'carlos@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '123456789', true, '2003-10-25', false);
 INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (6, 'Laura', '56789012F', 'García Martínez', 'laura', 'laura@example.com', '{bcrypt}$2y$10$ZB.usHl6yiJdt7aR5M6Y2uirKqKK9V/KXIz1vPsdk.Cifa9Lt5AH6', '987654321', false, '2003-07-12', false);
 INSERT INTO usuario (id, nombre, dni, apellidos, username, email, password, telefono, tiene_carnet_autoescuela, fecha_nacimiento, is_admin) VALUES (7, 'David', '67890123G', 'Hernández García', 'david', 'david@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '555555555', true, '2004-01-08', false);
-
+INSERT INTO usuario(id, nombre , dni , apellidos , username , email , password, telefono , tiene_carnet_autoescuela,fecha_nacimiento,is_admin) VALUES(8, 'Joaquín', '67890123G', 'Carrascal Franco', 'ASOPLAI', 'uako@example.com', '{bcrypt}$2y$10$FnVOEX.ACOsdRApkE1FmoeqD3HsncbSThYNlOj5gyW4dENGputb6a', '555555555', true, '2004-01-08', false)
 
 ALTER SEQUENCE usuario_seq RESTART WITH 1000;
 

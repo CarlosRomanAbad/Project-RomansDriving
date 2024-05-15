@@ -58,7 +58,7 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                     .loginPage("/login").defaultSuccessUrl("/").permitAll())
             .logout((logoutz) -> logoutz
                     .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login")
+                    .logoutSuccessUrl("/")
                     .permitAll())
                     .exceptionHandling(exceptionHandling -> exceptionHandling
                     .accessDeniedPage("/error/**"));

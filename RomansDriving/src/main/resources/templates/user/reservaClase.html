@@ -10,14 +10,14 @@
 <body>
     <header th:replace="~{fragments/Header::Header}"></header>
     <div class="container mt-4">
-        <h1 class="display-3">Detalles de la reserva seleccionada</h1>
-        <h4 class="display-5">Desde Romans Driving queremos asegurarnos de que es la clase que desea, si es así, pulse en CONFIRMAR</h4>
+        <h1 class="display-5">Detalles de la reserva seleccionada</h1>
+        <h4 class="display-7">Desde Romans Driving queremos asegurarnos de que es la clase que desea, si es así, pulse en CONFIRMAR</h4>
         <div>
-            <p class="fs-3">Fecha: <span th:text="${#temporals.format(reserva.fechaClase, 'yyyy/MM/dd')}"></span></p>
-            <p class="fs-3">Profesor: <span th:text="${reserva.profesor.nombre}"></span></p>
-            <p class="fs-3">Tipo de Vehículo: <span th:text="${reserva.vehiculo.tipo}"></span></p>
-            <p class="fs-3">Marca: <span th:text="${reserva.vehiculo.marca}"></span></p>
-            <p class="fs-3">Precio: <span th:text="${reserva.precio}"></span></p>
+            <p class="fs">Fecha: <span th:text="${#temporals.format(reserva.fechaClase, 'yyyy/MM/dd')}"></span></p>
+            <p class="fs">Profesor: <span th:text="${reserva.profesor.nombre}"></span></p>
+            <p class="fs">Tipo de Vehículo: <span th:text="${reserva.vehiculo.tipo}"></span></p>
+            <p class="fs">Marca: <span th:text="${reserva.vehiculo.marca}"></span></p>
+            <p class="fs">Precio: <span th:text="${reserva.precio}"></span></p>
 
             <div> 
                 <button class="btn btn-danger">CONFIRMAR</button>

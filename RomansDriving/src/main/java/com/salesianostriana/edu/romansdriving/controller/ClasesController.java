@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
+import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.service.ClaseService;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
@@ -26,28 +27,46 @@ public class ClasesController {
 
 	@GetMapping("/reserva/{id}")
 	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model) {
-	    Optional<Clase> optionalClase = clase.findById(id);
-	    
-	    if (optionalClase.isPresent()) {
-	        Clase claseSeleccionada = optionalClase.get();
-	        model.addAttribute("reserva", claseSeleccionada); 
-	        return "user/reservaClase";
-	    } else {
-	       
-	        return "redirect:/error";
-	    }
+		Optional<Clase> optionalClase = clase.findById(id);
+
+		if (optionalClase.isPresent()) {
+			Clase claseSeleccionada = optionalClase.get();
+			model.addAttribute("reserva", claseSeleccionada);
+			return "user/reservaClase";
+		} else {
+
+			return "redirect:/error";
+		}
 	}
 
 	@GetMapping("/PlantillaClasesVehiculo")
 	public String mostrarClasesDisponibles(Model model) {
 
-		List<Clase> clasesNoOcupadas = clase.obtenerClasesNoOcupadas();
-
-		
+		List<Clase> clasesNoOcupadas = clase.obtenerClasesMasRecientesNoOcupadas();
 
 		model.addAttribute("clasesDisponibles", clasesNoOcupadas);
 
 		return "user/PlantillaClasesVehiculo";
+	}
+
+	@GetMapping("/PlantillaClasesCoche")
+	public String mostrarClasesDisponiblesCoche(Model model) {
+		TipoVehiculo tipo = (TipoVehiculo.coche);
+
+		List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+		model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
+		return "user/PlantillaClasesVehiculo";
+
+	}
+	
+	@GetMapping("/PlantillaClasesMoto")
+	public String mostrarClasesDisponiblesMoto(Model model) {
+		TipoVehiculo tipo = (TipoVehiculo.moto);
+
+		List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+		model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
+		return "user/PlantillaClasesVehiculo";
+
 	}
 
 	@GetMapping("/precioClase/{id}")
@@ -57,7 +76,4 @@ public class ClasesController {
 		return "user/PlantillaClasesVehiculo";
 	}
 
-	
-
-	
 }
