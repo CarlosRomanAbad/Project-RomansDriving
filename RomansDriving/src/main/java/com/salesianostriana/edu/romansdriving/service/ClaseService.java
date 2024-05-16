@@ -41,6 +41,9 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
 	}
 
+	public List<Clase>obtenerClasesDeAlumnoConCarnet(){
+		return claseRepository.findClasesConUsuarioConCarnetAutoescuela();
+	}
 	public List<Clase> actualizarClasesFueraPlazo() {
 
 		LocalDate fechaActual = LocalDate.now();

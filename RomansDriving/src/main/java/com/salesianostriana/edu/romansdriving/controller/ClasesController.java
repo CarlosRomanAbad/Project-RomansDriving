@@ -57,7 +57,7 @@ public class ClasesController {
 		Double precioNuevo = 0.0;
 
 		List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
-		List<Clase> clasesAlumnosConCarnet = clase.obtenerClasesDeUsuariosConCarnet();
+		List<Clase> clasesAlumnosConCarnet = clase.obtenerClasesDeAlumnoConCarnet();
 
 		if (!clasesAlumnosConCarnet.isEmpty()) {
 			precioNuevo = clase.cambiarPrecioClases();
@@ -129,14 +129,11 @@ public class ClasesController {
 			@AuthenticationPrincipal Usuario user) {
 		Optional<Usuario> optionalUsuario = usuario.findById(user.getId());
 
-		if (optionalUsuario.isPresent() && !claseReservada.isEstaOcupada()) {
+		if (!claseReservada.isEstaOcupada() && user.isTieneCarnetAutoescuela()) {
 
 			double precioNuevo = clase.cambiarPrecioClases();
-
 			claseReservada.setPrecio(precioNuevo);
-
 			clase.save(claseReservada);
-
 			clase.anhadirClaseUsuario(optionalUsuario.get(), claseReservada.getId());
 
 			return "redirect:/PlantillaClasesVehiculo";
