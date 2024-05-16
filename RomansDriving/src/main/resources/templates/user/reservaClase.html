@@ -13,12 +13,13 @@
     <h1 class="display-5">Detalles de la reserva seleccionada</h1>
     <h4 class="display-7">Desde Romans Driving queremos asegurarnos de que es la clase que desea, si es así, pulse en CONFIRMAR</h4>
     <div>
-        <form action="/reservarClase/submit" method="post">
-            <p class="fs">Fecha: <span th:text="${#temporals.format(reserva.fechaClase, 'yyyy/MM/dd')}"></span></p>
-            <p class="fs">Profesor: <span th:text="${reserva.profesor.nombre}"></span></p>
-            <p class="fs">Tipo de Vehículo: <span th:text="${reserva.vehiculo.tipo}"></span></p>
-            <p class="fs">Marca: <span th:text="${reserva.vehiculo.marca}"></span></p>
-            <p class="fs">Precio: <span th:text="${reserva.precio}"></span></p>
+        <form th:object="${reserva}" th:action="${reserva.id != 0} ? @{/reservaClase/submit}" method="post" >
+            
+            <p class="fs">Fecha: <span th:text="*{#temporals.format(fechaClase, 'yyyy/MM/dd')}"></span></p>
+            <p class="fs">Profesor: <span th:text="*{profesor.nombre}"></span></p>
+            <p class="fs">Tipo de Vehículo: <span th:text="*{vehiculo.tipo}"></span></p>
+            <p class="fs">Marca: <span th:text="*{vehiculo.marca}"></span></p>
+            <p class="fs">Precio: <span th:text="*{precio}"></span></p>
 
             <div>
                 <button type="submit" class="btn btn-danger btn-block">CONFIRMAR</button>

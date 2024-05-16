@@ -1,6 +1,7 @@
 package com.salesianostriana.edu.romansdriving.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -33,6 +34,11 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 
 		@Query("SELECT c FROM Clase c WHERE c.estaOcupada = false AND c.fechaClase < CURRENT_DATE()")
 		List<Clase> findClasesFueraPlazo();
+
+		@Query("SELECT c FROM Clase c WHERE c.id = :id AND c.estaOcupada = false")
+		Optional<Clase> findClaseByIdAndNoOcupada(@Param("id") Long id);
+
+		
 
 }
 

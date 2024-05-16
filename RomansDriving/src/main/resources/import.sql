@@ -37,6 +37,6 @@ INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,  vehiculo
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,  vehiculo_num_bastidor) VALUES (false, '2024-05-29', 41.99, 3, 3,  3);
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,  vehiculo_num_bastidor) VALUES (false, '2024-06-01', 39.99, 4, 4,  4);
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,  vehiculo_num_bastidor) VALUES (false, '2024-05-22', 40.22, 5, 5,  5);
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,  vehiculo_num_bastidor) VALUES (true, '2004-05-20', 41.99, 6, 6,  6);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,  vehiculo_num_bastidor, usuario_id) VALUES (true, '2004-05-20', 41.99, 6, 6,6,1);
 
 ALTER SEQUENCE clase_seq RESTART WITH 10000;

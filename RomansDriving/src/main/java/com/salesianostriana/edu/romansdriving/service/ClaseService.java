@@ -2,12 +2,14 @@ package com.salesianostriana.edu.romansdriving.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
+import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
 import com.salesianostriana.edu.romansdriving.service.base.BaseServiceImpl;
 
@@ -50,5 +52,23 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 		return claseRepository.saveAll(clasesFueraPlazo);
 	}
+	
+	public boolean anhadirClaseUsuario(Usuario user , Long id){
+		
+		Optional<Clase> claseConUsuario = claseRepository.findClaseByIdAndNoOcupada(id);
+		
+		if(claseConUsuario.isPresent()) {
+			claseConUsuario.get().setUsuario(user);
+			claseConUsuario.get().setEstaOcupada(true);
+			
+			return true;
+		}
+		else {
+			return false;
+		}
+		}
 
-}
+	}
+
+
+

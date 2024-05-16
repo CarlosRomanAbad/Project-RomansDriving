@@ -93,15 +93,20 @@ public class ClasesController {
 
 
 	@GetMapping("/reservarClase/{id}")
-	public String hacerReservaClase(@AuthenticationPrincipal Usuario usuario, @PathVariable("id")Long id , Model model){
+	public String hacerReservaClase(@AuthenticationPrincipal Usuario usuario, @PathVariable("id") Long id, Model model) {
+		
+		if(clase.anhadirClaseUsuario(usuario, id)) {
+			model.addAttribute("atributo", clase.anhadirClaseUsuario(usuario, id));
+			return "user/reservaClase";
+		}
+		else {
+			return "error";
+		}
+		
 
-	clase
-			.findById(id).get()
-
-			.setUsuario(usuario);
-		model.addAttribute("reservarClase", clase);
-	return "user/reservaClase";
+		
 	}
+
 	@PostMapping("/reservarClase/submit")
 	public String reserva(@ModelAttribute ("reservarClase")Clase clasee){
 
