@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,8 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 		return claseRepository.saveAll(clasesFueraPlazo);
 	}
-	
+
+	@Transactional
 	public boolean anhadirClaseUsuario(Usuario user , Long id){
 		
 		Optional<Clase> claseConUsuario = claseRepository.findClaseByIdAndNoOcupada(id);
@@ -60,7 +62,8 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		if(claseConUsuario.isPresent()) {
 			claseConUsuario.get().setUsuario(user);
 			claseConUsuario.get().setEstaOcupada(true);
-			
+
+
 			return true;
 		}
 		else {

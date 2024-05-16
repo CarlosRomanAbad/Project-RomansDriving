@@ -13,8 +13,8 @@
     <h1 class="display-5">Detalles de la reserva seleccionada</h1>
     <h4 class="display-7">Desde Romans Driving queremos asegurarnos de que es la clase que desea, si es así, pulse en CONFIRMAR</h4>
     <div>
-        <form th:object="${reserva}" th:action="${reserva.id != 0} ? @{/reservaClase/submit}" method="post" >
-            
+        <form th:object="${reserva}" th:action="@{/reservarClase/submit}" method="post">
+            <input type="hidden" th:field="*{id}">
             <p class="fs">Fecha: <span th:text="*{#temporals.format(fechaClase, 'yyyy/MM/dd')}"></span></p>
             <p class="fs">Profesor: <span th:text="*{profesor.nombre}"></span></p>
             <p class="fs">Tipo de Vehículo: <span th:text="*{vehiculo.tipo}"></span></p>

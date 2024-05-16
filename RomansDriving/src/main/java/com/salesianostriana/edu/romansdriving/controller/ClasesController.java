@@ -94,24 +94,31 @@ public class ClasesController {
 
 	@GetMapping("/reservarClase/{id}")
 	public String hacerReservaClase(@AuthenticationPrincipal Usuario usuario, @PathVariable("id") Long id, Model model) {
-		
-		if(clase.anhadirClaseUsuario(usuario, id)) {
-			model.addAttribute("atributo", clase.anhadirClaseUsuario(usuario, id));
+
+		//si se cumple la condicion de la consulta
+		if(clase.anhadirClaseUsuario(usuario,id)) {
+
+			//que se haga el metodo del servicio donde se setea el usuario que esta en la pagina, y la clase pasa a estar ocupada
+			model.addAttribute("atributo", true); // Si quieres pasar el atributo "true" para indicar éxito
 			return "user/reservaClase";
-		}
-		else {
+		} else {
 			return "error";
 		}
-		
-
-		
 	}
 
 	@PostMapping("/reservarClase/submit")
-	public String reserva(@ModelAttribute ("reservarClase")Clase clasee){
+	public String reserva(@ModelAttribute("reservarClase") Clase claseReservada, @AuthenticationPrincipal Usuario user) {
 
-		clase.edit(clasee);
-		return "redirect:/PlantillaClasesVehiculo";
+		Optional<Usuario> optionalUsuario = usuario.findById(user.getId());
+
+
+		if (optionalUsuario.isPresent() && !claseReservada.isEstaOcupada()) {
+
+			clase.anhadirClaseUsuario(optionalUsuario.get(), claseReservada.getId());
+			return "redirect:/PlantillaClasesVehiculo";
+		} else {
+			return "error";
+		}
 	}
 
 }
