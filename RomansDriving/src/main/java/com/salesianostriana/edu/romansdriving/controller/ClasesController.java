@@ -10,130 +10,139 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.service.ClaseService;
+import com.salesianostriana.edu.romansdriving.service.ProfesorService;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
-import org.springframework.web.bind.annotation.PostMapping;
+import com.salesianostriana.edu.romansdriving.service.VehiculoService;
 
 @Controller
 // @RequestMapping("/Clases")
 public class ClasesController {
 
-    @Autowired
-    private ClaseService clase;
+	@Autowired
+	private ClaseService clase;
 
-    @Autowired
-    private UsuarioService usuario;
+	@Autowired
+	private UsuarioService usuario;
+	
+	@Autowired
+	private ProfesorService profesor;
+	
+	@Autowired
+	private VehiculoService vehiculo;
 
-    @GetMapping("/reserva/{id}")
-    public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model) {
-        Optional<Clase> optionalClase = clase.findById(id);
+	@GetMapping("/reserva/{id}")
+	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model) {
+		Optional<Clase> optionalClase = clase.findById(id);
 
-        if (optionalClase.isPresent()) {
-            Clase claseSeleccionada = optionalClase.get();
-            model.addAttribute("reserva", claseSeleccionada);
-            return "user/reservaClase";
-        } else {
+		if (optionalClase.isPresent()) {
+			Clase claseSeleccionada = optionalClase.get();
+			model.addAttribute("reserva", claseSeleccionada);
+			return "user/reservaClase";
+		} else {
 
-            return "redirect:/error";
-        }
-    }
+			return "redirect:/error";
+		}
+	}
 
-    @GetMapping("/PlantillaClasesVehiculo")
-    public String mostrarClasesDisponibles(Model model) {
-        // Actualizar las clases fuera de plazo antes de mostrar las clases disponibles
-        clase.actualizarClasesFueraPlazo();
+	@GetMapping("/PlantillaClasesVehiculo")
+	public String mostrarClasesDisponibles(Model model, Usuario user) {
 
+		clase.actualizarClasesFueraPlazo();
+		Double precioNuevo = 0.0;
 
-        List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
+		List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
+		List<Clase> clasesAlumnosConCarnet = clase.obtenerClasesDeUsuariosConCarnet();
 
-        double precioNuevo = clase.cambiarPrecioClases();
+		if (!clasesAlumnosConCarnet.isEmpty()) {
+			precioNuevo = clase.cambiarPrecioClases();
+			model.addAttribute("precioNuevo", precioNuevo);
+		}
 
-        model.addAttribute("clasesDisponibles", clasesDisponibles);
-        model.addAttribute("precioNuevo",precioNuevo);
-        return "user/PlantillaClasesVehiculo";
-    }
+		model.addAttribute("clasesDisponibles", clasesDisponibles);
 
-    @GetMapping("/PlantillaClasesCoche")
-    public String mostrarClasesDisponiblesCoche(Model model) {
-        TipoVehiculo tipo = (TipoVehiculo.coche);
-        double precioNuevo = clase.cambiarPrecioClases();
+		return "user/PlantillaClasesVehiculo";
+	}
 
-        List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-        model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
-        model.addAttribute("precioNuevo",precioNuevo);
-        return "user/PlantillaClasesVehiculo";
+	@GetMapping("/PlantillaClasesCoche")
+	public String mostrarClasesDisponiblesCoche(Model model) {
+		TipoVehiculo tipo = (TipoVehiculo.coche);
+		double precioNuevo = clase.cambiarPrecioClases();
 
-    }
+		List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+		model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
+		model.addAttribute("precioNuevo", precioNuevo);
+		return "user/PlantillaClasesVehiculo";
 
-    @GetMapping("/PlantillaClasesMoto")
-    public String mostrarClasesDisponiblesMoto(Model model) {
-        TipoVehiculo tipo = (TipoVehiculo.moto);
-        double precioNuevo = clase.cambiarPrecioClases();
+	}
 
-        List<Clase> clasesMotoDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-        model.addAttribute("clasesDisponibles", clasesMotoDisponibles);
-        model.addAttribute("precioNuevo",precioNuevo);
-        return "user/PlantillaClasesVehiculo";
+	@GetMapping("/PlantillaClasesMoto")
+	public String mostrarClasesDisponiblesMoto(Model model) {
+		TipoVehiculo tipo = (TipoVehiculo.moto);
+		double precioNuevo = clase.cambiarPrecioClases();
 
-    }
+		List<Clase> clasesMotoDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+		model.addAttribute("clasesDisponibles", clasesMotoDisponibles);
+		model.addAttribute("precioNuevo", precioNuevo);
+		return "user/PlantillaClasesVehiculo";
 
-    @GetMapping("/PlantillaClasesCamion")
-    public String mostrarClasesDisponiblesCamion(Model model) {
-        TipoVehiculo tipo = (TipoVehiculo.camión);
-        double precioNuevo = clase.cambiarPrecioClases();
-        model.addAttribute("precioNuevo",precioNuevo);
+	}
 
-        List<Clase> clasesCamionDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-        model.addAttribute("clasesDisponibles", clasesCamionDisponibles);
-        return "user/PlantillaClasesVehiculo";
+	@GetMapping("/PlantillaClasesCamion")
+	public String mostrarClasesDisponiblesCamion(Model model) {
+		TipoVehiculo tipo = (TipoVehiculo.camión);
+		double precioNuevo = clase.cambiarPrecioClases();
+		model.addAttribute("precioNuevo", precioNuevo);
 
-    }
+		List<Clase> clasesCamionDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+		model.addAttribute("clasesDisponibles", clasesCamionDisponibles);
+		return "user/PlantillaClasesVehiculo";
 
+	}
 
+	@GetMapping("/reservarClase/{id}")
+	public String hacerReservaClase(@AuthenticationPrincipal Usuario user, @PathVariable("id") Long id,
+			Model model) {
 
+		
+		
+		if (clase.anhadirClaseUsuario(user, id)) {
 
-    @GetMapping("/reservarClase/{id}")
-    public String hacerReservaClase(@AuthenticationPrincipal Usuario usuario, @PathVariable("id") Long id, Model model) {
+			model.addAttribute("atributo", true);
+			model.addAttribute("profesor",profesor.findAll());
+			model.addAttribute("vehiculo",vehiculo.findAll());
+			model.addAttribute("usuario",usuario.findAll());
+			
+			return "user/reservaClase";
+		} else {
+			return "error";
+		}
+	}
 
-        //si se cumple la condicion de la consulta
-        if (clase.anhadirClaseUsuario(usuario, id)) {
+	@PostMapping("/reservarClase/submit")
+	public String reserva(@ModelAttribute("reservarClase") Clase claseReservada,
+			@AuthenticationPrincipal Usuario user) {
+		Optional<Usuario> optionalUsuario = usuario.findById(user.getId());
 
-            //que se haga el metodo del servicio donde se setea el usuario que esta en la pagina, y la clase pasa a estar ocupada
-            model.addAttribute("atributo", true); // Si quieres pasar el atributo "true" para indicar éxito
-            return "user/reservaClase";
-        } else {
-            return "error";
-        }
-    }
+		if (optionalUsuario.isPresent() && !claseReservada.isEstaOcupada()) {
 
-    @PostMapping("/reservarClase/submit")
-    public String reserva(@ModelAttribute("reservarClase") Clase claseReservada, @AuthenticationPrincipal Usuario user) {
-        Optional<Usuario> optionalUsuario = usuario.findById(user.getId());
+			double precioNuevo = clase.cambiarPrecioClases();
 
-        if (optionalUsuario.isPresent() && !claseReservada.isEstaOcupada()) {
-            // Obtener el precio actualizado
-            double precioNuevo = clase.cambiarPrecioClases();
-            // Establecer el precio actualizado en la clase reservada
-            claseReservada.setPrecio(precioNuevo);
+			claseReservada.setPrecio(precioNuevo);
 
-            // Guardar la clase reservada en la base de datos
-            clase.save(claseReservada);
+			clase.save(claseReservada);
 
-            // Añadir el usuario a la clase reservada
-            clase.anhadirClaseUsuario(optionalUsuario.get(), claseReservada.getId());
+			clase.anhadirClaseUsuario(optionalUsuario.get(), claseReservada.getId());
 
-            return "redirect:/PlantillaClasesVehiculo";
-        } else {
-            return "error";
-        }
-    }
-
-
-
-
+			return "redirect:/PlantillaClasesVehiculo";
+		} else {
+			return "error";
+		}
+	}
 
 }
