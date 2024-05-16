@@ -22,103 +22,118 @@ import org.springframework.web.bind.annotation.PostMapping;
 // @RequestMapping("/Clases")
 public class ClasesController {
 
-	@Autowired
-	private ClaseService clase;
+    @Autowired
+    private ClaseService clase;
 
-	@Autowired
-	private UsuarioService usuario;
+    @Autowired
+    private UsuarioService usuario;
 
-	@GetMapping("/reserva/{id}")
-	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model) {
-		Optional<Clase> optionalClase = clase.findById(id);
+    @GetMapping("/reserva/{id}")
+    public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model) {
+        Optional<Clase> optionalClase = clase.findById(id);
 
-		if (optionalClase.isPresent()) {
-			Clase claseSeleccionada = optionalClase.get();
-			model.addAttribute("reserva", claseSeleccionada);
-			return "user/reservaClase";
-		} else {
+        if (optionalClase.isPresent()) {
+            Clase claseSeleccionada = optionalClase.get();
+            model.addAttribute("reserva", claseSeleccionada);
+            return "user/reservaClase";
+        } else {
 
-			return "redirect:/error";
-		}
-	}
+            return "redirect:/error";
+        }
+    }
 
-	@GetMapping("/PlantillaClasesVehiculo")
-	public String mostrarClasesDisponibles(Model model) {
-		// Actualizar las clases fuera de plazo antes de mostrar las clases disponibles
-		clase.actualizarClasesFueraPlazo();
-
-		// Obtener las clases disponibles
-		List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
-
-		model.addAttribute("clasesDisponibles", clasesDisponibles);
-		return "user/PlantillaClasesVehiculo";
-	}
-
-	@GetMapping("/PlantillaClasesCoche")
-	public String mostrarClasesDisponiblesCoche(Model model) {
-		TipoVehiculo tipo = (TipoVehiculo.coche);
-
-		List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-		model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
-		return "user/PlantillaClasesVehiculo";
-
-	}
-	
-	@GetMapping("/PlantillaClasesMoto")
-	public String mostrarClasesDisponiblesMoto(Model model) {
-		TipoVehiculo tipo = (TipoVehiculo.moto);
-
-		List<Clase> clasesMotoDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-		model.addAttribute("clasesDisponibles", clasesMotoDisponibles);
-		return "user/PlantillaClasesVehiculo";
-
-	}
-
-	@GetMapping("/PlantillaClasesCamion")
-	public String mostrarClasesDisponiblesCamion(Model model) {
-		TipoVehiculo tipo = (TipoVehiculo.camión);
-
-		List<Clase> clasesCamionDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-		model.addAttribute("clasesDisponibles", clasesCamionDisponibles);
-		return "user/PlantillaClasesVehiculo";
-
-	}
-
-	@GetMapping("/precioClase/{id}")
-	public String mostrarPrecioClase(@PathVariable("id") Long id, Model model) {
-		List<Usuario> precioClase = usuario.calcularPrecioSiTieneCarnet(id);
-		model.addAttribute("precioClase", precioClase);
-		return "user/PlantillaClasesVehiculo";
-	}
+    @GetMapping("/PlantillaClasesVehiculo")
+    public String mostrarClasesDisponibles(Model model) {
+        // Actualizar las clases fuera de plazo antes de mostrar las clases disponibles
+        clase.actualizarClasesFueraPlazo();
 
 
-	@GetMapping("/reservarClase/{id}")
-	public String hacerReservaClase(@AuthenticationPrincipal Usuario usuario, @PathVariable("id") Long id, Model model) {
+        List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
 
-		//si se cumple la condicion de la consulta
-		if(clase.anhadirClaseUsuario(usuario,id)) {
+        double precioNuevo = clase.cambiarPrecioClases();
 
-			//que se haga el metodo del servicio donde se setea el usuario que esta en la pagina, y la clase pasa a estar ocupada
-			model.addAttribute("atributo", true); // Si quieres pasar el atributo "true" para indicar éxito
-			return "user/reservaClase";
-		} else {
-			return "error";
-		}
-	}
+        model.addAttribute("clasesDisponibles", clasesDisponibles);
+        model.addAttribute("precioNuevo",precioNuevo);
+        return "user/PlantillaClasesVehiculo";
+    }
 
-	@PostMapping("/reservarClase/submit")
-	public String reserva(@ModelAttribute("reservarClase") Clase claseReservada, @AuthenticationPrincipal Usuario user) {
+    @GetMapping("/PlantillaClasesCoche")
+    public String mostrarClasesDisponiblesCoche(Model model) {
+        TipoVehiculo tipo = (TipoVehiculo.coche);
+        double precioNuevo = clase.cambiarPrecioClases();
 
-		Optional<Usuario> optionalUsuario = usuario.findById(user.getId());
+        List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+        model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
+        model.addAttribute("precioNuevo",precioNuevo);
+        return "user/PlantillaClasesVehiculo";
+
+    }
+
+    @GetMapping("/PlantillaClasesMoto")
+    public String mostrarClasesDisponiblesMoto(Model model) {
+        TipoVehiculo tipo = (TipoVehiculo.moto);
+        double precioNuevo = clase.cambiarPrecioClases();
+
+        List<Clase> clasesMotoDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+        model.addAttribute("clasesDisponibles", clasesMotoDisponibles);
+        model.addAttribute("precioNuevo",precioNuevo);
+        return "user/PlantillaClasesVehiculo";
+
+    }
+
+    @GetMapping("/PlantillaClasesCamion")
+    public String mostrarClasesDisponiblesCamion(Model model) {
+        TipoVehiculo tipo = (TipoVehiculo.camión);
+        double precioNuevo = clase.cambiarPrecioClases();
+        model.addAttribute("precioNuevo",precioNuevo);
+
+        List<Clase> clasesCamionDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+        model.addAttribute("clasesDisponibles", clasesCamionDisponibles);
+        return "user/PlantillaClasesVehiculo";
+
+    }
 
 
-		if (optionalUsuario.isPresent() && !claseReservada.isEstaOcupada()) {
 
-			clase.anhadirClaseUsuario(optionalUsuario.get(), claseReservada.getId());
-			return "redirect:/PlantillaClasesVehiculo";
-		} else {
-			return "error";
-		}
-	}
+
+    @GetMapping("/reservarClase/{id}")
+    public String hacerReservaClase(@AuthenticationPrincipal Usuario usuario, @PathVariable("id") Long id, Model model) {
+
+        //si se cumple la condicion de la consulta
+        if (clase.anhadirClaseUsuario(usuario, id)) {
+
+            //que se haga el metodo del servicio donde se setea el usuario que esta en la pagina, y la clase pasa a estar ocupada
+            model.addAttribute("atributo", true); // Si quieres pasar el atributo "true" para indicar éxito
+            return "user/reservaClase";
+        } else {
+            return "error";
+        }
+    }
+
+    @PostMapping("/reservarClase/submit")
+    public String reserva(@ModelAttribute("reservarClase") Clase claseReservada, @AuthenticationPrincipal Usuario user) {
+        Optional<Usuario> optionalUsuario = usuario.findById(user.getId());
+
+        if (optionalUsuario.isPresent() && !claseReservada.isEstaOcupada()) {
+            // Obtener el precio actualizado
+            double precioNuevo = clase.cambiarPrecioClases();
+            // Establecer el precio actualizado en la clase reservada
+            claseReservada.setPrecio(precioNuevo);
+
+            // Guardar la clase reservada en la base de datos
+            clase.save(claseReservada);
+
+            // Añadir el usuario a la clase reservada
+            clase.anhadirClaseUsuario(optionalUsuario.get(), claseReservada.getId());
+
+            return "redirect:/PlantillaClasesVehiculo";
+        } else {
+            return "error";
+        }
+    }
+
+
+
+
 
 }

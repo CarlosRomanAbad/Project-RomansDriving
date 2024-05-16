@@ -56,9 +56,9 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	@Transactional
 	public boolean anhadirClaseUsuario(Usuario user , Long id){
-		
+
 		Optional<Clase> claseConUsuario = claseRepository.findClaseByIdAndNoOcupada(id);
-		
+
 		if(claseConUsuario.isPresent()) {
 			claseConUsuario.get().setUsuario(user);
 			claseConUsuario.get().setEstaOcupada(true);
@@ -71,7 +71,23 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		}
 		}
 
+	public double cambiarPrecioClases() {
+		List<Clase> listaClasesConPrecioDiferente = claseRepository.findClasesConUsuarioConCarnetAutoescuela();
+		double nuevoPrecioTotal = 0.0;
+
+		if (!listaClasesConPrecioDiferente.isEmpty()) {
+			for (Clase clase : listaClasesConPrecioDiferente) {
+				double nuevoPrecio = clase.getPrecio() / 2;
+				clase.setPrecio(nuevoPrecio);
+				nuevoPrecioTotal += nuevoPrecio;
+			}
+			return nuevoPrecioTotal;
+		} else {
+			return 0;
+		}
 	}
+
+}
 
 
 

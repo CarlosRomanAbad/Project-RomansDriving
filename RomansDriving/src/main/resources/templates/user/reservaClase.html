@@ -19,7 +19,7 @@
             <p class="fs">Profesor: <span th:text="*{profesor.nombre}"></span></p>
             <p class="fs">Tipo de Vehículo: <span th:text="*{vehiculo.tipo}"></span></p>
             <p class="fs">Marca: <span th:text="*{vehiculo.marca}"></span></p>
-            <p class="fs">Precio: <span th:text="*{precio}"></span></p>
+            <p class="fs">Precio: <span th:text="${precioNuevo}"></span></p> <!-- Corregido el atributo th:text -->
 
             <div>
                 <button type="submit" class="btn btn-danger btn-block">CONFIRMAR</button>

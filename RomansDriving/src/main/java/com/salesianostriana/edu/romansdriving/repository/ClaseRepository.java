@@ -39,6 +39,7 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		Optional<Clase> findClaseByIdAndNoOcupada(@Param("id") Long id);
 
 		
-
+		@Query("SELECT c FROM Clase c WHERE c.usuario.tieneCarnetAutoescuela = true")
+		List<Clase> findClasesConUsuarioConCarnetAutoescuela();
 }
 
