@@ -44,8 +44,8 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		List<Clase> clasesFueraPlazo = claseRepository.findClasesFueraPlazo();
 
 
-		LocalDate fechaFutura = fechaActual.plusDays(20);
-		clasesFueraPlazo.forEach(c -> c.setFechaClase(fechaFutura));
+
+		clasesFueraPlazo.forEach(c -> c.setEstaOcupada(true));
 
 
 		return claseRepository.saveAll(clasesFueraPlazo);

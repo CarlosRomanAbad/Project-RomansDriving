@@ -88,4 +88,10 @@ public class ClasesController {
 		return "user/PlantillaClasesVehiculo";
 	}
 
+
+	@GetMapping("/reservarClase/{id}")
+	public String hacerReservaClase(@PathVariable("id")Long id , Model model){
+	return "";
+	}
+
 }
