@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
@@ -14,6 +16,7 @@ import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.service.ClaseService;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 // @RequestMapping("/Clases")
@@ -90,8 +93,20 @@ public class ClasesController {
 
 
 	@GetMapping("/reservarClase/{id}")
-	public String hacerReservaClase(@PathVariable("id")Long id , Model model){
-	return "";
+	public String hacerReservaClase(@AuthenticationPrincipal Usuario usuario, @PathVariable("id")Long id , Model model){
+
+	clase
+			.findById(id).get()
+
+			.setUsuario(usuario);
+		model.addAttribute("reservarClase", clase);
+	return "user/reservaClase";
+	}
+	@PostMapping("/reservarClase/submit")
+	public String reserva(@ModelAttribute ("reservarClase")Clase clasee){
+
+		clase.edit(clasee);
+		return "redirect:/PlantillaClasesVehiculo";
 	}
 
 }
