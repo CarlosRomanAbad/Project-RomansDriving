@@ -72,6 +72,7 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http.build();
 }
     public PasswordEncoder passwordEncoder() {
+
 		return new BCryptPasswordEncoder();
 	}
 
