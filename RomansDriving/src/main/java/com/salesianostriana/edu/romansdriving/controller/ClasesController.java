@@ -49,6 +49,22 @@ public class ClasesController {
 			return "redirect:/error";
 		}
 	}
+	
+	@GetMapping("/reserva/{id}/confirmar")
+	public String confirmarReserva(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Usuario usuario) {
+		
+		
+		
+		if (clase.anhadirClaseUsuario(usuario, id)) {
+		
+			return "redirect:/PlantillaClasesVehiculo";
+		}
+		else {
+			return "error";
+		}
+		
+	}
+
 
 	@GetMapping("/PlantillaClasesVehiculo")
 	public String mostrarClasesDisponibles(Model model, Usuario user) {

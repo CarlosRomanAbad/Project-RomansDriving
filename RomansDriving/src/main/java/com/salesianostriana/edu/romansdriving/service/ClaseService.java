@@ -37,42 +37,38 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		return claseRepository.findAllClasesMotoDesOcupadas(tipo);
 	}
 
-	public List<Clase> obtenerClasesCamionDisponibles(TipoVehiculo tipo){
+	public List<Clase> obtenerClasesCamionDisponibles(TipoVehiculo tipo) {
 		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
 	}
 
-	public List<Clase>obtenerClasesDeAlumnoConCarnet(){
+	public List<Clase> obtenerClasesDeAlumnoConCarnet() {
 		return claseRepository.findClasesConUsuarioConCarnetAutoescuela();
 	}
+
 	public List<Clase> actualizarClasesFueraPlazo() {
 
 		LocalDate fechaActual = LocalDate.now();
 		List<Clase> clasesFueraPlazo = claseRepository.findClasesFueraPlazo();
 
-
-
 		clasesFueraPlazo.forEach(c -> c.setEstaOcupada(true));
-
 
 		return claseRepository.saveAll(clasesFueraPlazo);
 	}
 
 	@Transactional
-	public boolean anhadirClaseUsuario(Usuario user , Long id){
-
+	public boolean anhadirClaseUsuario(Usuario user, Long id) {
 		Optional<Clase> claseConUsuario = claseRepository.findClaseByIdAndNoOcupada(id);
 
-		if(claseConUsuario.isPresent()) {
-			claseConUsuario.get().setUsuario(user);
-			claseConUsuario.get().setEstaOcupada(true);
-
-
+		if (claseConUsuario.isPresent ()) {
+			Clase clase = claseConUsuario.get();
+			user.addToClase(clase);
+			clase.setEstaOcupada(true);
+			this.save(clase);
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
-		}
+	}
 
 	public double cambiarPrecioClases() {
 		List<Clase> listaClasesConPrecioDiferente = claseRepository.findClasesConUsuarioConCarnetAutoescuela();
@@ -91,6 +87,3 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 	}
 
 }
-
-
-
