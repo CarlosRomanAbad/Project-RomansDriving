@@ -13,24 +13,22 @@
     <h1 class="display-5">Detalles de la reserva seleccionada</h1>
     <h4 class="display-7">Desde Romans Driving queremos asegurarnos de que es la clase que desea, si es así, pulse en CONFIRMAR</h4>
     <div>
-        <form th:object="${reserva}" th:action="@{/reserva/{id}(id=${id})/confirmar}" method="post">
+        <form th:object="${reserva}" th:action="@{/reserva/{id}/confirmar(id=${reserva.id})}">
             <input type="hidden" th:field="*{id}">
             <p class="fs">Fecha: <span th:text="*{#temporals.format(fechaClase, 'yyyy/MM/dd')}"></span></p>
             <p class="fs">Profesor: <span th:text="*{profesor.nombre}"></span></p>
             <p class="fs">Tipo de Vehículo: <span th:text="*{vehiculo.tipo}"></span></p>
             <p class="fs">Marca: <span th:text="*{vehiculo.marca}"></span></p>
-            <p class="fs">Precio: <span th:text="${precioNuevo}"></span></p> 
+            <p class="fs">Precio: <span th:text="${precioNuevo}"></span></p>
 
             <div>
                 <button type="submit" class="btn btn-danger btn-block">CONFIRMAR</button>
             </div>
         </form>
+
     </div>
-    
-    <!-- Mensaje de confirmación -->
-    <div th:if="${clasesDisponibles}">
-        <p class="alert alert-success">¡Reserva confirmada exitosamente!</p>
-    </div>
+
+
 </div>
 <footer th:replace="~{fragments/footer::pie}"></footer>
 </body>

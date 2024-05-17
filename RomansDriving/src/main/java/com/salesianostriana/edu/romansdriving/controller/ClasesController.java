@@ -45,26 +45,20 @@ public class ClasesController {
 			model.addAttribute("reserva", claseSeleccionada);
 			return "user/reservaClase";
 		} else {
-
 			return "redirect:/error";
 		}
 	}
 	
 	@GetMapping("/reserva/{id}/confirmar")
 	public String confirmarReserva(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Usuario usuario) {
-		
-		
-		
+
 		if (clase.anhadirClaseUsuario(usuario, id)) {
-		
 			return "redirect:/PlantillaClasesVehiculo";
 		}
 		else {
 			return "error";
 		}
-		
 	}
-
 
 	@GetMapping("/PlantillaClasesVehiculo")
 	public String mostrarClasesDisponibles(Model model, Usuario user) {
@@ -121,7 +115,7 @@ public class ClasesController {
 
 	}
 
-	@GetMapping("/reservarClase/{id}")
+	/*@GetMapping("/reservarClase/{id}")
 	public String hacerReservaClase(@AuthenticationPrincipal Usuario user, @PathVariable("id") Long id,
 			Model model) {
 
@@ -138,7 +132,7 @@ public class ClasesController {
 		} else {
 			return "error";
 		}
-	}
+	}*/
 
 	@PostMapping("/reservarClase/submit")
 	public String reserva(@ModelAttribute("reservarClase") Clase claseReservada,
