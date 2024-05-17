@@ -25,32 +25,23 @@ public class Clase {
     @Id
     @GeneratedValue
     private Long id;
-    
+
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name="fk_clase_usuario"))  
+    @JoinColumn(name="usuario_id", foreignKey = @ForeignKey(name="fk_clase_usuario"))
     private Usuario usuario;
-    
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaClase;
-    
+
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name="fk_clase_profesor"))  
+    @JoinColumn(name="profesor_id", foreignKey = @ForeignKey(name="fk_clase_profesor"))
     private Profesor profesor;
-    
+
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name="fk_clase_vehiculo"))  
+    @JoinColumn(name="vehiculo_id", foreignKey = @ForeignKey(name="fk_clase_vehiculo"))
     private Vehiculo vehiculo;
-    
+
     private double precio;
-    
+
     private boolean estaOcupada;
-
-    
-    
-
-	
-    
-    
-    
 }
-	

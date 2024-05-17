@@ -1,103 +1,88 @@
 package com.salesianostriana.edu.romansdriving.model;
 
-
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Usuario implements UserDetails {	
-    
+public class Usuario implements UserDetails {
+
 	@Id
 	@GeneratedValue
-    private Long id;
-	
+	private Long id;
+
 	@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "compra_carnet",
-            joinColumns = @JoinColumn(name = "usuario_id"), 
-            inverseJoinColumns = @JoinColumn(name = "carnet_id") 
-    )
-	private List<Carnet>carnet = new ArrayList<>();
-	
-    private String nombre, dni, apellidos, username, email, password, telefono;
-    private boolean tieneCarnetAutoescuela , isAdmin;
-    
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fechaNacimiento;
-	
-   
+	@JoinTable(
+			name = "compra_carnet",
+			joinColumns = @JoinColumn(name = "usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = "carnet_id")
+	)
+	private List<Carnet> carnet = new ArrayList<>();
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        String role = "ROLE_";
+	private String nombre, dni, apellidos, username, email, password, telefono;
+	private boolean tieneCarnetAutoescuela, isAdmin;
 
-        if (isAdmin) {
-            role += "ADMIN";
-        }
-        if (!isAdmin) {
-            role += "USER";
-        }
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate fechaNacimiento;
 
-        return List.of(new SimpleGrantedAuthority(role));
-    }
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<Clase> clases = new ArrayList<>();
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		String role = "ROLE_";
+
+		if (isAdmin) {
+			role += "ADMIN";
+		} else {
+			role += "USER";
+		}
+
+		return List.of(new SimpleGrantedAuthority(role));
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
-    
-    
-	
 
-	
-    
-	
-    
-    
-    
-    
+	public void addToClase(Clase clase) {
+		clases.add(clase);
+		clase.setUsuario(this);
+	}
+
+	public void removeFromClase(Clase clase) {
+		clases.remove(clase);
+		clase.setUsuario(null);
+	}
 }
