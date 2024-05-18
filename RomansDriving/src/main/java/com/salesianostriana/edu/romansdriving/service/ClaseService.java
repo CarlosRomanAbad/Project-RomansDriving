@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +11,19 @@ import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
+import com.salesianostriana.edu.romansdriving.repository.UsuarioRepository;
 import com.salesianostriana.edu.romansdriving.service.base.BaseServiceImpl;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> {
 
 	@Autowired
 	private ClaseRepository claseRepository;
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
 	public List<Clase> obtenerClasesNoOcupadas() {
 		return claseRepository.findClasesNoOcupadas();
@@ -70,6 +75,11 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		}
 	}
 
+	@Transactional
+    public void cancelarClase(Long claseId) {
+        claseRepository.cancelarClase(claseId);
+    }
+
 	public double cambiarPrecioClases() {
 		List<Clase> listaClasesConPrecioDiferente = claseRepository.findClasesConUsuarioConCarnetAutoescuela();
 		double nuevoPrecioTotal = 0.0;
@@ -85,5 +95,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 			return 0;
 		}
 	}
+
+	
 
 }

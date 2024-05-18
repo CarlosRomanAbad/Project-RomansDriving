@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
@@ -151,5 +152,21 @@ public class ClasesController {
 			return "error";
 		}
 	}
+
+	@GetMapping("/mostrarClases")
+	public String mostrarMisClases(@AuthenticationPrincipal Usuario usuario , Model model , Long id){
+		
+		List<Clase> clasesUsuario = usuario.getClases();
+		model.addAttribute("misClases", clasesUsuario);
+		return "user/misClases";
+
+	}
+	@GetMapping("cancelarClase/{id}")
+    public String cancelarClase(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        clase.cancelarClase(id);
+        redirectAttributes.addFlashAttribute("mensaje", "Clase cancelada con éxito");
+        return "redirect:/mostrarClases"; 
+    }
+
 
 }

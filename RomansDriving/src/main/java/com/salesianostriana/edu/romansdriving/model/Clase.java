@@ -44,4 +44,6 @@ public class Clase {
     private double precio;
 
     private boolean estaOcupada;
+    
+    
 }
