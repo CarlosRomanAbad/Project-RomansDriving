@@ -14,6 +14,7 @@
             crossorigin="anonymous"></script>
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     
 </head>
 
@@ -23,7 +24,7 @@
     <header th:replace="~{fragments/Header::Header}"></header>
 
     <div class="text-center p-5 contenido text-dark">
-        <h2 class="mb-5">Bienvenido a Roman's Driving</h2>
+        <h2 class="mb-5"><span class="mov"></span></h2>
         <h3 id="texto" class="mb-5">Tu autoescuela de confianza para aprender a conducir de manera segura y
             responsable</h3>
         <div id="carouselExampleControls" class="carousel slide mt-0" data-bs-ride="carousel">
@@ -136,6 +137,14 @@
 <footer th:replace="~{fragments/footer::pie}"></footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    let typed = new Typed(".mov", {
+            strings: ["BienVenido", "BienVenido A", "BienVenido A Romans", "BienVenido A Romans Driving"],
+            typeSpeed: 10,
+            backSpeed: 80,
+            loop: false
+        })
+</script>
 <script>
         AOS.init();
     </script>
