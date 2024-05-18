@@ -17,5 +17,8 @@ public class HtmlController {
         return "user/error";
     }
    
-    
+    @GetMapping("/sobreNosotros")
+    public String sobreNosotros(){
+        return "sobreNosotros";
+    }    
 }
