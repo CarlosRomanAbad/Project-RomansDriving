@@ -52,6 +52,7 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		@Modifying
 		@Query("UPDATE Clase c SET c.estaOcupada = false, c.usuario = null WHERE c.id = :claseId")
 		void cancelarClase(@Param("claseId") Long claseId);
+
 		
 }
 

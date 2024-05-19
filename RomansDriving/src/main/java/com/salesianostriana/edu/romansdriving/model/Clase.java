@@ -30,9 +30,6 @@ public class Clase {
     @JoinColumn(name="usuario_id", foreignKey = @ForeignKey(name="fk_clase_usuario"))
     private Usuario usuario;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fechaClase;
-
     @ManyToOne
     @JoinColumn(name="profesor_id", foreignKey = @ForeignKey(name="fk_clase_profesor"))
     private Profesor profesor;
@@ -45,5 +42,38 @@ public class Clase {
 
     private boolean estaOcupada;
     
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaClase;
     
+    
+    
+    public void addToUsuario(Usuario usuario) {
+		this.usuario=usuario;
+		usuario.getClases().add(this);
+	}
+
+	public void removeFromClase(Usuario usuario) {
+		usuario.getClases().remove(this);
+		this.usuario=null;
+	}
+	
+	public void addToProfesor(Profesor profesor) {
+		this.profesor=profesor;
+		profesor.getClases().add(this);
+	}
+
+	public void removeFromClaseProfe(Profesor profesor) {
+		profesor.getClases().remove(this);
+		this.profesor=null;
+	}
+	
+	public void addToVehiculo(Vehiculo vehiculo) {
+		this.vehiculo=vehiculo;
+		vehiculo.getClases().add(this);
+	}
+
+	public void removeFromClaseVehiculo(Vehiculo vehiculo) {
+		vehiculo.getClases().remove(this);
+		this.vehiculo=null;
+	}
 }

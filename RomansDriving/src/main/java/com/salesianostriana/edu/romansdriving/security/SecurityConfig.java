@@ -52,7 +52,7 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     	
     http.authorizeHttpRequests(
             (authz) -> authz
-			.requestMatchers("/admin/**"/*"/h2-console/**"*/).hasRole("ADMIN")
+			.requestMatchers("/admin/**","/h2-console/**").hasRole("ADMIN")
 					.requestMatchers("/PlantillaClasesVehiculo/**","/PlantillaClasesCoche/**"
 							,"/PlantillaClasesMoto/**","/PlantillaClasesCamion/**","/reserva/**")
 					.hasRole("USER")

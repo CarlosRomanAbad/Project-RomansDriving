@@ -66,7 +66,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 		if (claseConUsuario.isPresent ()) {
 			Clase clase = claseConUsuario.get();
-			user.addToClase(clase);
+			clase.addToUsuario(user);
 			clase.setEstaOcupada(true);
 			this.save(clase);
 			return true;

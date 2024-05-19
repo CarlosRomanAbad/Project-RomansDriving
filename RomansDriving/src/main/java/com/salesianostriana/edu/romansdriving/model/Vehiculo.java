@@ -3,6 +3,7 @@ package com.salesianostriana.edu.romansdriving.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -34,8 +35,7 @@ public class Vehiculo {
     private int anhosAntiguedad;
 
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "vehiculo", fetch = FetchType.EAGER)
+   
+    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Clase> clases = new ArrayList<>();
 }
