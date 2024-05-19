@@ -29,10 +29,10 @@ public class Profesor {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
+    @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @Builder.Default
+    @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Clase> clases = new ArrayList<>();
 
     private String nombre;
@@ -43,4 +43,6 @@ public class Profesor {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaBaja;
+    
+    
 }

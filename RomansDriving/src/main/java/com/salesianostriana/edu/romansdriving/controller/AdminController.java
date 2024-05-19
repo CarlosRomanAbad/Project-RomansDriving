@@ -112,7 +112,7 @@ public class AdminController {
 		usuario.setPassword(encodedPassword);
 		u.save(usuario);
 		model.addAttribute("usuario", usuario);
-        return "redirect:/admin/gestionUsuarios";
+        return "redirect:/admin/";
     }
 
     @PostMapping("/guardarClase/submit")
@@ -213,14 +213,30 @@ public class AdminController {
     // BORRAR
     @GetMapping("/borrar/{id}")
     public String borrar(@PathVariable("id") long id) {
+    	
         u.deleteById(id);
         return "redirect:/admin/gestionUsuarios";
     }
 
     @GetMapping("/borrarClase/{id}")
-    public String borrarClase(@PathVariable("id") long id) {
-        c.deleteById(id);
-        return "redirect:/admin/gestionClases";
+    public String borrarClase(@PathVariable("id") long id, Usuario usuario) {
+    	
+    	
+    	if(c.findById(id).get().getUsuario()!=null) {
+    		c.findById(id).get().removeFromClase(c.findById(id).get().getUsuario());
+        	c.findById(id).get().removeFromClaseProfe(c.findById(id).get().getProfesor());
+        	c.findById(id).get().removeFromClaseVehiculo(c.findById(id).get().getVehiculo());
+            c.deleteById(id);
+            return "redirect:/admin/gestionClases/";
+    	}
+    	else {
+    		c.findById(id).get().removeFromClaseProfe(c.findById(id).get().getProfesor());
+        	c.findById(id).get().removeFromClaseVehiculo(c.findById(id).get().getVehiculo());
+    		c.deleteById(id);
+    		
+    		 return "redirect:/admin/gestionClases/";
+    	}
+    	
     }
     
     @GetMapping("/borrarProfesor/{id}")

@@ -76,13 +76,5 @@ public class Usuario implements UserDetails {
 		return true;
 	}
 
-	public void addToClase(Clase clase) {
-		clases.add(clase);
-		clase.setUsuario(this);
-	}
-
-	public void removeFromClase(Clase clase) {
-		clases.remove(clase);
-		clase.setUsuario(null);
-	}
+	
 }
