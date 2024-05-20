@@ -213,9 +213,15 @@ public class AdminController {
     // BORRAR
     @GetMapping("/borrar/{id}")
     public String borrar(@PathVariable("id") long id) {
+    	if(u.findById(id).get().isAdmin()) {
+    		return "errorBorrarAdmin";
+    	}
     	
-        u.deleteById(id);
-        return "redirect:/admin/gestionUsuarios";
+    	else {
+    		 u.deleteById(id);
+    	        return "redirect:/admin/gestionUsuarios";
+    	}
+       
     }
 
     @GetMapping("/borrarClase/{id}")
@@ -227,20 +233,21 @@ public class AdminController {
         	c.findById(id).get().removeFromClaseProfe(c.findById(id).get().getProfesor());
         	c.findById(id).get().removeFromClaseVehiculo(c.findById(id).get().getVehiculo());
             c.deleteById(id);
-            return "redirect:/admin/gestionClases/";
+            return "redirect:/admin/gestionClases";
     	}
     	else {
     		c.findById(id).get().removeFromClaseProfe(c.findById(id).get().getProfesor());
         	c.findById(id).get().removeFromClaseVehiculo(c.findById(id).get().getVehiculo());
     		c.deleteById(id);
     		
-    		 return "redirect:/admin/gestionClases/";
+    		 return "redirect:/admin/gestionClases";
     	}
     	
     }
     
     @GetMapping("/borrarProfesor/{id}")
     public String borrarProfesor(@PathVariable("id") long id) {
+    	
         p.deleteById(id);
         return "redirect:/admin/gestionProfesores";
     }

@@ -40,16 +40,15 @@ public class ClasesController {
 	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model, Usuario user) {
 		Optional<Clase> optionalClase = clase.findById(id);
 
-		if (optionalClase.isPresent()) {
+	
 			Clase claseSeleccionada = optionalClase.get();
 			model.addAttribute("reserva", claseSeleccionada);
 			model.addAttribute("precioNuevo", clase.reservarClaseCambioPrecio(user, id));
-			claseSeleccionada.setPrecio(clase.reservarClaseCambioPrecio(user, id));
-			clase.save(claseSeleccionada);
+			//claseSeleccionada.setPrecio(clase.reservarClaseCambioPrecio(user, id));
+			//clase.save(claseSeleccionada);
 			return "user/reservaClase";
-		} else {
-			return "redirect:/error";
-		}
+		
+		
 	}
 	
 	@GetMapping("/reserva/{id}/confirmar")

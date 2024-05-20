@@ -28,9 +28,13 @@
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required>
                             </div>
-                            <div class="mb-3">
+                            <div th:unless="${usuario.id != null}" class="mb-3">
                                 <label for="dni" class="form-label">DNI</label>
                                 <input type="text" id="dni" name="dni" class="form-control" oninput="validarDNI()">
+                            </div>
+                            <div th:unless="${usuario.id != null}" class="mb-3">
+                                <label for="contrasenha" class="form-label">Contraseña</label>
+                                <input type="password" id="contrasenha" class="form-control" th:field="*{password}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="apellidos" class="form-label">Apellidos</label>
@@ -44,10 +48,6 @@
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" id="email" class="form-control" th:field="*{email}" required>
                                 <div id="emailError" class="invalid-feedback"></div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="contrasenha" class="form-label">Contraseña</label>
-                                <input type="password" id="contrasenha" class="form-control" th:field="*{password}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="telefono" class="form-label">Teléfono</label>

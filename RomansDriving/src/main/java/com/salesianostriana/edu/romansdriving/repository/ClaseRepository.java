@@ -52,8 +52,8 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		void cancelarClase(@Param("claseId") Long claseId);
 		
 		
-		@Query("SELECT Count (c) FROM Clase c WHERE c.usuario.id = ?1")
-		Long clasesConUsuariosAsociados(Long id);
+		@Query("SELECT Count (c) FROM Clase c WHERE c.usuario.id = :id")
+		Long clasesConUsuariosAsociados(@Param("id")Long id);
 
 		
 }
