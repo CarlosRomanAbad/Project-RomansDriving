@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de atributos</title>
+</head>
+<body>
+
+<table border="1">
+    <thead th>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>DNI</th>
+        <th>Apellidos</th>
+        <th>Usuario</th>
+        <th>Email</th>
+        <th>Contraseña</th>
+        <th>Teléfono</th>
+        <th>Tiene Carnet Autoescuela</th>
+        <th>Es Admin</th>
+        <th>Fecha de Nacimiento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="objeto : ${listaUsuarios}">
+        <td th:text="${objeto.id}"></td>
+        <td th:text="${objeto.nombre}"></td>
+        <td th:text="${objeto.dni}"></td>
+        <td th:text="${objeto.apellidos}"></td>
+        <td th:text="${objeto.usuario}"></td>
+        <td th:text="${objeto.email}"></td>
+        <td th:text="${objeto.contrasenha}"></td>
+        <td th:text="${objeto.telefono}"></td>
+        <td th:text="${objeto.tieneCarnetAutoescuela} ? 'Sí' : 'No'"></td>
+        <td th:text="${objeto.isAdmin} ? 'true' : 'false'"></td>
+        <td th:text="${#dates.format(objeto.fechaNacimiento, 'dd-MM-yyyy')}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
