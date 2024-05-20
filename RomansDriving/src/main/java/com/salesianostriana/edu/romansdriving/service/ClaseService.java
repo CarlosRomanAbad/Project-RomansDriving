@@ -80,21 +80,19 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
         claseRepository.cancelarClase(claseId);
     }
 
-	public double cambiarPrecioClases() {
-		List<Clase> listaClasesConPrecioDiferente = claseRepository.findClasesConUsuarioConCarnetAutoescuela();
-		double nuevoPrecioTotal = 0.0;
-
-		if (!listaClasesConPrecioDiferente.isEmpty()) {
-			for (Clase clase : listaClasesConPrecioDiferente) {
-				double nuevoPrecio = clase.getPrecio() / 2;
-				clase.setPrecio(nuevoPrecio);
-				nuevoPrecioTotal += nuevoPrecio;
-			}
-			return nuevoPrecioTotal;
-		} else {
-			return 0;
-		}
-	}
+	  public double reservarClaseCambioPrecio(Usuario user, Long idClase) {
+	        double precioClase = 0.0;
+	        Clase clase = claseRepository.findById(idClase).orElse(null);
+	        
+	        if (clase != null) {
+	            precioClase = clase.getPrecio();
+	            if (user.isTieneCarnetAutoescuela()) {
+	                precioClase = precioClase / 2;
+	            }
+	        }
+	        
+	        return precioClase;
+	    }
 
 	
 

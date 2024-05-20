@@ -18,6 +18,6 @@ public interface UsuarioRepository
 	 @Query("SELECT u FROM Usuario u WHERE u.tieneCarnetAutoescuela = true")
 	    List<Usuario> findAllByTieneCarnetAutoescuela(); 
 
-		  @Query("SELECT c FROM Clase c JOIN c.usuario u WHERE u.id = :userId")
+	 @Query("SELECT c FROM Clase c JOIN c.usuario u WHERE u.id = :userId")
     List<Clase> findClasesDeUnUsuario(@Param("userId") Long userId);
 }
