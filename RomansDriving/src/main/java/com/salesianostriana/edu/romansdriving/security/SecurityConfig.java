@@ -52,9 +52,8 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     	
     http.authorizeHttpRequests(
             (authz) -> authz
-			.requestMatchers("/admin/**").hasRole("ADMIN")
-					.requestMatchers("/PlantillaClasesVehiculo/**","/PlantillaClasesCoche/**"
-							,"/PlantillaClasesMoto/**","/PlantillaClasesCamion/**","/reserva/**")
+			.requestMatchers("/admin/**","/h2-console/**").hasRole("ADMIN")
+					.requestMatchers("/reserva/**")
 					.hasRole("USER")
                     .anyRequest().permitAll()) 
             .formLogin((loginz) -> loginz

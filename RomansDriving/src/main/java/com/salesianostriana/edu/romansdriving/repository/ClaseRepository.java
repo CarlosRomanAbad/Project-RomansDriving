@@ -12,8 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
 
-import jakarta.transaction.Transactional;
-
 @Repository
 public interface ClaseRepository extends JpaRepository<Clase , Long> {
 
