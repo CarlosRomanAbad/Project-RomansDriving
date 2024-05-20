@@ -12,8 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
 
-import jakarta.transaction.Transactional;
-
 @Repository
 public interface ClaseRepository extends JpaRepository<Clase , Long> {
 
@@ -48,9 +46,14 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		@Query("SELECT c FROM Clase c JOIN c.usuario u WHERE u.id = :userId")
     	List<Clase> findClasesDeUnUsuario(@Param("userId") Long userId);
     
+
 		@Modifying
 		@Query("UPDATE Clase c SET c.estaOcupada = false, c.usuario = null WHERE c.id = :claseId")
 		void cancelarClase(@Param("claseId") Long claseId);
+		
+		
+		@Query("SELECT Count (c) FROM Clase c WHERE c.usuario.id = ?1")
+		Long clasesConUsuariosAsociados(Long id);
 
 		
 }

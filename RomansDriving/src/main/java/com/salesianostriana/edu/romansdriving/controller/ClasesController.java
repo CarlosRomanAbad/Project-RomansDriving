@@ -37,12 +37,15 @@ public class ClasesController {
 	private VehiculoService vehiculo;
 
 	@GetMapping("/reserva/{id}")
-	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model) {
+	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model, Usuario user) {
 		Optional<Clase> optionalClase = clase.findById(id);
 
 		if (optionalClase.isPresent()) {
 			Clase claseSeleccionada = optionalClase.get();
 			model.addAttribute("reserva", claseSeleccionada);
+			model.addAttribute("precioNuevo", clase.reservarClaseCambioPrecio(user, id));
+			claseSeleccionada.setPrecio(clase.reservarClaseCambioPrecio(user, id));
+			clase.save(claseSeleccionada);
 			return "user/reservaClase";
 		} else {
 			return "redirect:/error";
@@ -61,56 +64,49 @@ public class ClasesController {
 	}
 
 	@GetMapping("/PlantillaClasesVehiculo")
-	public String mostrarClasesDisponibles(Model model, Usuario user) {
+	public String mostrarClasesDisponibles(Model model, @AuthenticationPrincipal Usuario user, Long id) {
+	    clase.actualizarClasesFueraPlazo();
+	    
+	    
+	    List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
 
-		clase.actualizarClasesFueraPlazo();
-		Double precioNuevo = 0.0;
-
-		List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
-		List<Clase> clasesAlumnosConCarnet = clase.obtenerClasesDeAlumnoConCarnet();
-
-		if (!clasesAlumnosConCarnet.isEmpty()) {
-			precioNuevo = clase.cambiarPrecioClases();
-			model.addAttribute("precioNuevo", precioNuevo);
-		}
-
-		model.addAttribute("clasesDisponibles", clasesDisponibles);
-
-		return "user/PlantillaClasesVehiculo";
+	    	
+	      model.addAttribute("clasesDisponibles", clasesDisponibles);
+	    return "user/PlantillaClasesVehiculo";
 	}
 
 	@GetMapping("/PlantillaClasesCoche")
-	public String mostrarClasesDisponiblesCoche(Model model) {
+	public String mostrarClasesDisponiblesCoche(Model model,@AuthenticationPrincipal Usuario user,  Long id) {
 		TipoVehiculo tipo = (TipoVehiculo.coche);
-		double precioNuevo = clase.cambiarPrecioClases();
+		
 
 		List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
 		model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
-		model.addAttribute("precioNuevo", precioNuevo);
 		return "user/PlantillaClasesVehiculo";
 
 	}
 
 	@GetMapping("/PlantillaClasesMoto")
-	public String mostrarClasesDisponiblesMoto(Model model) {
+	public String mostrarClasesDisponiblesMoto(Model model,@AuthenticationPrincipal Usuario user,  Long id) {
 		TipoVehiculo tipo = (TipoVehiculo.moto);
-		double precioNuevo = clase.cambiarPrecioClases();
-
+		
+	
 		List<Clase> clasesMotoDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
 		model.addAttribute("clasesDisponibles", clasesMotoDisponibles);
-		model.addAttribute("precioNuevo", precioNuevo);
 		return "user/PlantillaClasesVehiculo";
 
 	}
 
 	@GetMapping("/PlantillaClasesCamion")
-	public String mostrarClasesDisponiblesCamion(Model model) {
+	public String mostrarClasesDisponiblesCamion(Model model,@AuthenticationPrincipal Usuario user,  Long id) {
 		TipoVehiculo tipo = (TipoVehiculo.camión);
-		double precioNuevo = clase.cambiarPrecioClases();
-		model.addAttribute("precioNuevo", precioNuevo);
+		Double precioClase;
+		
+
 
 		List<Clase> clasesCamionDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-		model.addAttribute("clasesDisponibles", clasesCamionDisponibles);
+		 
+		    model.addAttribute("clasesDisponibles", clasesCamionDisponibles);
 		return "user/PlantillaClasesVehiculo";
 
 	}
@@ -136,13 +132,13 @@ public class ClasesController {
 
 	@PostMapping("/reservarClase/submit")
 	public String reserva(@ModelAttribute("reservarClase") Clase claseReservada,
-			@AuthenticationPrincipal Usuario user) {
+			@AuthenticationPrincipal Usuario user, @PathVariable Long id) {
 		Optional<Usuario> optionalUsuario = usuario.findById(user.getId());
 
 		if (!claseReservada.isEstaOcupada() && user.isTieneCarnetAutoescuela()) {
 
-			double precioNuevo = clase.cambiarPrecioClases();
-			claseReservada.setPrecio(precioNuevo);
+
+			claseReservada.setPrecio(clase.reservarClaseCambioPrecio(user, null));
 			clase.save(claseReservada);
 			clase.anhadirClaseUsuario(optionalUsuario.get(), claseReservada.getId());
 
