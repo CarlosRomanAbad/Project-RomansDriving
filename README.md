@@ -30,7 +30,7 @@ Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
 
 3. Ejecute el programa
     ```bash
-    npm install
+   
     ```
 
 4. Inicia la aplicación:
@@ -44,9 +44,7 @@ Una vez que la aplicación esté en funcionamiento, podrás acceder a ella media
 
 
 
-## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
 ## Contacto
 
