@@ -37,6 +37,11 @@ INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_i
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id) VALUES (false, '2024-05-29', 41.99, 3, 3,  3);
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id) VALUES (false, '2024-06-01', 39.99, 4, 4,  4);
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id) VALUES (false, '2024-05-22', 40.22, 5, 5,  5);
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id,usuario_id) VALUES (true, '2004-05-20', 41.99, 6, 6,6,1);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id,usuario_id) VALUES (true, '2024-05-30', 41.99, 6, 6,6,1);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id,usuario_id) VALUES (true, '2024-05-24', 41.99, 7, 3,7,2);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id) VALUES (false, '2024-05-22', 40.22, 8, 4,7);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id) VALUES (false, '2024-05-22', 40.99, 9, 1,6);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id) VALUES (false, '2024-05-22', 39.01, 10, 2,3);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id) VALUES (false, '2024-05-22', 40.22, 11, 2,7);
 
 ALTER SEQUENCE clase_seq RESTART WITH 10000;

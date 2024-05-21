@@ -1,20 +1,29 @@
 function validarDNI() {
     let dni = document.getElementById('dni').value;    
     let letras = 'TRWAGMYFPDXBNJZSQVHLCKE';
-    let numero = dni.substr(0, dni.length - 1);
-    let letra = dni.charAt(dni.length - 1).toUpperCase();
-    let indice = numero % 23;
 
-    if (letras.charAt(indice) === letra) {
-        document.getElementById("errorDNI").classList.remove("mostrar");
-        document.getElementById("okDNI").classList.remove("ocultar");
-        document.getElementById("login").disabled = false;
+
+    if (/^\d{8}[A-Z]$/i.test(dni)) {
+        let numero = dni.substr(0, 8);
+        let letra = dni.charAt(8).toUpperCase();
+        let indice = numero % 23;
+
+        if (letras.charAt(indice) === letra) {
+            document.getElementById("errorDNI").classList.remove("mostrar");
+            document.getElementById("okDNI").classList.remove("ocultar");
+            document.getElementById("login").disabled = false;
+        } else {
+            document.getElementById("errorDNI").classList.add("mostrar");
+            document.getElementById("okDNI").classList.add("ocultar");
+            document.getElementById("login").disabled = true;
+        }
     } else {
         document.getElementById("errorDNI").classList.add("mostrar");
         document.getElementById("okDNI").classList.add("ocultar");
         document.getElementById("login").disabled = true;
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function() {
     let emailInput = document.getElementById("email");

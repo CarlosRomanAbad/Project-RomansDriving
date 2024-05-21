@@ -10,6 +10,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous" defer></script>
+
+      
+        <script src="../static/js/validacion.js" th:src="@{/js/validacion.js}" defer></script>
 </head>
 
 <body>
@@ -29,9 +32,9 @@
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required>
                             </div>
-                            <div class="mb-3">
+                            <div th:unless="${usuario.id != null}" class="mb-3">
                                 <label for="dni" class="form-label">DNI</label>
-                                <input type="text" id="dni" class="form-control" th:field="*{dni}" required>
+                                <input type="text" id="dni" name="dni" class="form-control" oninput="validarDNI()">
                             </div>
                             <div class="mb-3">
                                 <label for="apellidos" class="form-label">Apellidos</label>
@@ -44,6 +47,7 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" id="email" class="form-control" th:field="*{email}" required>
+                                <div id="emailError" class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="contrasenha" class="form-label">Contraseña</label>
@@ -52,6 +56,7 @@
                             <div class="mb-3">
                                 <label for="telefono" class="form-label">Teléfono</label>
                                 <input type="tel" id="telefono" class="form-control" th:field="*{telefono}">
+                                <div id="telefonoError" class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>

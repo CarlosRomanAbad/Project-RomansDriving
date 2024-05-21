@@ -6298,3 +6298,11 @@ insert into usuario (id, nombre, dni, apellidos, usuario, email, contasenha, tel
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
 	at com.salesianostriana.edu.romansdriving.RomansDrivingApplication.main(RomansDrivingApplication.java:10)
+2024-05-21 09:25:17.975438+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id [*]VALUES (true, '2023-06-25', 41.99, 8, 6,6)"; se esperaba ",, )"
+Syntax error in SQL statement "INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id [*]VALUES (true, '2023-06-25', 41.99, 8, 6,6)"; expected ",, )"; SQL statement:
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id VALUES (true, '2023-06-25', 41.99, 8, 6,6) [42001-224]
+2024-05-21 09:26:23.212343+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id [*]VALUES (true, '2023-06-25', 41.99, 8, 6,7)"; se esperaba ",, )"
+Syntax error in SQL statement "INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id [*]VALUES (true, '2023-06-25', 41.99, 8, 6,7)"; expected ",, )"; SQL statement:
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id,vehiculo_id VALUES (true, '2023-06-25', 41.99, 8, 6,7) [42001-224]

@@ -156,8 +156,8 @@ public class ClasesController {
 
 	}
 	@GetMapping("cancelarClase/{id}")
-    public String cancelarClase(@PathVariable Long id) {
-        clase.cancelarClase(id);
+    public String cancelarClase(@PathVariable Long id, Usuario user) {
+        clase.cancelarClase(id, user);
         return "redirect:/mostrarClases"; 
     }
 
