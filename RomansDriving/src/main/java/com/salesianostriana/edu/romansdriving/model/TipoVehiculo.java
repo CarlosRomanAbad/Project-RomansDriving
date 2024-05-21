@@ -4,5 +4,5 @@ import jakarta.persistence.Entity;
 
 public enum TipoVehiculo  {
 
-	coche , moto , camión;
+	COCHE , CAMION , MOTO;
 }

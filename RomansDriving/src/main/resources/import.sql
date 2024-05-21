@@ -10,13 +10,13 @@ INSERT INTO usuario(id, nombre , dni , apellidos , username , email , password, 
 ALTER SEQUENCE usuario_seq RESTART WITH 1000;
 
 
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('coche', 1, 'Toyota', 'Corolla', 3);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camión', 2, 'Volvo', 'FH16', 1);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('moto', 3, 'Honda', 'CBR600RR', 2);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('coche', 4, 'Ford', 'Focus', 2);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('coche', 5, 'Renault', 'Clio', 2);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('moto', 6, 'Yamaha', 'YZF-R6', 1);
-INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('camión', 7, 'MAN', 'TGS', 3);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('COCHE', 1, 'Toyota', 'Corolla', 3);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('CAMION', 2, 'Volvo', 'FH16', 1);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('MOTO', 3, 'Honda', 'CBR600RR', 2);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('COCHE', 4, 'Ford', 'Focus', 2);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('COCHE', 5, 'Renault', 'Clio', 2);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('MOTO', 6, 'Yamaha', 'YZF-R6', 1);
+INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUES ('CAMION', 7, 'MAN', 'TGS', 3);
 
 
 ALTER SEQUENCE vehiculo_seq RESTART WITH 1000;

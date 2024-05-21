@@ -76,7 +76,7 @@ public class ClasesController {
 
 	@GetMapping("/PlantillaClasesCoche")
 	public String mostrarClasesDisponiblesCoche(Model model,@AuthenticationPrincipal Usuario user,  Long id) {
-		TipoVehiculo tipo = (TipoVehiculo.coche);
+		TipoVehiculo tipo = (TipoVehiculo.COCHE);
 		
 
 		List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
@@ -87,7 +87,7 @@ public class ClasesController {
 
 	@GetMapping("/PlantillaClasesMoto")
 	public String mostrarClasesDisponiblesMoto(Model model,@AuthenticationPrincipal Usuario user,  Long id) {
-		TipoVehiculo tipo = (TipoVehiculo.moto);
+		TipoVehiculo tipo = (TipoVehiculo.MOTO);
 		
 	
 		List<Clase> clasesMotoDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
@@ -98,7 +98,7 @@ public class ClasesController {
 
 	@GetMapping("/PlantillaClasesCamion")
 	public String mostrarClasesDisponiblesCamion(Model model,@AuthenticationPrincipal Usuario user,  Long id) {
-		TipoVehiculo tipo = (TipoVehiculo.camión);
+		TipoVehiculo tipo = (TipoVehiculo.CAMION);
 		Double precioClase;
 		
 
