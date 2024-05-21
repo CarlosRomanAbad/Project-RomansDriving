@@ -84,7 +84,6 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 	@Transactional
     public void cancelarClase(Long claseId, Usuario usuario) {
         claseRepository.cancelarClase(claseId);
-        usuarioService.actualizarSecurityContext(usuario);
         
     }
 	
