@@ -23,17 +23,17 @@ Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
     git clone https://github.com/CarlosRomanAbad/Project-RomansDriving.git
     ```
 
-2. Navega al directorio del proyecto:
+2. Ejecuta tu id para lanzar la app, si no tienes aqui tienes una
     ```bash
-    cd Project-RomansDriving
+    https://code.visualstudio.com/
     ```
 
-3. Ejecute el programa
+3. Ejecute el programa desde
     ```bash
-   
+   src/main/java/RomansDrivingApplication.java
     ```
 
-4. Inicia la aplicación:
+4. Inicia la aplicación en tu navegador con este enlace:
     ```bash
     http://localhost:9000
     ```
@@ -41,10 +41,6 @@ Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
 ## Uso
 
 Una vez que la aplicación esté en funcionamiento, podrás acceder a ella mediante tu navegador web en `http://localhost:9000`. Desde ahí, podrás explorar todas las funcionalidades que ofrece.
-
-
-
-
 
 ## Contacto
 
@@ -55,4 +51,4 @@ Si tienes alguna pregunta o sugerencia, no dudes en contactar a:
 
 ## Agradecimientos
 
-Agradecemos a https://github.com/lmlopezmagana , Ángel Naranjo González y Rafael Villar Liñán por las enseñanzas para poder realizar el proyecto
+Agradezco a https://github.com/lmlopezmagana , Ángel Naranjo González y Rafael Villar Liñán por las enseñanzas para poder realizar el proyecto
