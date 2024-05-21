@@ -254,6 +254,7 @@ public class AdminController {
 
     @GetMapping("/borrarVehiculo/{id}")
     public String borrarVehiculo(@PathVariable("id")Long id){
+    	
         v.deleteById(id);
         return "redirect:/admin/gestionVehiculos";
     }

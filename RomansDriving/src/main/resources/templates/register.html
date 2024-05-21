@@ -24,6 +24,11 @@
                     <div class="card-header bg-primary text-white text-center bg-danger">
                         <h3>Formulario de Usuario</h3>
                     </div>
+
+                    <div class="alert alert-danger" role="alert" th:if="${param.error}" >
+                       Introduzca una fecha válida
+                      </div>
+
                     <div class="card-body">
                         <form th:action="@{/formularioRegistro/submit}"
                             th:object="${registro}" method="POST">
