@@ -2,6 +2,7 @@ package com.salesianostriana.edu.romansdriving.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,20 +26,24 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 		return usuario.findAllByTieneCarnetAutoescuela();
 	}
 	
-	public void actualizarSecurityContext(Usuario user) {
+	/*public void actualizarSecurityContext(Usuario user) {
 		  Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 		  
 		  SecurityContextHolder.getContext().setAuthentication(auth);
-	  }
+	  }*/
 	
 	public boolean usuarioConFechaIncorrecta(Usuario user) {
 		
-		if(user.getFechaNacimiento().isAfter(LocalDate.now())) {
+		if(user.getFechaNacimiento().isAfter(LocalDate.now().minusYears(16))) {
 			return false;
 		}
 		
 		else {
 			return true;
 		}
+	}
+
+	public boolean usuarioExistente(String username) {
+		return this.repository.existsByUsername(username);
 	}
 }

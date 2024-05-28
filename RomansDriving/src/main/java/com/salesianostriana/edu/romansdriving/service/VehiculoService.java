@@ -9,4 +9,13 @@ import com.salesianostriana.edu.romansdriving.service.base.BaseServiceImpl;
 @Service
 public class VehiculoService extends BaseServiceImpl<Vehiculo,Long,VehiculoRepository> {
 
+    public boolean comprobarAntiguedadVehiculo(Vehiculo vehiculo){
+
+        if(vehiculo.getAnhosAntiguedad()>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

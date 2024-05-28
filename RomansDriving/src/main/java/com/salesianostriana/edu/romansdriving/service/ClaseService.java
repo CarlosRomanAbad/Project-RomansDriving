@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import com.salesianostriana.edu.romansdriving.model.Vehiculo;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -52,8 +53,14 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
 	}
 
-	public List<Clase> obtenerClasesDeAlumnoConCarnet() {
-		return claseRepository.findClasesConUsuarioConCarnetAutoescuela();
+
+
+	public double gananciasClasesAsignadas(){
+		return claseRepository.dineroGeneradoConClasesAsignadas();
+	}
+
+	public List<Clase> listaClasesConUsuarios(Long id){
+		return claseRepository.findClasesAndUsuarios(id);
 	}
 
 	public List<Clase> actualizarClasesFueraPlazo() {
@@ -84,7 +91,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 	@Transactional
     public void cancelarClase(Long claseId, Usuario usuario) {
         claseRepository.cancelarClase(claseId);
-        usuarioService.actualizarSecurityContext(usuario);
+      //  usuarioService.actualizarSecurityContext(usuario);
         
     }
 	
@@ -100,6 +107,8 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		  }
 		  
 	  }
+
+
 
 	  
 	

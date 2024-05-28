@@ -110,42 +110,8 @@ public class ClasesController {
 
 	}
 
-	/*@GetMapping("/reservarClase/{id}")
-	public String hacerReservaClase(@AuthenticationPrincipal Usuario user, @PathVariable("id") Long id,
-			Model model) {
-
-		
-		
-		if (clase.anhadirClaseUsuario(user, id)) {
-
-			model.addAttribute("atributo", true);
-			model.addAttribute("profesor",profesor.findAll());
-			model.addAttribute("vehiculo",vehiculo.findAll());
-			model.addAttribute("usuario",usuario.findAll());
-			
-			return "user/reservaClase";
-		} else {
-			return "error";
-		}
-	}*/
-
-	@PostMapping("/reservarClase/submit")
-	public String reserva(@ModelAttribute("reservarClase") Clase claseReservada,
-			@AuthenticationPrincipal Usuario user, @PathVariable Long id) {
-		Optional<Usuario> optionalUsuario = usuario.findById(user.getId());
-
-		if (!claseReservada.isEstaOcupada() && user.isTieneCarnetAutoescuela()) {
 
 
-			claseReservada.setPrecio(clase.reservarClaseCambioPrecio(user, null));
-			clase.save(claseReservada);
-			clase.anhadirClaseUsuario(optionalUsuario.get(), claseReservada.getId());
-
-			return "redirect:/PlantillaClasesVehiculo";
-		} else {
-			return "error";
-		}
-	}
 
 	@GetMapping("/mostrarClases")
 	public String mostrarMisClases(@AuthenticationPrincipal Usuario usuario , Model model , Long id){

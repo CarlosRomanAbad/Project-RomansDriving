@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="mt-3 text-center py-4">
-                <a th:href="@{/admin/formularioVehiculos}"
+                <a th:href="@{/admin/formularioVehiculos/}"
                     class="btn btn-outline-dark text-decoration-none bg-danger text-white">Añadir</a>
             </div>
             <div class="container">
@@ -53,7 +53,7 @@
                                             <td th:text="${vehiculo.modelo}"></td>
                                             <td th:text="${vehiculo.anhosAntiguedad}"></td>
                                             <td>
-                                                <a th:href="@{/admin/editVehiculo/{id}(id=${vehiculo.numBastidor})}"
+                                                <a th:href="@{/admin/editVehiculo/{id}/(id=${vehiculo.numBastidor})}"
                                                     class="btn btn-danger">
                                                     <i class="bi bi-pencil"></i>
                                                 </a>
@@ -72,7 +72,7 @@
                                                             <div class="modal-body">
                                                                 <p>¿Quieres borrar este vehículo?</p>
                                                                 <div class="d-grid gap-2">
-                                                                    <a class="btn btn-danger" th:href="@{/admin/borrarVehiculo/{id}(id=${vehiculo.numBastidor})}">
+                                                                    <a class="btn btn-danger" th:href="@{/admin/borrarVehiculo/{id}/(id=${vehiculo.numBastidor})}">
                                                                         <i class="bi bi-trash me-2"></i> Borrar vehículo
                                                                     </a>
                                                                 </div>

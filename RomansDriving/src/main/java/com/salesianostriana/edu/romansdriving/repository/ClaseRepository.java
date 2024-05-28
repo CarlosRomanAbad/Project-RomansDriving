@@ -40,8 +40,7 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		Optional<Clase> findClaseByIdAndNoOcupada(@Param("id") Long id);
 
 		
-		@Query("SELECT c FROM Clase c WHERE c.usuario.tieneCarnetAutoescuela = true")
-		List<Clase> findClasesConUsuarioConCarnetAutoescuela();
+	
 
 		@Query("SELECT c FROM Clase c JOIN c.usuario u WHERE u.id = :userId")
     	List<Clase> findClasesDeUnUsuario(@Param("userId") Long userId);
@@ -54,6 +53,13 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		
 		@Query("SELECT Count (c) FROM Clase c WHERE c.usuario.id = :id")
 		Long clasesConUsuariosAsociados(@Param("id")Long id);
+
+		@Query("SELECT SUM (c.precio) FROM Clase c WHERE c.estaOcupada = true")
+		Double dineroGeneradoConClasesAsignadas();
+
+		@Query("SELECT c FROM Clase c WHERE c.usuario.id = :id ")
+		List<Clase> findClasesAndUsuarios(@Param("id")Long id);
+
 
 		
 }
