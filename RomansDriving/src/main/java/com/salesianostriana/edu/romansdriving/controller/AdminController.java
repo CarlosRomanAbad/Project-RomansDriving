@@ -75,7 +75,7 @@ public class AdminController {
         return "admin/gestionProfesores";
     }
 
-    @GetMapping("/gestionVehiculos/")
+    @GetMapping("/gestionVehiculos")
         public String mostrarVehiculos(Model model){
             model.addAttribute("listaVehiculos", v.findAll());
             return "admin/gestionVehiculos";
@@ -92,14 +92,14 @@ public class AdminController {
         String formattedDate = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         model.addAttribute("fechaMinima", formattedDate);
 
-        // Añadir listas de profesores y usuarios al modelo
+     
         model.addAttribute("profesores", p.findAll());
         model.addAttribute("usuarios", u.findAll());
 
         return "admin/formularioClases";
     }
 
-    @GetMapping("/formulario")
+    @GetMapping("/formulario/")
     public String mostrarFormulario(Model model) {
         model.addAttribute("usuario", new Usuario());
         return "admin/formulario";
@@ -121,19 +121,15 @@ public class AdminController {
 
     // POST DE GUARDAR
     @PostMapping("/guardarUsuario/submit")
-    public String guardarUsuario(@ModelAttribute ("usuario") Usuario usuario, Model model) {
+    public String guardarUsuario(@ModelAttribute("usuario") Usuario usuario, Model model) {
+    	if (u.usuarioExistente(usuario.getUsername())) {
+    	    return "redirect:/admin/formulario/?error=usuarioExistente"; 
+    	}
 
-        boolean usuarioExistente = u.usuarioExistente(usuario.getUsername());
-
-        if(usuarioExistente) {
-            return "userExistente";
-        }
-            String encodedPassword = passwordEncoder.encode(usuario.getPassword());
-            usuario.setPassword(encodedPassword);
-            u.save(usuario);
-            model.addAttribute("usuario", usuario);
-            return "redirect:/admin/";
-
+        String encodedPassword = passwordEncoder.encode(usuario.getPassword());
+        usuario.setPassword(encodedPassword);
+        u.save(usuario);
+        return "redirect:/admin/gestionUsuarios"; 
     }
 
 
@@ -216,8 +212,15 @@ public class AdminController {
     // POST DE EDITAR
     @PostMapping("/editUsuario/submit")
     public String editarUsuario(@ModelAttribute("usuario") Usuario usuario) {
+    	
+    	if (u.usuarioExistente(usuario.getUsername())) {
+    	    return "redirect:/admin/formulario/?error=usuarioExistente"; 
+    	}
+    	
+    	String encodedPassword = passwordEncoder.encode(usuario.getPassword());
+        usuario.setPassword(encodedPassword);
         u.save(usuario);
-        return "redi1rect:/admin/gestionProfesores";
+        return "redirect:/admin/gestionUsuarios";
     }
 
     @PostMapping("/editClase/submit")
