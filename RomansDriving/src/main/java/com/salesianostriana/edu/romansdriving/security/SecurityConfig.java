@@ -52,10 +52,12 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     	
     http.authorizeHttpRequests(
             (authz) -> authz
+            
 			.requestMatchers("/admin/**").hasRole("ADMIN")
-					.requestMatchers("/reserva/**")
-					.hasAnyRole("USER","ADMIN")
+					.requestMatchers("/reserva/**","/css/**","/js/**","/h2-console/**","/img/**")
+					.hasAnyRole("USER","ADMIN","ANONYMOUS")
                     .anyRequest().permitAll()) 
+    
             .formLogin((loginz) -> loginz
                     .loginPage("/login").defaultSuccessUrl("/").permitAll())
             .logout((logoutz) -> logoutz
