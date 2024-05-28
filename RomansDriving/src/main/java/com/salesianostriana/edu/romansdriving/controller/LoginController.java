@@ -31,11 +31,15 @@ public class LoginController {
 			model.addAttribute("registro", new Usuario());
 			return "register";
 			
-			/*en el html de register tengo que poner un bloque se s */
+		
 		}
 		
 		@PostMapping("/formularioRegistro/submit")
 		public String guardarUsuario(@ModelAttribute("registro") Usuario user , Model model) {
+			
+			if (usuario.usuarioExistente(user.getUsername())) {
+	            return "redirect:/register/?error=usuarioExistente";
+	        }
 			
 			if(usuario.usuarioConFechaIncorrecta(user)) {
 				String encodedPassword = passwordEncoder.encode(user.getPassword());
@@ -49,7 +53,6 @@ public class LoginController {
 				return "redirect:/register/?error=true";
 			}
 			
-		    
-		    // else {return "redirect:/register/?error=true"}
+	
 		}
 }

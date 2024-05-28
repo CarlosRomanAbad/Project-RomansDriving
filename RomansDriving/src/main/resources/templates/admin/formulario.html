@@ -26,7 +26,8 @@
                         Introduzca un username que no exista
                     </div>
                     <form th:action="${usuario.id != 0} ? @{/admin/editUsuario/submit} : @{/admin/guardarUsuario/submit}"
-                          th:object="${usuario}" method="POST">
+      th:object="${usuario}" method="POST">
+
                         <input th:if="${usuario.id != 0}" type="hidden" name="id" th:field="*{id}" />
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
