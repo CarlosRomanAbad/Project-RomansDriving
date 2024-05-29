@@ -152,7 +152,7 @@ public class AdminController {
     public String guardarVehiculo(@ModelAttribute Vehiculo vehiculo, Model model){
 
         v.save(vehiculo);
-        return "redirect:/admin/gestionVehiculos/";
+        return "redirect:/admin/gestionVehiculos";
     }
 
     // EDITAR USUARIOS
@@ -290,11 +290,18 @@ public class AdminController {
         return "redirect:/admin/gestionProfesores";
     }
 
-    @GetMapping("/borrarVehiculo/{id}/")
+    @GetMapping("/borrarVehiculo/{id}")
     public String borrarVehiculo(@PathVariable("id")Long id){
-    	
-        v.deleteById(id);
-        return "redirect:/admin/gestionVehiculos/";
+    		
+    		if(v.findById(id).get().getClases()==null) {
+    			c.findById(id).get().removeFromClaseVehiculo(c.findById(id).get().getVehiculo());
+    			c.deleteById(id);
+    			v.deleteById(id);
+    			return "redirect:/admin/gestionVehiculos";
+    		}
+            
+    		
+        return "redirect:/admin/gestionVehiculos";
     }
 
 
