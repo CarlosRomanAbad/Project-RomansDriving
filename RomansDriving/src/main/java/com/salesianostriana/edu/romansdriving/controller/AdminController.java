@@ -285,7 +285,7 @@ public class AdminController {
     
     @GetMapping("/borrarProfesor/{id}")
     public String borrarProfesor(@PathVariable("id") long id) {
-    	
+
         p.deleteById(id);
         return "redirect:/admin/gestionProfesores";
     }
