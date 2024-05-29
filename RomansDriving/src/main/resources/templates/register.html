@@ -45,7 +45,7 @@
 							</div>
 							<div th:unless="${usuario.id != null}" class="mb-3">
 								<label for="dni" class="form-label">DNI</label>
-								<input type="text" id="dni" name="dni" class="form-control" oninput="validarDNI()">
+								<input type="text" id="dni" name="dni" class="form-control" oninput="validarDNI()" required>
 							</div>
 
 							<div class="mb-3">
@@ -70,7 +70,7 @@
 							</div>
 							<div class="mb-3">
 								<label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
-								<input type="date" name="fechaNacimiento" th:field="*{fechaNacimiento}" />
+								<input type="date" name="fechaNacimiento" th:field="*{fechaNacimiento}" required/>
 							</div>
 
 							<div class="d-grid">
