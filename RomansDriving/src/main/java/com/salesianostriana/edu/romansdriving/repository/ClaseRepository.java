@@ -39,13 +39,6 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		@Query("SELECT c FROM Clase c WHERE c.id = :id AND c.estaOcupada = false")
 		Optional<Clase> findClaseByIdAndNoOcupada(@Param("id") Long id);
 
-		
-	
-
-		@Query("SELECT c FROM Clase c JOIN c.usuario u WHERE u.id = :userId")
-    	List<Clase> findClasesDeUnUsuario(@Param("userId") Long userId);
-    
-
 		@Modifying
 		@Query("UPDATE Clase c SET c.estaOcupada = false, c.usuario = null WHERE c.id = :claseId")
 		void cancelarClase(@Param("claseId") Long claseId);
