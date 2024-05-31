@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
+import com.salesianostriana.edu.romansdriving.model.Vehiculo;
+import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
 import com.salesianostriana.edu.romansdriving.repository.UsuarioRepository;
 import com.salesianostriana.edu.romansdriving.service.base.BaseServiceImpl;
 
@@ -20,6 +22,10 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 
 	@Autowired
 	private UsuarioRepository usuario;
+	
+	@Autowired ClaseRepository claseRepository;
+	
+	private Clase clase;
 	
 	public List<Usuario>mostrarUsuariosConCarnet(){
 		
@@ -46,4 +52,18 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 	public boolean usuarioExistente(String username) {
 		return this.repository.existsByUsername(username);
 	}
+	
+	public void borrarUsuario(Long id) {
+        Usuario user = usuario.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+        List<Clase> clases = claseRepository.findAll();
+
+        if (clases.contains(user)) {
+           clase.removeFromClase(user);
+           usuario.deleteById(id);
+        }
+       
+        
+
+    }
 }
