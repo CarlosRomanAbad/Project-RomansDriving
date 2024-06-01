@@ -2,7 +2,6 @@ package com.salesianostriana.edu.romansdriving.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.Profesor;
 import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.model.Vehiculo;
-import com.salesianostriana.edu.romansdriving.repository.UsuarioRepository;
 import com.salesianostriana.edu.romansdriving.service.ClaseService;
 import com.salesianostriana.edu.romansdriving.service.ProfesorService;
 import com.salesianostriana.edu.romansdriving.service.UsuarioService;
@@ -213,20 +211,13 @@ public class AdminController {
 
     @PostMapping("/editUsuario/submit")
     public String editarUsuario(@ModelAttribute("usuario") Usuario usuario, @RequestParam(value = "nuevaPassword", required = false) String nuevaPassword, Long id) {
-        
-        /*if (u.usuarioExistente(usuario.getUsername())) {
-            return "redirect:/admin/formulario/?error=usuarioExistente"; 
-        }*/
-        
+    
         if (nuevaPassword != null && !nuevaPassword.isEmpty()) {
             String encodedPassword = passwordEncoder.encode(nuevaPassword);
             usuario.setPassword(encodedPassword);
-        } else {
-            // Si no se proporciona una nueva contraseña, mantener la contraseña existente
-       
+        } else {       
             usuario.setPassword(u.findById(id).get().getPassword());
         }
-        
         u.save(usuario);
         return "redirect:/admin/gestionUsuarios";
     }
@@ -250,7 +241,6 @@ public class AdminController {
                 v.save(vehiculo);
                 return "redirect:/admin/gestionVehiculos/";
             }
-
             else{
                 return "redirect:/admin/editVehiculo/"+vehiculo.getNumBastidor()+"/?errorDos=true";
             }
@@ -262,12 +252,10 @@ public class AdminController {
     	if(u.findById(id).get().isAdmin()) {
     		return "errorBorrarAdmin";
     	}
-
     	else {
     		 u.borrarUsuario(id); 
     	        return "redirect:/admin/gestionUsuarios";
     	}
-
     }
 
     @GetMapping("/borrarClase/{id}")
@@ -293,16 +281,13 @@ public class AdminController {
     
     @GetMapping("/borrarProfesor/{id}")
     public String borrarProfesor(@PathVariable("id") long id) {
-
         p.borrarProfesor(id);
         return "redirect:/admin/gestionProfesores";
     }
 
     @GetMapping("/borrarVehiculo/{id}")
     public String borrarVehiculo(@PathVariable("id")Long id){
-
         v.borrarVehiculo(id);
-
         return "redirect:/admin/gestionVehiculos";
     }
 
@@ -311,7 +296,6 @@ public class AdminController {
 
     public String mostrarGanancias(Model model){
 
-    	
         model.addAttribute("gananciasClasesAsignadas",c.gananciasClasesAsignadas());
         model.addAttribute("profeMasClases",p.profesorConMasClases());
         return "admin/gestionGanancias";

@@ -1,16 +1,15 @@
 package com.salesianostriana.edu.romansdriving.service;
 
-import com.salesianostriana.edu.romansdriving.exceptions.ExcepcionBorrarVehiculo;
-import com.salesianostriana.edu.romansdriving.model.Clase;
-import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.Vehiculo;
+import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
 import com.salesianostriana.edu.romansdriving.repository.VehiculoRepository;
 import com.salesianostriana.edu.romansdriving.service.base.BaseServiceImpl;
-
-import java.util.List;
 
 @Service
 public class VehiculoService extends BaseServiceImpl<Vehiculo,Long,VehiculoRepository> {
@@ -41,11 +40,9 @@ public class VehiculoService extends BaseServiceImpl<Vehiculo,Long,VehiculoRepos
         List<Clase> clases = claseRepository.findAll();
 
         if (clases.contains(vehiculo)) {
-           clase.removeFromClaseVehiculo(vehiculo);
+            claseRepository.findById(id).get().removeFromClaseVehiculo(claseRepository.findById(id).get().getVehiculo());
            vehiculoRepository.deleteById(id);
         }
-       
-        
 
     }
 }

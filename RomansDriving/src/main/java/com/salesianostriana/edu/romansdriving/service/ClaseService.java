@@ -4,11 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import com.salesianostriana.edu.romansdriving.model.Vehiculo;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
@@ -93,8 +89,6 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
         claseRepository.cancelarClase(claseId);       
     }
 	
-
-
 	  public double reservarClaseCambioPrecio(Usuario user, Long claseid) {
 		  
 		  if(claseRepository.clasesConUsuariosAsociados(user.getId())>0) {
@@ -106,9 +100,8 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		  
 	  }
 
-
-
 	  
-	
+
+
 
 }
