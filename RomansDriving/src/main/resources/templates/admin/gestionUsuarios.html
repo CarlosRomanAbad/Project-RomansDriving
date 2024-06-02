@@ -43,8 +43,8 @@
 											<th>Usuario</th>
 											<th>Email</th>
 											<th>Teléfono</th>
-											<th>Tiene Carnet en Autoescuela</th>
 											<th>Es Admin</th>
+											<!--<th>Tiene Carnet en Autoescuela</th> -->
 											<th>Fecha Nacimiento</th>
 											<th>Editar</th>
 											<th>Eliminar</th>
@@ -59,9 +59,11 @@
 											<td th:text="${persona.username}"></td>
 											<td th:text="${persona.email}"></td>
 											<td th:text="${persona.telefono}"></td>
-											<td th:text="${persona.tieneCarnetAutoescuela}"></td>
-											<td th:text="${persona.tieneCarnetAutoescuela ? 'true' : 'false'}"></td>
-											<td th:text="${#temporals.format(persona.fechaNacimiento, 'yyyy/MM/dd')}"></td>
+											<td th:text="${persona.isAdmin}"></td>
+										<!--
+<td th:text="${persona.tieneCarnetAutoescuela ? 'true' : 'false'}"></td>
+										-->	
+											<td th:text="${#temporals.format(persona.fechaNacimiento, 'dd/MM/YYYY')}"></td>
 											<td>
 												<a th:href="@{/admin/editUsuario/{id}(id=${persona.id})}" class="btn btn-danger">
 													<i class="bi bi-pencil"></i>

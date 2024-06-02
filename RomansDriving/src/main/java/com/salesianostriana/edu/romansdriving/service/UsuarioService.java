@@ -71,4 +71,6 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
         usuario.deleteById(id);
 
     }
+
+	
 }
