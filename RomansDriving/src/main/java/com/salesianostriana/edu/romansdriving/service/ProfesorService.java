@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.Profesor;
-import com.salesianostriana.edu.romansdriving.model.Usuario;
 import com.salesianostriana.edu.romansdriving.repository.ClaseRepository;
 import com.salesianostriana.edu.romansdriving.repository.ProfesorRepository;
 import com.salesianostriana.edu.romansdriving.service.base.BaseServiceImpl;
@@ -29,10 +28,23 @@ public class ProfesorService extends BaseServiceImpl<Profesor,Long,ProfesorRepos
                 .orElseThrow(() -> new IllegalArgumentException("Profesor no encontrado"));
         List<Clase> clases = claseRepo.findAll();
 
-        if (clases.contains(profesor)) {
-           clase.removeFromClaseProfe(profesor);
-           profesorRepo.deleteById(id);
-        }
+		boolean encontrado = false;
+
+		for (Clase listaClases : clases) {
+
+			if(listaClases.getProfesor() == null){
+				continue;
+			}
+
+			if(listaClases.getProfesor().getId() == profesor.getId()){
+				encontrado = true;
+			}
+		}
+		if(encontrado){
+			clase.removeFromClaseProfe(profesor);
+		}
+
+		profesorRepo.deleteById(id);
 	}
 	
 	public Profesor profesorConMasClases() {
