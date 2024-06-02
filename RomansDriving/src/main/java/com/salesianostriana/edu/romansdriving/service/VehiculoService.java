@@ -39,10 +39,22 @@ public class VehiculoService extends BaseServiceImpl<Vehiculo,Long,VehiculoRepos
                 .orElseThrow(() -> new IllegalArgumentException("Vehiculo no encontrado"));
         List<Clase> clases = claseRepository.findAll();
 
-        if (clases.contains(vehiculo)) {
-            claseRepository.findById(id).get().removeFromClaseVehiculo(claseRepository.findById(id).get().getVehiculo());
-           vehiculoRepository.deleteById(id);
-        }
+        boolean encontrado = false;
+		for (Clase listaClases : clases) {
+			if(listaClases.getVehiculo()==null){
+				continue;
+			}
 
+			if(listaClases.getVehiculo().getNumBastidor()==vehiculo.getNumBastidor()){
+				encontrado = true;
+			}
+		}
+
+		if(encontrado){
+			clase.removeFromClaseVehiculo(vehiculo);
+		}
+        
+       
+        vehiculoRepository.deleteById(id);
     }
 }

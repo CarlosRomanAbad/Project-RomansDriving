@@ -53,12 +53,22 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
         List<Clase> clases = claseRepository.findAll();
 
-        if (clases.contains(user)) {
-           clase.removeFromClase(user);
-           usuario.deleteById(id);
-        }
+        boolean encontrado = false;
+		for (Clase listaClases : clases) {
+			if(listaClases.getUsuario()==null){
+				continue;
+			}
+
+			if(listaClases.getUsuario().getId()==user.getId()){
+				encontrado = true;
+			}
+		}
+
+		if(encontrado){
+			clase.removeFromClase(user);
+		}
        
-        
+        usuario.deleteById(id);
 
     }
 }
