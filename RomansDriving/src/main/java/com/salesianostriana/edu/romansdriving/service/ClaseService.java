@@ -101,7 +101,4 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 	  }
 
 	  
-
-
-
 }
