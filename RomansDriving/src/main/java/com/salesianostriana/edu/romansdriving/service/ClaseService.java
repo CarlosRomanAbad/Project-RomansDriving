@@ -100,6 +100,18 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		  
 	  }
 
+	  
+	  public boolean comprobarPrecioClase(Clase clase) {
+		  
+		  if(clase.getPrecio()>=0) {
+			  return true;
+		  }
+		  
+		  else {
+			  return false;
+		  }
+		  
+	  }
 	
 	  
 }
