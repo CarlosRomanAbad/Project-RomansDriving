@@ -52,18 +52,11 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     	
     http.authorizeHttpRequests(
             (authz) -> authz
-<<<<<<< HEAD
-			.requestMatchers("/admin/**").hasRole("ADMIN")
-					.requestMatchers("/reserva/**")
-					.hasAnyRole("USER","ADMIN")
-                    .anyRequest().permitAll()) 
-=======
             
 			.requestMatchers("/admin/**").hasRole("ADMIN")
 					.requestMatchers("/reserva/**")
 					.hasAnyRole("USER","ADMIN")
                     .anyRequest().permitAll())
->>>>>>> refs/remotes/origin/main
             .formLogin((loginz) -> loginz
                     .loginPage("/login").defaultSuccessUrl("/").permitAll())
             .logout((logoutz) -> logoutz
