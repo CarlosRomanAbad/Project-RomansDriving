@@ -125,7 +125,7 @@ public class AdminController {
     	if (u.usuarioExistente(usuario.getUsername())) {
     	    return "redirect:/admin/formulario/?error=usuarioExistente"; 
     	}
-
+ 
         String encodedPassword = passwordEncoder.encode(usuario.getPassword());
         usuario.setPassword(encodedPassword);
         u.save(usuario);
@@ -217,6 +217,7 @@ public class AdminController {
             usuario.setPassword(encodedPassword);
         } else {       
             usuario.setPassword(u.findById(id).get().getPassword());
+            usuario.setDni(u.findById(id).get().getDni());
         }
         u.save(usuario);
         return "redirect:/admin/gestionUsuarios";
@@ -253,7 +254,7 @@ public class AdminController {
     		return "errorBorrarAdmin";
     	}
     	else {
-    		 u.borrarUsuario(id); 
+    		 u.deleteById(id); 
     	        return "redirect:/admin/gestionUsuarios";
     	}
     }
@@ -281,13 +282,13 @@ public class AdminController {
     
     @GetMapping("/borrarProfesor/{id}")
     public String borrarProfesor(@PathVariable("id") long id) {
-        p.borrarProfesor(id);
+        p.deleteById(id);
         return "redirect:/admin/gestionProfesores";
     }
 
     @GetMapping("/borrarVehiculo/{id}")
     public String borrarVehiculo(@PathVariable("id")Long id){
-        v.borrarVehiculo(id);
+        v.deleteById(id);
         return "redirect:/admin/gestionVehiculos";
     }
 

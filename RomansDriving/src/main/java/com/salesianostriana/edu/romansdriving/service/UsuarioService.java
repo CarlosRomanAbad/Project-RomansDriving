@@ -48,7 +48,7 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 		return this.repository.existsByUsername(username);
 	}
 	
-	public void borrarUsuario(Long id) {
+	/*public void borrarUsuario(Long id) {
         Usuario user = usuario.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
         List<Clase> clases = claseRepository.findAll();
@@ -70,7 +70,8 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
        
         usuario.deleteById(id);
 
-    }
+    }*/
 
+	
 	
 }

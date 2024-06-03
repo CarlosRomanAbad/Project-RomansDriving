@@ -23,7 +23,7 @@ public class ProfesorService extends BaseServiceImpl<Profesor,Long,ProfesorRepos
 	@Autowired
 	private ClaseRepository claseRepo;
 	
-	public void borrarProfesor(Long id) {
+	/*public void borrarProfesor(Long id) {
         Profesor profesor = profesorRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Profesor no encontrado"));
         List<Clase> clases = claseRepo.findAll();
@@ -45,7 +45,7 @@ public class ProfesorService extends BaseServiceImpl<Profesor,Long,ProfesorRepos
 		}
 
 		profesorRepo.deleteById(id);
-	}
+	}*/
 	
 	public Profesor profesorConMasClases() {
 		return profesorRepo.findProfesorWithMostClasses();

@@ -34,7 +34,7 @@ public class VehiculoService extends BaseServiceImpl<Vehiculo,Long,VehiculoRepos
         }
     }
 
-    public void borrarVehiculo(Long id) {
+      /*public void borrarVehiculo(Long id) {
         Vehiculo vehiculo = vehiculoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Vehiculo no encontrado"));
         List<Clase> clases = claseRepository.findAll();
@@ -56,5 +56,5 @@ public class VehiculoService extends BaseServiceImpl<Vehiculo,Long,VehiculoRepos
         
        
         vehiculoRepository.deleteById(id);
-    }
+    }*/
 }

@@ -44,7 +44,7 @@
 											<th>Precio Clase</th>
 											<th>Id Clase</th>
 											<th>Profesor</th>
-											<th>NumBastidor Vehiculo</th>
+											<th>Vehiculo</th>
 											<th>Editar</th>
 											<th>Eliminar</th>
 										</tr>
@@ -56,7 +56,7 @@
 											<td th:text="${clases.precio + ' €'}"></td>
 											<td th:text="${clases.id}"></td>
 											<td th:text="${clases.profesor.nombre + ' ' + clases.profesor.apellidos}"></td>
-											<td th:text="${clases.vehiculo.numBastidor}"></td>
+											<td th:text="${clases.vehiculo.marca + ' ' + clases.vehiculo.modelo}"></td>
 											<td>
 												<a th:href="@{/admin/editClase/{id}(id=${clases.id})}" class="btn btn-danger">
 													<i class="bi bi-pencil"></i>

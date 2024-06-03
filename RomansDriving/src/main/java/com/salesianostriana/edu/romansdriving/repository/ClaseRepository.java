@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
+import com.salesianostriana.edu.romansdriving.model.Usuario;
 
 @Repository
 public interface ClaseRepository extends JpaRepository<Clase , Long> {
@@ -50,9 +51,11 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		@Query("SELECT SUM (c.precio) FROM Clase c WHERE c.estaOcupada = true")
 		Double dineroGeneradoConClasesAsignadas();
 
-		@Query("SELECT c FROM Clase c WHERE c.usuario.id = :id ")
+		@Query("SELECT Count (c) FROM Clase c WHERE c.usuario.id = :id")
 		List<Clase> findClasesAndUsuarios(@Param("id")Long id);
 
+		
+		
 
 		
 }

@@ -22,62 +22,62 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="alert alert-danger" role="alert" th:if="${param.error}" >
-                        Introduzca un username que no exista
-                    </div>
-                    <form th:action="${usuario.id != 0} ? @{/admin/editUsuario/submit} : @{/admin/guardarUsuario/submit}"
-      th:object="${usuario}" method="POST">
-
-                        <input th:if="${usuario.id != 0}" type="hidden" name="id" th:field="*{id}" />
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required>
-                        </div>
-                        <div th:unless="${usuario.id != null}" class="mb-3">
-                            <label for="dni" class="form-label">DNI</label>
-                            <input type="text" id="dni" name="dni" class="form-control" oninput="validarDNI()">
-                        </div>
-                        <div th:unless="${usuario.id != null}" class="mb-3">
-                            <label for="contrasenha" class="form-label">Contraseña</label>
-                            <input type="password" id="contrasenha" class="form-control" th:field="*{password}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="apellidos" class="form-label">Apellidos</label>
-                            <input type="text" id="apellidos" class="form-control" th:field="*{apellidos}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="nombreUsuario" class="form-label">Usuario</label>
-                            <input type="text" id="nombreUsuario" class="form-control" th:field="*{username}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" class="form-control" th:field="*{email}" required>
-                            <div id="emailError" class="invalid-feedback"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="tel" id="telefono" class="form-control" th:field="*{telefono}">
-                            <div id="telefonoError" class="invalid-feedback"></div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
-                            <input type="date" name="fechaNacimiento" th:field="*{fechaNacimiento}" />
-                        </div>
-
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-danger btn-block">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+					<div class="alert alert-danger" role="alert" th:if="${param.error}" >
+					                        Introduzca un username que no exista
+					                    </div>
+					                    <form th:action="${usuario.id != null} ? @{/admin/editUsuario/submit} : @{/admin/guardarUsuario/submit}"
+					      th:object="${usuario}" method="POST">
+					
+					                        <input th:if="${usuario.id != 0}" type="hidden" name="id" th:field="*{id}" />
+					                        <div class="mb-3">
+					                            <label for="nombre" class="form-label">Nombre</label>
+					                            <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required>
+					                        </div>
+					                        <div th:unless="${usuario.id != null}" class="mb-3">
+					                            <label for="dni" class="form-label">DNI</label>
+					                            <input type="text" id="dni" name="dni" class="form-control" oninput="validarDNI()">
+					                        </div>
+					                        <div th:unless="${usuario.id != null}" class="mb-3">
+					                            <label for="contrasenha" class="form-label">Contraseña</label>
+					                            <input type="password" id="contrasenha" class="form-control" th:field="*{password}" required>
+					                        </div>
+					                        <div class="mb-3">
+					                            <label for="apellidos" class="form-label">Apellidos</label>
+					                            <input type="text" id="apellidos" class="form-control" th:field="*{apellidos}">
+					                        </div>
+					                        <div class="mb-3">
+					                            <label for="nombreUsuario" class="form-label">Usuario</label>
+					                            <input type="text" id="nombreUsuario" class="form-control" th:field="*{username}" required>
+					                        </div>
+					                        <div class="mb-3">
+					                            <label for="email" class="form-label">Email</label>
+					                            <input type="email" id="email" class="form-control" th:field="*{email}" required>
+					                            <div id="emailError" class="invalid-feedback"></div>
+					                        </div>
+					                        <div class="mb-3">
+					                            <label for="telefono" class="form-label">Teléfono</label>
+					                            <input type="tel" id="telefono" class="form-control" th:field="*{telefono}">
+					                            <div id="telefonoError" class="invalid-feedback"></div>
+					                        </div>
+					
+					                        <div class="mb-3">
+					                            <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
+					                            <input type="date" name="fechaNacimiento" th:field="*{fechaNacimiento}" />
+					                        </div>
+					
+					                        <div class="d-grid">
+					                            <button type="submit" class="btn btn-danger btn-block">Guardar</button>
+					                        </div>
+					                    </form>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+					<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+					        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+					        crossorigin="anonymous"></script>
+					
+					</body>
+					
+					</html>
