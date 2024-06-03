@@ -134,10 +134,14 @@ public String mostrarFormularioClases(Model model) {
 
 
     @PostMapping("/guardarClase/submit")
-    public String guardarClase(@ModelAttribute Clase clase, Model model) {
-
-        c.save(clase);
-        return "redirect:/admin/gestionClases";
+    public String guardarClase(@ModelAttribute ("clase") Clase clase, Model model) {
+        
+        if (c.comprobarPrecioClase(clase)) {
+            c.save(clase);
+            return "redirect:/admin/gestionClases";
+        } else {
+            return "precioNegativo";
+        }
     }
     
     @PostMapping("/guardarProfesor/submit")
