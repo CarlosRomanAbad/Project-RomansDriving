@@ -219,8 +219,8 @@ public class AdminController {
             usuario.setPassword(u.findById(id).get().getPassword());
             usuario.setDni(u.findById(id).get().getDni());
         }
-        u.save(usuario);
-        return "redirect:/admin/gestionUsuarios";
+	        u.save(usuario);
+	        return "redirect:/admin/gestionUsuarios";
     }
 
     @PostMapping("/editClase/submit")

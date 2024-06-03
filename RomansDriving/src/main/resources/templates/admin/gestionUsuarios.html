@@ -59,7 +59,7 @@
 											<td th:text="${persona.username}"></td>
 											<td th:text="${persona.email}"></td>
 											<td th:text="${persona.telefono}"></td>
-											<td th:text="${persona.isAdmin}"></td>
+											<td th:utext="${persona.isAdmin ? '&#x2714;' : '&#x2716;'}"></td>
 										<!--
 <td th:text="${persona.tieneCarnetAutoescuela ? 'true' : 'false'}"></td>
 										-->	
