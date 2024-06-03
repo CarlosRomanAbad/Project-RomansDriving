@@ -4,10 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
@@ -52,8 +49,14 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
 	}
 
-	public List<Clase> obtenerClasesDeAlumnoConCarnet() {
-		return claseRepository.findClasesConUsuarioConCarnetAutoescuela();
+
+
+	public double gananciasClasesAsignadas(){
+		return claseRepository.dineroGeneradoConClasesAsignadas();
+	}
+
+	public List<Clase> listaClasesConUsuarios(Long id){
+		return claseRepository.findClasesAndUsuarios(id);
 	}
 
 	public List<Clase> actualizarClasesFueraPlazo() {
@@ -83,13 +86,9 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	@Transactional
     public void cancelarClase(Long claseId, Usuario usuario) {
-        claseRepository.cancelarClase(claseId);
-        usuarioService.actualizarSecurityContext(usuario);
-        
+        claseRepository.cancelarClase(claseId);       
     }
 	
-
-
 	  public double reservarClaseCambioPrecio(Usuario user, Long claseid) {
 		  
 		  if(claseRepository.clasesConUsuariosAsociados(user.getId())>0) {
@@ -102,6 +101,4 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 	  }
 
 	  
-	
-
 }

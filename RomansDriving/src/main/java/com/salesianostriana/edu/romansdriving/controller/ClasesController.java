@@ -8,9 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
 import com.salesianostriana.edu.romansdriving.model.TipoVehiculo;
@@ -55,7 +53,7 @@ public class ClasesController {
 	public String confirmarReserva(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Usuario usuario) {
 
 		if (clase.anhadirClaseUsuario(usuario, id)) {
-			return "redirect:/PlantillaClasesVehiculo";
+			return "redirect:/mostrarClases";
 		}
 		else {
 			return "error";
@@ -63,89 +61,43 @@ public class ClasesController {
 	}
 
 	@GetMapping("/PlantillaClasesVehiculo")
-	public String mostrarClasesDisponibles(Model model, @AuthenticationPrincipal Usuario user, Long id) {
-	    clase.actualizarClasesFueraPlazo();
-	    
-	    
-	    List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
+public String mostrarClasesDisponibles(Model model, @AuthenticationPrincipal Usuario user, Long id) {
+    clase.actualizarClasesFueraPlazo();
+    List<Clase> clasesDisponibles = clase.obtenerClasesMasRecientesNoOcupadas();
+    model.addAttribute("clasesDisponibles", clasesDisponibles);
+    model.addAttribute("currentPage", "vehiculo");
+    return "user/PlantillaClasesVehiculo";
+}
 
-	    	
-	      model.addAttribute("clasesDisponibles", clasesDisponibles);
-	    return "user/PlantillaClasesVehiculo";
-	}
+@GetMapping("/PlantillaClasesCoche")
+public String mostrarClasesDisponiblesCoche(Model model, @AuthenticationPrincipal Usuario user, Long id) {
+    TipoVehiculo tipo = TipoVehiculo.COCHE;
+    List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+    model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
+    model.addAttribute("currentPage", "coche");
+    return "user/PlantillaClasesVehiculo";
+}
 
-	@GetMapping("/PlantillaClasesCoche")
-	public String mostrarClasesDisponiblesCoche(Model model,@AuthenticationPrincipal Usuario user,  Long id) {
-		TipoVehiculo tipo = (TipoVehiculo.COCHE);
-		
+@GetMapping("/PlantillaClasesMoto")
+public String mostrarClasesDisponiblesMoto(Model model, @AuthenticationPrincipal Usuario user, Long id) {
+    TipoVehiculo tipo = TipoVehiculo.MOTO;
+    List<Clase> clasesMotoDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+    model.addAttribute("clasesDisponibles", clasesMotoDisponibles);
+    model.addAttribute("currentPage", "moto");
+    return "user/PlantillaClasesVehiculo";
+}
 
-		List<Clase> clasesCocheDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-		model.addAttribute("clasesDisponibles", clasesCocheDisponibles);
-		return "user/PlantillaClasesVehiculo";
-
-	}
-
-	@GetMapping("/PlantillaClasesMoto")
-	public String mostrarClasesDisponiblesMoto(Model model,@AuthenticationPrincipal Usuario user,  Long id) {
-		TipoVehiculo tipo = (TipoVehiculo.MOTO);
-		
-	
-		List<Clase> clasesMotoDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-		model.addAttribute("clasesDisponibles", clasesMotoDisponibles);
-		return "user/PlantillaClasesVehiculo";
-
-	}
-
-	@GetMapping("/PlantillaClasesCamion")
-	public String mostrarClasesDisponiblesCamion(Model model,@AuthenticationPrincipal Usuario user,  Long id) {
-		TipoVehiculo tipo = (TipoVehiculo.CAMION);
-		Double precioClase;
-		
+@GetMapping("/PlantillaClasesCamion")
+public String mostrarClasesDisponiblesCamion(Model model, @AuthenticationPrincipal Usuario user, Long id) {
+    TipoVehiculo tipo = TipoVehiculo.CAMION;
+    List<Clase> clasesCamionDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
+    model.addAttribute("clasesDisponibles", clasesCamionDisponibles);
+    model.addAttribute("currentPage", "camion");
+    return "user/PlantillaClasesVehiculo";
+}
 
 
-		List<Clase> clasesCamionDisponibles = clase.obtenerClasesCocheDisponibles(tipo);
-		 
-		    model.addAttribute("clasesDisponibles", clasesCamionDisponibles);
-		return "user/PlantillaClasesVehiculo";
 
-	}
-
-	/*@GetMapping("/reservarClase/{id}")
-	public String hacerReservaClase(@AuthenticationPrincipal Usuario user, @PathVariable("id") Long id,
-			Model model) {
-
-		
-		
-		if (clase.anhadirClaseUsuario(user, id)) {
-
-			model.addAttribute("atributo", true);
-			model.addAttribute("profesor",profesor.findAll());
-			model.addAttribute("vehiculo",vehiculo.findAll());
-			model.addAttribute("usuario",usuario.findAll());
-			
-			return "user/reservaClase";
-		} else {
-			return "error";
-		}
-	}*/
-
-	@PostMapping("/reservarClase/submit")
-	public String reserva(@ModelAttribute("reservarClase") Clase claseReservada,
-			@AuthenticationPrincipal Usuario user, @PathVariable Long id) {
-		Optional<Usuario> optionalUsuario = usuario.findById(user.getId());
-
-		if (!claseReservada.isEstaOcupada() && user.isTieneCarnetAutoescuela()) {
-
-
-			claseReservada.setPrecio(clase.reservarClaseCambioPrecio(user, null));
-			clase.save(claseReservada);
-			clase.anhadirClaseUsuario(optionalUsuario.get(), claseReservada.getId());
-
-			return "redirect:/PlantillaClasesVehiculo";
-		} else {
-			return "error";
-		}
-	}
 
 	@GetMapping("/mostrarClases")
 	public String mostrarMisClases(@AuthenticationPrincipal Usuario usuario , Model model , Long id){

@@ -15,7 +15,7 @@
 	
     <nav th:fragment="UsuarioHeader" class="navbar navbar-expand-lg bg-danger navbar-custom">
         <div class="container-fluid">
-            <a class="navbar-brand logo" href="#">
+            <a class="navbar-brand logo" th:href="@{/}">
                 <img src="../../static/img/Drive.png" th:src="@{/img/Drive.png}" alt="Logo" width="75" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
@@ -29,7 +29,7 @@
                                 class="visually-hidden">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" th:href="@{/PlantillaClasesVehiculo}">Cursos</a>
+                        <a class="nav-link text-white" th:href="@{/PlantillaClasesVehiculo}">Clases</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" th:href="@{/sobreNosotros}">Sobre Nosotros</a>
