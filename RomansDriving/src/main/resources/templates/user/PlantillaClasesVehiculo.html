@@ -73,7 +73,7 @@
             </thead>
             <tbody>
                 <tr th:each="clase : ${clasesDisponibles}">
-                    <td th:text="${#temporals.format(clase.fechaClase, 'yyyy/MM/dd')}"></td>
+                    <td th:text="${#temporals.format(clase.fechaClase, 'yyyy/MM/dd HH:mm')}"></td>
                     <td th:text="${clase.profesor.nombre}">Profesor</td>
                     <td th:text="${clase.vehiculo.tipo}">Tipo Vehículo</td>
                     <td th:text="${clase.vehiculo.marca}">Marca</td>

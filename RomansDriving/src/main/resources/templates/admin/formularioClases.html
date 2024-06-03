@@ -35,8 +35,8 @@
                                 </div>
                             </div> 
                             <div class="mb-3">
-                                <label for="fechaClase" class="form-label">Fecha Clase</label>
-                                <input type="date" id="fechaClase" class="form-control" th:field="*{fechaClase}" required th:attr="min=${fechaMinima}">
+                                <label for="fechaClase" class="form-label">Fecha y Hora de la Clase</label>
+                                <input type="datetime-local" id="fechaClase" class="form-control" th:field="*{fechaClase}" required th:attr="min=${fechaMinima}">
                             </div>
                             <div class="mb-3">
                                 <label for="precio" class="form-label">Precio</label>

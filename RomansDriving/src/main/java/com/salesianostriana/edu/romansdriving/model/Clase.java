@@ -1,6 +1,7 @@
 package com.salesianostriana.edu.romansdriving.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -42,8 +43,8 @@ public class Clase {
 
     private boolean estaOcupada;
     
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fechaClase;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime fechaClase;
     
     
     

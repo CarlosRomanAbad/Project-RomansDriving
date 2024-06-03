@@ -19,6 +19,8 @@ public interface UsuarioRepository
 	 @Query("SELECT u FROM Usuario u WHERE u.tieneCarnetAutoescuela = true")
 
 	    List<Usuario> findAllByTieneCarnetAutoescuela(); 
+	 
+	 
 		
 		
 

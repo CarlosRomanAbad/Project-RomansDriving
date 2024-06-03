@@ -1,6 +1,7 @@
 package com.salesianostriana.edu.romansdriving.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -84,20 +85,18 @@ public class AdminController {
 
     // FORMULARIO AÑADIR
     @GetMapping("/formularioClases")
-    public String mostrarFormularioClases(Model model) {
-        model.addAttribute("clase", new Clase());
+public String mostrarFormularioClases(Model model) {
+    model.addAttribute("clase", new Clase());
 
+    LocalDateTime now = LocalDateTime.now();
+    String formattedDateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+    model.addAttribute("fechaMinima", formattedDateTime);
 
-        LocalDate today = LocalDate.now();
-        String formattedDate = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        model.addAttribute("fechaMinima", formattedDate);
+    model.addAttribute("profesores", p.findAll());
+    model.addAttribute("usuarios", u.findAll());
 
-     
-        model.addAttribute("profesores", p.findAll());
-        model.addAttribute("usuarios", u.findAll());
-
-        return "admin/formularioClases";
-    }
+    return "admin/formularioClases";
+}
 
     @GetMapping("/formulario/")
     public String mostrarFormulario(Model model) {
@@ -136,7 +135,9 @@ public class AdminController {
 
     @PostMapping("/guardarClase/submit")
     public String guardarClase(@ModelAttribute Clase clase, Model model) {
-
+    	
+    	
+    	
         c.save(clase);
         return "redirect:/admin/gestionClases";
     }
@@ -282,7 +283,16 @@ public class AdminController {
     
     @GetMapping("/borrarProfesor/{id}")
     public String borrarProfesor(@PathVariable("id") long id) {
-        p.deleteById(id);
+    	
+    	Profesor profesor = p.findById(id).get();
+    	
+    	if(profesor != null) {
+    		profesor.setFechaBaja(LocalDate.now());
+            p.save(profesor);
+    	}
+    	
+       
+       
         return "redirect:/admin/gestionProfesores";
     }
 
