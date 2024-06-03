@@ -61,7 +61,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	public List<Clase> actualizarClasesFueraPlazo() {
 
-		LocalDate fechaActual = LocalDate.now();
+
 		List<Clase> clasesFueraPlazo = claseRepository.findClasesFueraPlazo();
 
 		clasesFueraPlazo.forEach(c -> c.setEstaOcupada(true));
@@ -99,6 +99,16 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		  }
 		  
 	  }
+
+	public boolean comprobarPrecioClase(Long claseId){
+
+		if(claseRepository.findById(claseId).get().getPrecio() >= 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
 	
 	  

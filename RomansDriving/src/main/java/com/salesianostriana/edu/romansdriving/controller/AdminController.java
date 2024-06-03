@@ -137,8 +137,16 @@ public class AdminController {
     @PostMapping("/guardarClase/submit")
     public String guardarClase(@ModelAttribute Clase clase, Model model) {
 
-        c.save(clase);
-        return "redirect:/admin/gestionClases";
+        //if(c.comprobarPrecioClase(clase.getId())){
+        	
+            c.save(clase);
+            return "redirect:/admin/gestionClases";
+        //}
+
+        //else{
+          //  return "precioNegativo";
+        //}
+        
     }
     
     @PostMapping("/guardarProfesor/submit")
@@ -282,6 +290,7 @@ public class AdminController {
     
     @GetMapping("/borrarProfesor/{id}")
     public String borrarProfesor(@PathVariable("id") long id) {
+
         p.deleteById(id);
         return "redirect:/admin/gestionProfesores";
     }
