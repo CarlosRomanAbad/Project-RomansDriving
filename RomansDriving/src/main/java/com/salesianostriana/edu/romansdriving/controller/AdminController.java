@@ -135,9 +135,7 @@ public String mostrarFormularioClases(Model model) {
 
     @PostMapping("/guardarClase/submit")
     public String guardarClase(@ModelAttribute Clase clase, Model model) {
-    	
-    	
-    	
+
         c.save(clase);
         return "redirect:/admin/gestionClases";
     }
@@ -283,16 +281,14 @@ public String mostrarFormularioClases(Model model) {
     
     @GetMapping("/borrarProfesor/{id}")
     public String borrarProfesor(@PathVariable("id") long id) {
-    	
+        
     	Profesor profesor = p.findById(id).get();
     	
-    	if(profesor != null) {
+    	if(profesor !=null) {
     		profesor.setFechaBaja(LocalDate.now());
-            p.save(profesor);
+    		p.save(profesor);
     	}
     	
-       
-       
         return "redirect:/admin/gestionProfesores";
     }
 
