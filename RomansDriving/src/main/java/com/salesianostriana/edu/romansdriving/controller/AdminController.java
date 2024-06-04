@@ -1,6 +1,5 @@
 package com.salesianostriana.edu.romansdriving.controller;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -251,16 +250,7 @@ public String mostrarFormularioClases(Model model) {
         }
 
     // BORRAR
-    @GetMapping("/borrar/{id}")
-    public String borrar(@PathVariable("id") long id) {
-    	if(u.findById(id).get().isAdmin()) {
-    		return "errorBorrarAdmin";
-    	}
-    	else {
-    		 u.deleteById(id); 
-    	        return "redirect:/admin/gestionUsuarios";
-    	}
-    }
+  
 
     @GetMapping("/borrarClase/{id}")
     public String borrarClase(@PathVariable("id") long id, Usuario usuario) {
@@ -283,23 +273,73 @@ public String mostrarFormularioClases(Model model) {
     	
     }
     
-    @GetMapping("/borrarProfesor/{id}")
-    public String borrarProfesor(@PathVariable("id") long id) {
-        
-    	Profesor profesor = p.findById(id).get();
+    @GetMapping("/borrar/{id}")
+    public String borrar(@PathVariable("id") long id) {
     	
-    	if(profesor !=null) {
-    		profesor.setFechaBaja(LocalDate.now());
-    		p.save(profesor);
+    	Optional<Usuario>usuarioBuscado = u.findById(id);
+    	
+    	if(usuarioBuscado.get().isAdmin()) {
+    		return "errorBorrarAdmin";
     	}
     	
-        return "redirect:/admin/gestionProfesores";
+    	else if(usuarioBuscado.isPresent()) {
+    		
+    		if(u.comprobarUsuarioTieneClase(id)) {
+    			return "errorBorrarUser";
+    		}
+    		else {
+       		 u.deleteById(id); 
+       	        return "redirect:/admin/gestionUsuarios";
+       	}
+    	}
+    	
+    	else {
+    		return "redirect:/admin/gestionUsuarios";
+    	}
+    	
+    	
+    }
+    
+    @GetMapping("/borrarProfesor/{id}")
+    public String borrarProfesor(@PathVariable("id") Long id) {
+        Optional<Profesor> profesorBuscado = p.findById(id);
+       
+        
+        if (profesorBuscado.isPresent()) {
+            if (p.comprobarProfeConClase(id)) {
+        
+                return "errorBorrarProfesor";
+            } else {
+
+                p.deleteById(id);
+                return "redirect:/admin/gestionProfesores";
+            }
+        } else {
+            
+            return "redirect:/admin/gestionProfesores";
+        }
     }
 
     @GetMapping("/borrarVehiculo/{id}")
     public String borrarVehiculo(@PathVariable("id")Long id){
-        v.deleteById(id);
-        return "redirect:/admin/gestionVehiculos";
+    
+    	Optional<Vehiculo>vehiculoBuscado = v.findById(id);
+    	
+    	if(vehiculoBuscado.isPresent()) {
+    	
+			if (v.comprobarVehiculoTieneClase(id)) {
+    			return "errorBorrarVehiculo";
+    		}
+    		else {
+    			  v.deleteById(id);
+    		        return "redirect:/admin/gestionVehiculos";
+    		}
+    		
+    		
+    	}
+    	else {
+			return "redirect:/admin/gestionVechiulos";
+		}
     }
 
 

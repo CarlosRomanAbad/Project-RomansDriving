@@ -2,6 +2,7 @@ package com.salesianostriana.edu.romansdriving.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,29 +49,21 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 		return this.repository.existsByUsername(username);
 	}
 	
-	/*public void borrarUsuario(Long id) {
-        Usuario user = usuario.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
-        List<Clase> clases = claseRepository.findAll();
-
-        boolean encontrado = false;
-		for (Clase listaClases : clases) {
-			if(listaClases.getUsuario()==null){
-				continue;
-			}
-
-			if(listaClases.getUsuario().getId()==user.getId()){
-				encontrado = true;
-			}
+	public boolean comprobarUsuarioTieneClase(Long id){
+		
+		Optional<Usuario>usuarioBuscado = usuario.findById(id);
+		Usuario user = usuarioBuscado.get();
+		
+		if(user.getClases() != null && !user.getClases().isEmpty()) {
+			return true;
 		}
-
-		if(encontrado){
-			clase.removeFromClase(user);
+		
+		else {
+			return false;
 		}
-       
-        usuario.deleteById(id);
-
-    }*/
+		
+		
+	}
 
 	
 	
