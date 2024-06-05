@@ -41,7 +41,8 @@ public class ClasesController {
 	
 			Clase claseSeleccionada = optionalClase.get();
 			model.addAttribute("reserva", claseSeleccionada);
-			model.addAttribute("precioNuevo", clase.reservarClaseCambioPrecio(user, id));
+			model.addAttribute("precioClase", claseSeleccionada.getPrecio());
+			//model.addAttribute("precioNuevo", clase.reservarClaseCambioPrecio(user, id));
 			//claseSeleccionada.setPrecio(clase.reservarClaseCambioPrecio(user, id));
 			//clase.save(claseSeleccionada);
 			return "user/reservaClase";
@@ -108,8 +109,9 @@ public String mostrarClasesDisponiblesCamion(Model model, @AuthenticationPrincip
 
 	}
 	@GetMapping("cancelarClase/{id}")
-    public String cancelarClase(@PathVariable Long id, Usuario user) {
+    public String cancelarClase(@PathVariable Long id, @AuthenticationPrincipal Usuario user) {
         clase.cancelarClase(id, user);
+       
         return "redirect:/mostrarClases"; 
     }
 
