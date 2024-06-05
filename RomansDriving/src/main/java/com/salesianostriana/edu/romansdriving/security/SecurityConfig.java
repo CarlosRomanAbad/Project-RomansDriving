@@ -54,7 +54,7 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             (authz) -> authz
             
 			.requestMatchers("/admin/**").hasRole("ADMIN")
-					.requestMatchers("/reserva/**")
+					.requestMatchers("/reserva/**", "/mostrarClases/**")
 					.hasAnyRole("USER","ADMIN")
                     .anyRequest().permitAll())
             .formLogin((loginz) -> loginz

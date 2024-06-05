@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.edu.romansdriving.model.Clase;
@@ -28,11 +31,11 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 		return usuario.findAllByTieneCarnetAutoescuela();
 	}
 	
-	/*public void actualizarSecurityContext(Usuario user) {
-		  Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-		  
-		  SecurityContextHolder.getContext().setAuthentication(auth);
-	  }*/
+	public void actualizarSecurityContext(Usuario user) {
+		Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+		 
+		SecurityContextHolder.getContext().setAuthentication(auth);
+	  }
 	
 	public boolean usuarioConFechaIncorrecta(Usuario user) {
 		

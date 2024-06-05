@@ -24,7 +24,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Autowired
 	private UsuarioService usuarioService;
 
@@ -49,13 +49,11 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
 	}
 
-
-
-	public double gananciasClasesAsignadas(){
+	public double gananciasClasesAsignadas() {
 		return claseRepository.dineroGeneradoConClasesAsignadas();
 	}
 
-	public List<Clase> listaClasesConUsuarios(Long id){
+	public List<Clase> listaClasesConUsuarios(Long id) {
 		return claseRepository.findClasesAndUsuarios(id);
 	}
 
@@ -73,7 +71,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 	public boolean anhadirClaseUsuario(Usuario user, Long id) {
 		Optional<Clase> claseConUsuario = claseRepository.findClaseByIdAndNoOcupada(id);
 
-		if (claseConUsuario.isPresent ()) {
+		if (claseConUsuario.isPresent()) {
 			Clase clase = claseConUsuario.get();
 			clase.addToUsuario(user);
 			clase.setEstaOcupada(true);
@@ -85,33 +83,52 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 	}
 
 	@Transactional
-    public void cancelarClase(Long claseId, Usuario usuario) {
-        claseRepository.cancelarClase(claseId);       
-    }
-	
-	  public double reservarClaseCambioPrecio(Usuario user, Long claseid) {
-		  
-		  if(claseRepository.clasesConUsuariosAsociados(user.getId())>0) {
-			  return claseRepository.findById(claseid).get().getPrecio()/2;
-		  }
-		  else {
-			  return claseRepository.findById(claseid).get().getPrecio();
-		  }
-		  
-	  }
+	public void cancelarClase(Long claseId, Usuario usuario) {
 
-	  
-	  public boolean comprobarPrecioClase(Clase clase) {
-		  
-		  if(clase.getPrecio()>=0) {
-			  return true;
-		  }
-		  
-		  else {
-			  return false;
-		  }
-		  
-	  }
+		// claseRepository.cancelarClase(claseId);
+		Optional<Clase> claseBuscada = claseRepository.findById(claseId);
+
+		if (claseBuscada.isPresent()) {
+			Clase clase = claseBuscada.get();
+			//claseRepository.cancelarClase(claseId);
+			clase.removeFromClase(usuario);
+			clase.setEstaOcupada(false);
+			claseRepository.save(clase);
+			usuarioService.actualizarSecurityContext(usuario);
+			
+			
+		
+		}
+		
+		}
+		// 1. Buscar la clase por ID
+		// 2. Settear los valores nuevos
+		// 3. Guardar la clase con edit
+
+		// Hay que usar el método helper para que el usaurio realmente cambie
+
 	
-	  
+
+	public double reservarClaseCambioPrecio(Usuario user, Long claseid) {
+
+		if (claseRepository.clasesConUsuariosAsociados(user.getId()) > 0) {
+			return claseRepository.findById(claseid).get().getPrecio() / 2;
+		} else {
+			return claseRepository.findById(claseid).get().getPrecio();
+		}
+
+	}
+
+	public boolean comprobarPrecioClase(Clase clase) {
+
+		if (clase.getPrecio() >= 0) {
+			return true;
+		}
+
+		else {
+			return false;
+		}
+
+	}
+
 }

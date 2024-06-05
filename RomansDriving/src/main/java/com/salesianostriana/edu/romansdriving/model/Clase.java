@@ -54,8 +54,20 @@ public class Clase {
 	}
 
 	public void removeFromClase(Usuario usuario) {
-		usuario.getClases().remove(this);
-		this.usuario=null;
+		
+		int index = -1;
+		
+		for(int i = 0; i < usuario.getClases().size() && index == -1; i++) {
+			Clase c = usuario.getClases().get(i);
+			if (c.id == this.id)
+				index = i;
+		}
+		
+		//usuario.getClases().remove(this);
+		if (index != -1) {
+			usuario.getClases().remove(index);
+			this.usuario=null;
+		}
 	}
 	
 	public void addToProfesor(Profesor profesor) {
