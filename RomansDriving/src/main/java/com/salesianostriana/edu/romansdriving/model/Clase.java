@@ -1,6 +1,5 @@
 package com.salesianostriana.edu.romansdriving.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
