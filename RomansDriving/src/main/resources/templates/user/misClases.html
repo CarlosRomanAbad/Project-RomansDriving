@@ -15,60 +15,65 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments/Header::Header}"></header>
+<header th:replace="~{fragments/Header::Header}"></header>
 
-    <div class="container mt-5">
-        <h1>Mis Clases</h1>
-        
-        <div th:if="${misClases}">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Fecha Clase</th>
-                        <th>Precio</th>
-                        <th>Profesor</th>
-                        <th>Vehiculo</th>
-                        <th>Marca Vehiculo</th>
-                        <th>Cancelar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="clase : ${misClases}">
-                        <td th:text="${#temporals.format(clase.fechaClase, 'yyyy/MM/dd HH:mm')}"></td>
-                        <td th:text="${clase.precio + ' € '}"></td>
-                        <td th:text="${clase.profesor.nombre}"></td>
-                        <td th:text="${clase.vehiculo.tipo}"></td>
-                        <td th:text="${clase.vehiculo.marca}"></td>
-                        <td>
-                            <a class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target='#cancelarClase-' + ${clase.id}">
-                                <i class="bi bi-trash"></i>
-                            </a>
-                            <div class="modal fade" th:id="'cancelarClase-' + ${clase.id}">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">¡Alerta!</h4>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>¿Quieres cancelar esta clase?</p>
-                                            <div class="d-grid gap-2">
-                                                <a class="btn btn-danger" th:href="@{/cancelarClase/{id}(id=${clase.id})}">
-                                                    <i class="bi bi-trash me-2"></i> Cancelar Clase
-                                                </a>
-                                            </div>
-                                        </div>
+<div class="container mt-5">
+    <h1>Mis Clases</h1>
+
+    <div th:if="${misClases}">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Fecha Clase</th>
+                <th>Precio</th>
+                <th>Profesor</th>
+                <th>Vehiculo</th>
+                <th>Marca Vehiculo</th>
+                <th>Cancelar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="clase : ${misClases}">
+                <td th:text="${#temporals.format(clase.fechaClase, 'yyyy/MM/dd HH:mm')}"></td>
+                <td th:text="${clase.precio + ' € '}"></td>
+                <td th:text="${clase.profesor.nombre}"></td>
+                <td th:text="${clase.vehiculo.tipo}"></td>
+                <td th:text="${clase.vehiculo.marca}"></td>
+                <td>
+                    <span th:if="${#temporals.createNow().isBefore(clase.fechaClase)}">
+                        <a class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target='#cancelarClase-' + ${clase.id}">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </span>
+                    <span th:if="${#temporals.createNow().isAfter(clase.fechaClase)}" class="text-muted">
+                        No se puede cancelar, la clase ya ha transcurrido
+                    </span>
+                    <div class="modal fade" th:id="'cancelarClase-' + ${clase.id}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">¡Alerta!</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>¿Quieres cancelar esta clase?</p>
+                                    <div class="d-grid gap-2">
+                                        <a class="btn btn-danger" th:href="@{/cancelarClase/{id}(id=${clase.id})}">
+                                            <i class="bi bi-trash me-2"></i> Cancelar Clase
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+</div>
 
-    <footer th:replace="~{fragments/Footer::Footer}"></footer>
+<footer th:replace="~{fragments/Footer::Footer}"></footer>
 </body>
 
 </html>

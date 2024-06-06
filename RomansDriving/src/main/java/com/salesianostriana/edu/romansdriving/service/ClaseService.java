@@ -101,13 +101,6 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		}
 		
 		}
-		// 1. Buscar la clase por ID
-		// 2. Settear los valores nuevos
-		// 3. Guardar la clase con edit
-
-		// Hay que usar el método helper para que el usaurio realmente cambie
-
-	
 
 	public double reservarClaseCambioPrecio(Usuario user, Long claseid) {
 
@@ -121,14 +114,16 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	public boolean comprobarPrecioClase(Clase clase) {
 
-		if (clase.getPrecio() >= 0) {
+		if (clase.getPrecio() >= 0)
 			return true;
-		}
 
-		else {
+
+		else
 			return false;
-		}
+
 
 	}
+
+	
 
 }
