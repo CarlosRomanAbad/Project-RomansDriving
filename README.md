@@ -41,6 +41,7 @@ Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
 ## Uso
 
 Una vez que la aplicación esté en funcionamiento, podrás acceder a ella mediante tu navegador web en `http://localhost:9000`. Desde ahí, podrás explorar todas las funcionalidades que ofrece.
+
 El usuario tendra la opcion de hacer reserva de clases servidas por un profesor y un vehiculo.
 Tambien tendra la opcion de eliminarla en caso de errata. El programa no dejara eliminarla en el caso de que la fecha de la clase haya concurrido.
 
