@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  border-left: 10px solid rgb(207, 73, 69);
+  border-right: 10px solid rgb(207, 73, 69);
+}
+
+
+.fondo {
+  background-color: rgb(207, 73, 69);
+}
+
+.fotoVehiculo{
+  width: 20px;
+}
