@@ -45,6 +45,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		return claseRepository.findAllClasesMotoDesOcupadas(tipo);
 	}
 
+
 	public List<Clase> obtenerClasesCamionDisponibles(TipoVehiculo tipo) {
 		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
 	}
@@ -78,9 +79,12 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 			this.save(clase);
 			return true;
 		} else {
+
+
 			return false;
 		}
 	}
+
 
 	@Transactional
 	public void cancelarClase(Long claseId, Usuario usuario) {
@@ -96,7 +100,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 			claseRepository.save(clase);
 			usuarioService.actualizarSecurityContext(usuario);
 			
-			
+
 		
 		}
 		
