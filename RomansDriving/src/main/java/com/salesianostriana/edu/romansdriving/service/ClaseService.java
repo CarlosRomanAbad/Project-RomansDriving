@@ -121,29 +121,31 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	}
 
-	public double aplicarDescuentoClase(Usuario user, Long claseId) {
-
-		Clase claseBuscada = claseRepository.findById(claseId).get();
-
-		double precioFinal = 0.0;
-		precioFinal = claseBuscada.getPrecio() / 2;
-		claseBuscada.setPrecio(precioFinal);
-		
-
-		return precioFinal;
+	public boolean comprobarTieneCarnet(Long id){
+		Optional<Usuario>user = usuarioRepository.findById(id);
+		boolean tieneCarnet = false;
+		if(user.isPresent()){
+			if(user.get().isTieneCarnetAutoescuela()){
+				tieneCarnet = true;
+			}
+		}
+		return tieneCarnet;
 
 	}
 	
-	public boolean comprobarReservaClase(Long id) {
-		List<Clase>clases = claseRepository.findAll();
-		boolean tieneUsuario = false;
+	public double aplicarDescuentoClase(Long id) {
 		
-		if(clases.stream().filter(c -> c.getUsuario() != null).toArray() != null) {
-			tieneUsuario = true;
+		boolean tieneCarnet = comprobarTieneCarnet(id);
+
+		if(tieneCarnet){
+			return claseRepository.findById(id).get().getPrecio()/2;
 		}
-		return tieneUsuario;
-		
-		
+
+		else{
+			return claseRepository.findById(id).get().getPrecio();
+		}
+
 	}
+	
 
 }

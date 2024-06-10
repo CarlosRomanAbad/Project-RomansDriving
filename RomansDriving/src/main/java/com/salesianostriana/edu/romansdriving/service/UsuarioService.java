@@ -69,7 +69,23 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 	}
 	
 
+	public double obtenerPrecioClaseConDescuento(Long claseId, Long usuarioId) {
+        Optional<Clase> claseOptional = claseRepository.findById(claseId);
+        Optional<Usuario> usuarioOptional = usuario.findById(usuarioId);
 
+        if (claseOptional.isPresent() && usuarioOptional.isPresent()) {
+            Clase clase = claseOptional.get();
+            Usuario user = usuarioOptional.get();
+
+            if (user.isTieneCarnetAutoescuela()) {
+                return clase.getPrecio() * 0.5; // Aplicar descuento del 50%
+            } else {
+                return clase.getPrecio(); // Precio sin descuento
+            }
+        } else {
+            throw new IllegalArgumentException("Clase o Usuario no encontrado");
+        }
+    }
 	
 	
 }

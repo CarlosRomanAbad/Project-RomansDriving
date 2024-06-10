@@ -35,14 +35,26 @@ public class ClasesController {
 	private VehiculoService vehiculo;
 
 	@GetMapping("/reserva/{id}")
-	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model, Usuario user) {
+	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Usuario user) {
 		Optional<Clase> optionalClase = clase.findById(id);
 			
 			
 			//clase.reservarClaseCambioPrecio(user, id);
 			Clase claseSeleccionada = optionalClase.get();
+
+			double precioNuevo = claseSeleccionada.getPrecio()/2;
 			model.addAttribute("reserva", claseSeleccionada);
-			model.addAttribute("precioClase", clase.aplicarDescuentoClase(user, id)/*claseSeleccionada.getPrecio()*/);
+			if(user.isTieneCarnetAutoescuela()){
+				model.addAttribute("precioClase", precioNuevo);
+				
+				clase.save(claseSeleccionada);
+			}
+			
+
+			else{
+				model.addAttribute("precioClase", claseSeleccionada.getPrecio());
+			}
+			
 		
 			return "user/reservaClase";
 		
