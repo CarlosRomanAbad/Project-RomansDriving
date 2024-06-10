@@ -45,7 +45,6 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		return claseRepository.findAllClasesMotoDesOcupadas(tipo);
 	}
 
-
 	public List<Clase> obtenerClasesCamionDisponibles(TipoVehiculo tipo) {
 		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
 	}
@@ -71,20 +70,24 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 	@Transactional
 	public boolean anhadirClaseUsuario(Usuario user, Long id) {
 		Optional<Clase> claseConUsuario = claseRepository.findClaseByIdAndNoOcupada(id);
+		Optional<Usuario> usuarioEncontrado = usuarioRepository.findById(user.getId());
 
-		if (claseConUsuario.isPresent()) {
+		if (claseConUsuario.isPresent() && usuarioEncontrado.isPresent()) {
 			Clase clase = claseConUsuario.get();
+
+			if (usuarioEncontrado.get().isTieneCarnetAutoescuela()) {
+				clase.setPrecio(clase.getPrecio() / 2);
+			}
+
 			clase.addToUsuario(user);
 			clase.setEstaOcupada(true);
-			this.save(clase);
+			claseRepository.save(clase);
+
 			return true;
 		} else {
-
-
 			return false;
 		}
 	}
-
 
 	@Transactional
 	public void cancelarClase(Long claseId, Usuario usuario) {
@@ -94,17 +97,15 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 		if (claseBuscada.isPresent()) {
 			Clase clase = claseBuscada.get();
-			//claseRepository.cancelarClase(claseId);
+
 			clase.removeFromClase(usuario);
 			clase.setEstaOcupada(false);
 			claseRepository.save(clase);
 			usuarioService.actualizarSecurityContext(usuario);
-			
 
-		
 		}
-		
-		}
+
+	}
 
 	public double reservarClaseCambioPrecio(Usuario user, Long claseid) {
 
@@ -121,13 +122,36 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		if (clase.getPrecio() >= 0)
 			return true;
 
-
 		else
 			return false;
 
-
 	}
 
+	public boolean comprobarTieneCarnet(Long id){
+		Optional<Usuario>user = usuarioRepository.findById(id);
+		boolean tieneCarnet = false;
+		if(user.isPresent()){
+			if(user.get().isTieneCarnetAutoescuela()){
+				tieneCarnet = true;
+			}
+		}
+		return tieneCarnet;
+
+	}
+	
+	public double aplicarDescuentoClase(Long id) {
+		
+		boolean tieneCarnet = comprobarTieneCarnet(id);
+
+		if(tieneCarnet){
+			return claseRepository.findById(id).get().getPrecio()/2;
+		}
+
+		else{
+			return claseRepository.findById(id).get().getPrecio();
+		}
+
+	}
 	
 
 }

@@ -35,23 +35,34 @@ public class ClasesController {
 	private VehiculoService vehiculo;
 
 	@GetMapping("/reserva/{id}")
-	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model, Usuario user) {
+	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Usuario user) {
 		Optional<Clase> optionalClase = clase.findById(id);
-
-	
+			
+			
+			//clase.reservarClaseCambioPrecio(user, id);
 			Clase claseSeleccionada = optionalClase.get();
+
+			double precioNuevo = claseSeleccionada.getPrecio()/2;
 			model.addAttribute("reserva", claseSeleccionada);
-			model.addAttribute("precioClase", claseSeleccionada.getPrecio());
-			//model.addAttribute("precioNuevo", clase.reservarClaseCambioPrecio(user, id));
-			//claseSeleccionada.setPrecio(clase.reservarClaseCambioPrecio(user, id));
-			//clase.save(claseSeleccionada);
+			if(user.isTieneCarnetAutoescuela()){
+				model.addAttribute("precioClase", precioNuevo);
+				
+				clase.save(claseSeleccionada);
+			}
+			
+
+			else{
+				model.addAttribute("precioClase", claseSeleccionada.getPrecio());
+			}
+			
+		
 			return "user/reservaClase";
 		
 		
 	}
 	
 	@GetMapping("/reserva/{id}/confirmar")
-	public String confirmarReserva(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Usuario usuario) {
+	public String confirmarReserva(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal  Usuario usuario) {
 
 		if (clase.anhadirClaseUsuario(usuario, id)) {
 			return "redirect:/mostrarClases";

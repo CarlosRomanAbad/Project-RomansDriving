@@ -313,7 +313,7 @@ public String mostrarFormularioClases(Model model) {
                 return "errorBorrarProfesor";
             } else {
 
-                p.deleteById(id);
+                p.borrarProfesor(id);
                 return "redirect:/admin/gestionProfesores";
             }
         } else {
