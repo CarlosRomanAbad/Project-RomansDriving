@@ -45,7 +45,6 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		return claseRepository.findAllClasesMotoDesOcupadas(tipo);
 	}
 
-
 	public List<Clase> obtenerClasesCamionDisponibles(TipoVehiculo tipo) {
 		return claseRepository.findAllClasesCamionDesOcupadas(tipo);
 	}
@@ -80,11 +79,9 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 			return true;
 		} else {
 
-
 			return false;
 		}
 	}
-
 
 	@Transactional
 	public void cancelarClase(Long claseId, Usuario usuario) {
@@ -94,17 +91,15 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 		if (claseBuscada.isPresent()) {
 			Clase clase = claseBuscada.get();
-			//claseRepository.cancelarClase(claseId);
+			// claseRepository.cancelarClase(claseId);
 			clase.removeFromClase(usuario);
 			clase.setEstaOcupada(false);
 			claseRepository.save(clase);
 			usuarioService.actualizarSecurityContext(usuario);
-			
 
-		
 		}
-		
-		}
+
+	}
 
 	public double reservarClaseCambioPrecio(Usuario user, Long claseid) {
 
@@ -121,13 +116,34 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 		if (clase.getPrecio() >= 0)
 			return true;
 
-
 		else
 			return false;
 
-
 	}
 
+	public double aplicarDescuentoClase(Usuario user, Long claseId) {
+
+		Clase claseBuscada = claseRepository.findById(claseId).get();
+
+		double precioFinal = 0.0;
+		precioFinal = claseBuscada.getPrecio() / 2;
+		claseBuscada.setPrecio(precioFinal);
+		
+
+		return precioFinal;
+
+	}
 	
+	public boolean comprobarReservaClase(Long id) {
+		List<Clase>clases = claseRepository.findAll();
+		boolean tieneUsuario = false;
+		
+		if(clases.stream().filter(c -> c.getUsuario() != null).toArray() != null) {
+			tieneUsuario = true;
+		}
+		return tieneUsuario;
+		
+		
+	}
 
 }
