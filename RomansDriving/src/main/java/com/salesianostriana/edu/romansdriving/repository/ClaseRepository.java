@@ -54,7 +54,8 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		@Query("SELECT Count (c) FROM Clase c WHERE c.usuario.id = :id")
 		List<Clase> findClasesAndUsuarios(@Param("id")Long id);
 
-		
+	@Query("SELECT c FROM Clase c WHERE c.profesor.id = :id")
+	List<Clase> findClasesAndProfesor(@Param("id")Long id);
 		
 
 		

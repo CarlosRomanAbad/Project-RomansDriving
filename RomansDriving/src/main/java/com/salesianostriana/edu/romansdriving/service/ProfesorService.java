@@ -25,6 +25,8 @@ public class ProfesorService extends BaseServiceImpl<Profesor, Long, ProfesorRep
 
 	@Autowired
 	private ClaseRepository claseRepo;
+    @Autowired
+    private ClaseRepository claseRepository;
 
 	/*
 	 * public void borrarProfesor(Long id) { Profesor profesor =
@@ -59,6 +61,19 @@ public class ProfesorService extends BaseServiceImpl<Profesor, Long, ProfesorRep
 
 		} else {
 			return false;
+		}
+	}
+
+	public void borrarProfesor(Long id) {
+		Optional<Profesor> profesor = profesorRepo.findById(id);
+		List<Clase> clases = claseRepository.findClasesAndProfesor(id);
+		clase = claseRepository.findById(id).get();
+		if (profesor.isPresent()) {
+
+			profesor.get().setFechaBaja(LocalDate.now());
+			clase.removeFromClaseProfe(profesor.get());
+			profesorRepo.save(profesor.get());
+			this.claseRepository.save(clase);
 		}
 	}
 

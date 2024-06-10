@@ -11,4 +11,6 @@ public interface ProfesorRepository extends JpaRepository<Profesor, Long> {
 
 	@Query("SELECT p FROM Profesor p JOIN p.clases c GROUP BY p ORDER BY COUNT(c) DESC LIMIT 1")
    Profesor findProfesorWithMostClasses();
+
+
 }

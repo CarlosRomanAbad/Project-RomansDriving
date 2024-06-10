@@ -62,7 +62,7 @@ public class ClasesController {
 	}
 	
 	@GetMapping("/reserva/{id}/confirmar")
-	public String confirmarReserva(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Usuario usuario) {
+	public String confirmarReserva(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal  Usuario usuario) {
 
 		if (clase.anhadirClaseUsuario(usuario, id)) {
 			return "redirect:/mostrarClases";
