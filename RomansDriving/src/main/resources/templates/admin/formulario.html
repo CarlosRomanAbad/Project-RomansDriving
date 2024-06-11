@@ -60,11 +60,11 @@
 					                            <div id="telefonoError" class="invalid-feedback"></div>
 					                        </div>
 					
-					                        <div class="mb-3">
-					                            <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
-					                            <input type="date" name="fechaNacimiento" th:field="*{fechaNacimiento}" />
-					                        </div>
-					
+					                      
+											<div class="mb-3">
+												<label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
+												<input type="date" id="fechaNacimiento" class="form-control" th:field="*{fechaNacimiento}" required th:attr="max=${fechaMaxima}">
+											</div>
 					                        <div class="d-grid">
 					                            <button type="submit" class="btn btn-danger btn-block">Guardar</button>
 					                        </div>
