@@ -38,7 +38,7 @@ public class ClasesController {
 	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Usuario user) {
 		Optional<Clase> optionalClase = clase.findById(id);
 			
-			
+			clase.comprobarFechaMasDeSieteDias(id);
 			//clase.reservarClaseCambioPrecio(user, id);
 			Clase claseSeleccionada = optionalClase.get();
 
@@ -63,7 +63,7 @@ public class ClasesController {
 	
 	@GetMapping("/reserva/{id}/confirmar")
 	public String confirmarReserva(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal  Usuario usuario) {
-
+		clase.comprobarFechaMasDeSieteDias(id);
 		if (clase.anhadirClaseUsuario(usuario, id)) {
 			return "redirect:/mostrarClases";
 		}

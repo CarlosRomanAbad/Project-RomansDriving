@@ -1,6 +1,7 @@
 package com.salesianostriana.edu.romansdriving.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -145,6 +146,21 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 		if(tieneCarnet){
 			return claseRepository.findById(id).get().getPrecio()/2;
+		}
+
+		else{
+			return claseRepository.findById(id).get().getPrecio();
+		}
+
+	}
+
+	public double comprobarFechaMasDeSieteDias(Long id){
+		Optional<Clase> claseBuscada = claseRepository.findById(id);
+		double descuento = 1.3;
+		double precioFinal = 0.0;
+		if (claseBuscada.get().getFechaClase().isAfter(LocalDateTime.now().plusDays(7))) {
+			claseBuscada.get().setPrecio(claseRepository.findById(id).get().getPrecio()/1.3);
+			return claseBuscada.get().getPrecio();
 		}
 
 		else{
