@@ -101,6 +101,9 @@ public String mostrarFormularioClases(Model model) {
 
     @GetMapping("/formulario/")
     public String mostrarFormulario(Model model) {
+        LocalDateTime now = LocalDateTime.now();
+        String formattedDateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        model.addAttribute("fechaMaxima", formattedDateTime);
         model.addAttribute("usuario", new Usuario());
         return "admin/formulario";
     }
