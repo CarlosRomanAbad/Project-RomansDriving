@@ -77,7 +77,7 @@
                     <td th:text="${clase.profesor.nombre}">Profesor</td>
                     <td th:text="${clase.vehiculo.tipo}">Tipo Vehículo</td>
                     <td th:text="${clase.vehiculo.marca}">Marca</td>
-                    <td><span th:text="${#numbers.formatDecimal(clase.precio, 1, 'COMMA', 2, 'POINT') + ' €'}"></span></td>
+                    <td><span th:text="${#numbers.formatDecimal(clase.precio, 2,1) + ' €'}"></span></td>
                     <td>
                         <a th:href="@{'/reserva/' + ${clase.id}}" class="btn btn-danger text-center"><span>Reservar</span></a>
                     </td>

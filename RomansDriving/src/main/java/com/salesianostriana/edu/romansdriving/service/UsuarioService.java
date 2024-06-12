@@ -24,7 +24,7 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
 	
 	@Autowired ClaseRepository claseRepository;
 	
-	private Clase clase;
+	//private Clase clase;
 	
 	public List<Usuario>mostrarUsuariosConCarnet(){
 		
@@ -80,7 +80,7 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
             if (user.isTieneCarnetAutoescuela()) {
                 return clase.getPrecio() * 0.5; // Aplicar descuento del 50%
             } else {
-                return clase.getPrecio(); // Precio sin descuento
+                return clase.getPrecio(); //
             }
         } else {
             throw new IllegalArgumentException("Clase o Usuario no encontrado");

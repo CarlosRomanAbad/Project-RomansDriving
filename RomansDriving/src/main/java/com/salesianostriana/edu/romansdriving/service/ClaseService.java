@@ -60,7 +60,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	public List<Clase> actualizarClasesFueraPlazo() {
 
-		LocalDate fechaActual = LocalDate.now();
+		//LocalDate fechaActual = LocalDate.now();
 		List<Clase> clasesFueraPlazo = claseRepository.findClasesFueraPlazo();
 
 		clasesFueraPlazo.forEach(c -> c.setEstaOcupada(true));
@@ -128,7 +128,7 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	}
 
-	public boolean comprobarTieneCarnet(Long id){
+	public boolean comprobarTieneCarnet(Long id ){
 		Optional<Usuario>user = usuarioRepository.findById(id);
 		boolean tieneCarnet = false;
 		if(user.isPresent()){
@@ -142,10 +142,10 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 	
 	public double aplicarDescuentoClase(Long id) {
 		
-		boolean tieneCarnet = comprobarTieneCarnet(id);
-
-		if(tieneCarnet){
-			return claseRepository.findById(id).get().getPrecio()/2;
+		Optional <Usuario> user = usuarioRepository.findById(id);
+		
+		if(user.get().isTieneCarnetAutoescuela()){
+			return claseRepository.findById(id).get().getPrecio()/1.4;
 		}
 
 		else{
@@ -156,10 +156,11 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 
 	public double comprobarFechaMasDeSieteDias(Long id){
 		Optional<Clase> claseBuscada = claseRepository.findById(id);
-		double descuento = 1.3;
-		double precioFinal = 0.0;
+
+
+
 		if (claseBuscada.get().getFechaClase().isAfter(LocalDateTime.now().plusDays(7))) {
-			claseBuscada.get().setPrecio(claseRepository.findById(id).get().getPrecio()/1.3);
+			claseBuscada.get().setPrecio(claseRepository.findById(id).get().getPrecio()/1.2);
 			return claseBuscada.get().getPrecio();
 		}
 

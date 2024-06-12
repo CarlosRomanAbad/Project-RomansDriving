@@ -20,11 +20,11 @@ public class VehiculoService extends BaseServiceImpl<Vehiculo,Long,VehiculoRepos
     @Autowired
     private VehiculoRepository vehiculoRepository;
 
-    @Autowired
-    private ClaseRepository claseRepository;
+   // @Autowired
+  //  private ClaseRepository claseRepository;
 
 
-    private Clase clase;
+  //  private Clase clase;
 
     public boolean comprobarAntiguedadVehiculo(Vehiculo vehiculo){
 
