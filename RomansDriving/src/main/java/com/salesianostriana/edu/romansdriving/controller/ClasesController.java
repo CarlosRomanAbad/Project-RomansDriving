@@ -38,6 +38,7 @@ public class ClasesController {
 	public String mostrarReservaSeleccionada(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Usuario user) {
 	    Optional<Clase> optionalClase = clase.findById(id);
 	    clase.comprobarFechaMasDeSieteDias(id);
+		//usuario.comprobarGastosUsuarios(id);
 	    if (optionalClase.isPresent()) {
 	        Clase claseSeleccionada = optionalClase.get();
 
@@ -48,6 +49,7 @@ public class ClasesController {
 	            //clase.save(claseSeleccionada);
 	        }
 
+			
 	        model.addAttribute("reserva", claseSeleccionada);
 	        model.addAttribute("precioClase", claseSeleccionada.getPrecio());
 
@@ -61,6 +63,7 @@ public class ClasesController {
 	@GetMapping("/reserva/{id}/confirmar")
 	public String confirmarReserva(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal  Usuario usuario) {
 		clase.comprobarFechaMasDeSieteDias(id);
+		
 		if (clase.anhadirClaseUsuario(usuario, id)) {
 			return "redirect:/mostrarClases";
 		}
@@ -108,14 +111,13 @@ public String mostrarClasesDisponiblesCamion(Model model, @AuthenticationPrincip
 
 
 
-	@GetMapping("/mostrarClases")
-	public String mostrarMisClases(@AuthenticationPrincipal Usuario usuario , Model model , Long id){
-		
-		List<Clase> clasesUsuario = usuario.getClases();
-		model.addAttribute("misClases", clasesUsuario);
-		return "user/misClases";
-
-	}
+@GetMapping("/mostrarClases")
+public String mostrarMisClases(@AuthenticationPrincipal Usuario usuario , Model model){
+    List<Clase> clasesUsuario = usuario.getClases();
+    model.addAttribute("misClases", clasesUsuario);
+    model.addAttribute("precioTotal", clase.obtenerDineroTotalClasesUsuario(usuario.getId()));
+    return "user/misClases";
+}
 	@GetMapping("cancelarClase/{id}")
     public String cancelarClase(@PathVariable Long id, @AuthenticationPrincipal Usuario user) {
         clase.cancelarClase(id, user);

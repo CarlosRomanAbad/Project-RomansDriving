@@ -20,29 +20,29 @@ INSERT INTO vehiculo (tipo, num_bastidor, marca, modelo, anhos_antiguedad) VALUE
 
 
 ALTER SEQUENCE vehiculo_seq RESTART WITH 1000;
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15', NULL, 1, 'López Maganha', 'Luis Miguel');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15',NULL, 2, 'Naranjo González', 'Ángel');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-05-15',NULL, 3, 'Campos Rivera', 'Miguel');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2004-06-01', NULL, 4, 'Sánchez García', 'Pedro');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2005-03-15', NULL, 5, 'Ruiz González', 'Javier');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2006-07-20', NULL, 6, 'Rodríguez Martín', 'Carmen');
-INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre) VALUES ('2007-01-10', NULL, 7, 'Gómez Sánchez', 'Luisa');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre , telefono) VALUES ('2004-05-15', NULL, 1, 'López Maganha', 'Luis Miguel','123456789');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre , telefono) VALUES ('2004-05-15',NULL, 2, 'Naranjo González', 'Ángel','123456789');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre , telefono) VALUES ('2004-05-15',NULL, 3, 'Campos Rivera', 'Miguel','123456789');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre , telefono) VALUES ('2004-06-01', NULL, 4, 'Sánchez García', 'Pedro','123456789');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre , telefono) VALUES ('2005-03-15', NULL, 5, 'Ruiz González', 'Javier','123456789');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre , telefono) VALUES ('2006-07-20', NULL, 6, 'Rodríguez Martín', 'Carmen','123456789');
+INSERT INTO profesor (fecha_alta, fecha_baja, id, apellidos, nombre , telefono) VALUES ('2007-01-10', NULL, 7, 'Gómez Sánchez', 'Luisa','123456789');
 
 
 ALTER SEQUENCE profesor_seq RESTART WITH 1000;
 
 
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2024-06-14 09:00', 39.99, 1, 1, 1);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2025-06-14 09:00', 39.99, 1, 1, 1);
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2024-12-15 10:00', 40.22, 2, 2, 2);
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2024-06-29 11:00', 41.99, 3, 3, 3);
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2024-06-13 08:00', 39.99, 4, 4, 4);
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2024-06-22 09:00', 40.22, 5, 5, 5);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2025-06-29 11:00', 41.99, 3, 3, 3);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2025-06-13 08:00', 39.99, 4, 4, 4);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2025-06-22 09:00', 40.22, 5, 5, 5);
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id, usuario_id) VALUES (true, '2024-05-30 14:00', 41.99, 6, 6, 6, 1);
 INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id, usuario_id) VALUES (true, '2024-05-24 15:00', 41.99, 7, 3, 7, 2);
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2024-06-22 10:00', 40.22, 8, 4, 7);
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2024-06-22 11:00', 40.99, 9, 1, 6);
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2024-06-22 12:00', 39.01, 10, 1, 3);
-INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2024-12-22 13:00', 40.22, 11, 1, 7);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2025-06-22 10:00', 40.22, 8, 4, 7);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2025-06-22 11:00', 40.99, 9, 1, 6);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2025-06-22 12:00', 39.01, 10, 1, 3);
+INSERT INTO clase (esta_ocupada, fecha_clase, precio, id, profesor_id, vehiculo_id) VALUES (false, '2025-12-22 13:00', 40.22, 11, 1, 7);
 
 
 ALTER SEQUENCE clase_seq RESTART WITH 10000;

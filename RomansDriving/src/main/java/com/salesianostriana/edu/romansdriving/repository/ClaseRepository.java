@@ -34,7 +34,7 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		@Query("SELECT c FROM Clase c WHERE c.vehiculo.tipo = :tipo AND c.estaOcupada = false")
 		List<Clase> findAllClasesCamionDesOcupadas(@Param("tipo") TipoVehiculo tipo);
 
-		@Query("SELECT c FROM Clase c WHERE c.estaOcupada = false AND c.fechaClase < CURRENT_DATE()")
+		@Query("SELECT c FROM Clase c WHERE c.estaOcupada = false AND c.fechaClase <= CURRENT_DATE()")
 		List<Clase> findClasesFueraPlazo();
 
 		@Query("SELECT c FROM Clase c WHERE c.id = :id AND c.estaOcupada = false")
@@ -54,9 +54,9 @@ public interface ClaseRepository extends JpaRepository<Clase , Long> {
 		@Query("SELECT Count (c) FROM Clase c WHERE c.usuario.id = :id")
 		List<Clase> findClasesAndUsuarios(@Param("id")Long id);
 
-	@Query("SELECT c FROM Clase c WHERE c.profesor.id = :id")
-	List<Clase> findClasesAndProfesor(@Param("id")Long id);
-		
+		@Query("SELECT c FROM Clase c WHERE c.profesor.id = :id")
+		List<Clase> findClasesAndProfesor(@Param("id")Long id);
+			
 
 		
 }

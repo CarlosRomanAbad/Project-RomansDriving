@@ -70,7 +70,7 @@
             </tr>
             </tbody>
         </table>
-    </div>
+        <p>TOTAL : <span th:text="${#numbers.formatDecimal(precioTotal, 1, 'COMMA', 2, 'POINT') + ' EUR '}"></span></p>    </div>
 </div>
 
 <footer th:replace="~{fragments/Footer::Footer}"></footer>

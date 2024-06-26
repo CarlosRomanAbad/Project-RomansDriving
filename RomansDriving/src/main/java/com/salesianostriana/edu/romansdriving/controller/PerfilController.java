@@ -24,4 +24,6 @@ public class PerfilController {
         return "user/miPerfil";
 
     }
+    
+    
 }

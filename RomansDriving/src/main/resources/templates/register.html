@@ -29,7 +29,11 @@
 						Introduzca una fecha válida, para poder estar registrado tiene que tener 16 o mas años, o no
 						venir del futuro.
 						
-						Tambien existe la posibilidad que haya puesto un usuario incorrecto ya que puede que este registrado, introduzca uno nuevo
+						También existe la posibilidad que haya puesto un usuario incorrecto ya que puede que este registrado, introduzca uno nuevo
+					</div>
+					
+					<div class="alert alert-danger" role="alert" th:if="${param.correoExistente}">
+						El correo electrónico ya está registrado. Por favor, introduzca uno nuevo.
 					</div>
 
 					<div class="card-body">

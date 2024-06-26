@@ -2,6 +2,7 @@ package com.salesianostriana.edu.romansdriving.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,8 @@ public class AdminController {
     }
 
     @GetMapping("/gestionProfesores")
-    public String mostrarProfesores(Model model) {
+    public String mostrarProfesores(Model model){
+        
         model.addAttribute("listaProfesores", p.findAll());
         return "admin/gestionProfesores";
     }
@@ -317,7 +319,7 @@ public String mostrarFormularioClases(Model model) {
             } else {
 
               //  p.borrarProfesor(id);
-              p.deleteById(id);
+                p.eliminarProfesor(id);
                 return "redirect:/admin/gestionProfesores";
             }
         } else {
@@ -356,5 +358,13 @@ public String mostrarFormularioClases(Model model) {
         model.addAttribute("gananciasClasesAsignadas",c.gananciasClasesAsignadas());
         model.addAttribute("profeMasClases",p.profesorConMasClases());
         return "admin/gestionGanancias";
+    }
+
+    @GetMapping("/profesoresAntiguos")
+
+    public String getProfesoresAntiguos(Model model) {
+        List<Profesor> profesoresAntiguos = p.profesoresInactivos();
+        model.addAttribute("profesoresAntiguos", profesoresAntiguos);
+        return "admin/profesoresAntiguos";
     }
 }

@@ -44,6 +44,8 @@ public class Profesor {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaBaja;
+
+    private String telefono;
     
     
 }

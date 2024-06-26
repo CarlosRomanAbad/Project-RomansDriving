@@ -18,7 +18,10 @@ public interface UsuarioRepository
 		public boolean existsByUsername(String username);
 	 @Query("SELECT u FROM Usuario u WHERE u.tieneCarnetAutoescuela = true")
 
-	    List<Usuario> findAllByTieneCarnetAutoescuela(); 
+	    List<Usuario> findAllByTieneCarnetAutoescuela();
+
+
+    boolean existsByEmail(String email); 
 	 
 	 
 		

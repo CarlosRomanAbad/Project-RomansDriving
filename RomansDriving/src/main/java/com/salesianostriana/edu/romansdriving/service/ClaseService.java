@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import javax.swing.text.html.Option;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -168,6 +170,18 @@ public class ClaseService extends BaseServiceImpl<Clase, Long, ClaseRepository> 
 			return claseRepository.findById(id).get().getPrecio();
 		}
 
+	}
+
+	public double obtenerDineroTotalClasesUsuario(Long id){
+		
+		Optional<Usuario> user = usuarioRepository.findById(id);
+		double total = 0;
+	
+		if(user.isPresent()){
+			total = user.get().getClases().stream().mapToDouble(c -> c.getPrecio()).sum();
+		}
+	
+		return total;
 	}
 	
 

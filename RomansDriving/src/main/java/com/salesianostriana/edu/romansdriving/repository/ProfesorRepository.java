@@ -13,4 +13,5 @@ public interface ProfesorRepository extends JpaRepository<Profesor, Long> {
    Profesor findProfesorWithMostClasses();
 
 
+   List<Profesor> findByFechaBajaIsNotNull();
 }

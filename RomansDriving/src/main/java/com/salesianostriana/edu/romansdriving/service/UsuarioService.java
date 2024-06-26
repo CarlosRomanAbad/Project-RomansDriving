@@ -78,14 +78,52 @@ public class UsuarioService extends BaseServiceImpl<Usuario, Long, UsuarioReposi
             Usuario user = usuarioOptional.get();
 
             if (user.isTieneCarnetAutoescuela()) {
-                return clase.getPrecio() * 0.5; // Aplicar descuento del 50%
+                return clase.getPrecio() * 0.5;
             } else {
-                return clase.getPrecio(); //
+                return clase.getPrecio(); 
             }
         } else {
             throw new IllegalArgumentException("Clase o Usuario no encontrado");
         }
     }
+
+	public boolean comprobarMail(String email){
+		return this.repository.existsByEmail(email);
+	}
+
+	/*public boolean comprobarGastosUsuarios(Long id){
+
+		Optional<Usuario> user = usuario.findById(id);
+		List<Clase> clases = user.get().getClases();
+		boolean comprobado = false;
+
+
+			if(user.isPresent()){
+				if(clases.stream().mapToDouble(Clase::getPrecio).sum() > 100){
+					comprobado = true;
+				}
+			}
+
+			return comprobado;	
+	}
+
+	public double descuentoPorGastos(Long id){
+	
+		boolean comprobado = comprobarGastosUsuarios(id);
+	
+		if(comprobado){
+			final double precioo = usuario.findById(id).get().getClases().stream().mapToDouble(Clase::getPrecio).sum() * 2 / 100;
+			claseRepository.findAll().forEach(clase -> {
+				if(clase.getUsuario().getId() == id){
+					clase.setPrecio(precioo);
+					claseRepository.save(clase);
+				}
+			});
+			return precioo;
+		}
+	
+		return 0;
+	}*/
 	
 	
 }

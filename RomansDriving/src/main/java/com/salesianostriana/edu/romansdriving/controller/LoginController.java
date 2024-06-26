@@ -27,7 +27,6 @@ public class LoginController {
 		@GetMapping("/register/")
 		public String formularioGuardar(Model model, Usuario user) {
 			
-			
 			model.addAttribute("registro", new Usuario());
 			return "register";
 			
@@ -40,6 +39,10 @@ public class LoginController {
 			if (usuario.usuarioExistente(user.getUsername())) {
 	            return "redirect:/register/?error=usuarioExistente";
 	        }
+
+			if(usuario.comprobarMail(user.getEmail())) {
+				return "redirect:/register/?error=correoExistente";
+			}
 			
 			if(usuario.usuarioConFechaIncorrecta(user)) {
 				String encodedPassword = passwordEncoder.encode(user.getPassword());

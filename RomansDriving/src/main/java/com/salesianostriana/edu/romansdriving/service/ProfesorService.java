@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,20 +65,24 @@ public class ProfesorService extends BaseServiceImpl<Profesor, Long, ProfesorRep
 		}
 	}
 
-	public void borrarProfesor(Long id) {
-		Optional<Profesor> profesor = profesorRepo.findById(id);
-	//	List<Clase> clases = claseRepository.findClasesAndProfesor(id);
-		clase = claseRepository.findById(id).get();
-		if (profesor.isPresent()) {
+	public void eliminarProfesor(Long id){
+		Optional<Profesor> profesorBuscado = profesorRepo.findById(id);
 
-			profesor.get().setFechaBaja(LocalDate.now());
-			clase.removeFromClaseProfe(profesor.get());
-			profesorRepo.save(profesor.get());
-			this.claseRepository.save(clase);
+		if(profesorBuscado.isPresent()){
+			profesorBuscado.get().setFechaBaja(LocalDate.now());
+			profesorRepo.save(profesorBuscado.get());
 		}
 	}
 
-	
+	public List<Profesor> profesoresInactivos(){
+
+		List<Profesor> profesores = profesorRepo.findAll();
+
+		return profesores.stream()
+		.filter(profesor -> profesor.getFechaBaja() != null)
+		.collect(Collectors.toList());
+	}
+
 }
 
 	

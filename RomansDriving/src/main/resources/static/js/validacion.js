@@ -1,27 +1,17 @@
-function validarDNI() {
-    let dni = document.getElementById('dni').value;    
-    let letras = 'TRWAGMYFPDXBNJZSQVHLCKE';
 
 
-    if (/^\d{8}[A-Z]$/i.test(dni)) {
-        let numero = dni.substr(0, 8);
-        let letra = dni.charAt(8).toUpperCase();
-        let indice = numero % 23;
+function validarDNI(){
+    let dni = document.getElementById("dni").value;
+    let dniError = document.getElementById("dniError");
 
-        if (letras.charAt(indice) === letra) {
-            document.getElementById("errorDNI").classList.remove("mostrar");
-            document.getElementById("okDNI").classList.remove("ocultar");
-            document.getElementById("login").disabled = false;
-        } else {
-            document.getElementById("errorDNI").classList.add("mostrar");
-            document.getElementById("okDNI").classList.add("ocultar");
-            document.getElementById("login").disabled = true;
-        }
+    if(dni.length != 9){
+        dniError.textContent = "El DNI debe tener 9 caracteres.";
+        return false;
     } else {
-        document.getElementById("errorDNI").classList.add("mostrar");
-        document.getElementById("okDNI").classList.add("ocultar");
-        document.getElementById("login").disabled = true;
+        dniError.textContent = "";
+        return true;
     }
+
 }
 
 
