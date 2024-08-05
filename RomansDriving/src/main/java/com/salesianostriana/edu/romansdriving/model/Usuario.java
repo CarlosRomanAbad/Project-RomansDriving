@@ -34,8 +34,10 @@ public class Usuario implements UserDetails {
 	)
 	private List<Carnet> carnet = new ArrayList<>();
 
+	private Integer cantidadClasesReservadas;
 	private String nombre, dni, apellidos, username, email, password, telefono;
 	private boolean tieneCarnetAutoescuela, isAdmin;
+	
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaNacimiento;

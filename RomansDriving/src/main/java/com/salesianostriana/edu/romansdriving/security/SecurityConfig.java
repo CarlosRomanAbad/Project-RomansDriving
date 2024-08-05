@@ -72,6 +72,7 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             .frameOptions(frameOptionsz -> frameOptionsz.disable()));
 
     return http.build();
+    
 }
 
 
